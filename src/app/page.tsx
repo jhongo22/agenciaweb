@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import Image from "next/image";
 import CanvasBackground from '@/components/CanvasBackground';
 import Link from 'next/link';
 
@@ -405,7 +406,7 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="group relative w-full aspect-[4/3] bg-[#111111] overflow-hidden border border-white/5 hover:border-[#D62828] hover:shadow-[0_0_30px_rgba(214,40,40,0.3)] transition-all duration-500 cursor-pointer"
             >
-              <img src="/projects/toxxic-main.webp" alt="Toxxic Project" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
+              <Image src="/projects/toxxic-main.webp" alt="Toxxic Project" fill className="object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none"></div>
               <div className="absolute bottom-6 left-6 right-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <span className="font-mono text-[10px] md:text-xs tracking-widest text-[#D62828] mb-2 block">E-COMMERCE / NEXT.JS</span>
@@ -421,7 +422,7 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="group relative w-full aspect-[4/3] bg-[#111111] overflow-hidden border border-white/5 hover:border-[#D62828] hover:shadow-[0_0_30px_rgba(214,40,40,0.3)] transition-all duration-500 cursor-pointer"
             >
-              <img src="/projects/lamisia-1.webp" alt="Lamisia Project" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
+              <Image src="/projects/lamisia-1.webp" alt="Lamisia Project" fill className="object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none"></div>
               <div className="absolute bottom-6 left-6 right-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <span className="font-mono text-[10px] md:text-xs tracking-widest text-[#D62828] mb-2 block">CORPORATIVO / IA</span>
@@ -465,7 +466,7 @@ export default function Home() {
               <Link href="/servicios/desarrollo-web-alto-impacto" className="group h-full relative bg-[#080808] overflow-hidden p-10 md:p-14 border border-white/5 hover:border-[#D62828] hover:shadow-[0_0_30px_rgba(214,40,40,0.2)] transition-all duration-500 flex flex-col justify-between min-h-[400px]">
                 {/* Background Image Reveal */}
                 <div className="absolute inset-0 z-0">
-                  <img src="/projects/lamisia-6.webp" alt="Desarrollo Web" className="w-full h-full object-cover opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out" />
+                  <Image src="/projects/lamisia-6.webp" alt="Desarrollo Web" fill className="object-cover opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/80 to-transparent"></div>
                 </div>
                 
@@ -492,7 +493,7 @@ export default function Home() {
               >
                 <Link href="/servicios/agentes-ia" className="group h-full relative bg-[#080808] overflow-hidden p-8 border border-white/5 hover:border-[#D62828] hover:shadow-[0_0_30px_rgba(214,40,40,0.2)] transition-all duration-500 flex flex-col justify-between min-h-[250px]">
                   <div className="absolute inset-0 z-0">
-                    <img src="/projects/dashboard-ia-1.webp" alt="Agentes IA" className="w-full h-full object-cover opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out" />
+                    <Image src="/projects/dashboard-ia-1.webp" alt="Agentes IA" fill className="object-cover opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/80 to-transparent"></div>
                   </div>
 
@@ -516,7 +517,7 @@ export default function Home() {
               >
                 <Link href="/servicios/automatizacion-n8n" className="group h-full relative bg-[#080808] overflow-hidden p-8 border border-white/5 hover:border-[#D62828] hover:shadow-[0_0_30px_rgba(214,40,40,0.2)] transition-all duration-500 flex flex-col justify-between min-h-[250px]">
                   <div className="absolute inset-0 z-0">
-                    <img src="/projects/dashboard-winners-1.webp" alt="Automatización" className="w-full h-full object-cover opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out" />
+                    <Image src="/projects/dashboard-winners-1.webp" alt="Automatización" fill className="object-cover opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/80 to-transparent"></div>
                   </div>
 
