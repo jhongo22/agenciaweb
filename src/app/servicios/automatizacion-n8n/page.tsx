@@ -155,7 +155,7 @@ export default function AutomatizacionPage() {
             </h3>
             <h4 className="font-mono text-xs text-white uppercase tracking-widest mb-4">Eficiencia Operativa</h4>
             <p className="text-white/50 text-sm leading-relaxed mb-6">
-              Pasar datos de un Excel a un CRM, enviar facturas por correo, o responder manualmente "sí, tenemos stock", destruyen el tiempo de tu equipo. Automatizamos de raíz.
+              Pasar datos de un Excel a un CRM, enviar facturas por correo, o responder manualmente &quot;sí, tenemos stock&quot;, destruyen el tiempo de tu equipo. Automatizamos de raíz.
             </p>
           </motion.div>
 
