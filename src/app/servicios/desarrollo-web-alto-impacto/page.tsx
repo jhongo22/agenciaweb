@@ -179,7 +179,7 @@ export default function DesarrolloWebPage() {
             </div>
             <h3 className="font-display text-2xl font-bold mb-4">SEO Técnico Preciso</h3>
             <p className="text-white/50 text-sm leading-relaxed">
-              Estructuramos todos los metadatos y etiquetas desde la raíz. Tu sitio "hablará" el idioma de los algoritmos de búsqueda desde el primer día que salga a producción.
+              Estructuramos todos los metadatos y etiquetas desde la raíz. Tu sitio &quot;hablará&quot; el idioma de los algoritmos de búsqueda desde el primer día que salga a producción.
             </p>
           </motion.div>
         </div>
