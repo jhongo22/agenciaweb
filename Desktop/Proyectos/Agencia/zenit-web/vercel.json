@@ -4,6 +4,8 @@
   "framework": "nextjs",
   "installCommand": "npm install --legacy-peer-deps",
   "env": {
-    "NODE_OPTIONS": "--max-old-space-size=4096"
-  }
+    "NODE_OPTIONS": "--max-old-space-size=4096",
+    "NEXT_TELEMETRY_DISABLED": "1"
+  },
+  "regions": ["iad1"]
 }
