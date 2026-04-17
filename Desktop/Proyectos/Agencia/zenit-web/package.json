@@ -26,5 +26,8 @@
     "typescript": "^5.6.3",
     "eslint": "^9.0.0",
     "eslint-config-next": "15.5.15"
+  },
+  "overrides": {
+    "next": "15.5.15"
   }
 }
