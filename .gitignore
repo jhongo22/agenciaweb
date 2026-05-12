@@ -75,7 +75,6 @@ coverage/
 
 # gatsby files
 .cache/
-public
 
 # storybook build output
 storybook-static

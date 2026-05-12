@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MessageSquare, X, Send, Bot, User } from 'lucide-react';
 
 // Simulación de respuestas del Agente
 const AGENT_RESPONSES = [
@@ -41,50 +42,55 @@ export default function AiChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20, scale: 0.95, transformOrigin: 'bottom right' }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-4 w-80 sm:w-96 h-[500px] max-h-[80vh] bg-surface/90 backdrop-blur-xl border border-accent/20 rounded-none flex flex-col shadow-2xl overflow-hidden"
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-4 w-80 sm:w-96 h-[500px] max-h-[80vh] bg-black/80 backdrop-blur-2xl border border-white/10 rounded-2xl flex flex-col shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden"
           >
             {/* Header */}
-            <div className="p-4 border-b border-accent/20 bg-background flex justify-between items-center">
+            <div className="p-4 border-b border-white/10 bg-white/5 flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-8 h-8 rounded-none bg-accent flex items-center justify-center text-background font-mono font-bold text-lg">
-                    [Z]
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#D62828] to-[#ff4d4d] flex items-center justify-center text-white shadow-[0_0_15px_rgba(214,40,40,0.4)]">
+                    <Bot size={20} />
                   </div>
-                  <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-accent border-2 border-background rounded-none animate-pulse"></span>
+                  <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-black rounded-full animate-pulse"></span>
                 </div>
                 <div>
-                  <h3 className="text-accent font-mono font-black uppercase text-sm tracking-widest">Zenit.SYS</h3>
-                  <p className="text-xs text-foreground/50 font-mono">ONLINE_</p>
+                  <h3 className="text-white font-display font-bold text-sm tracking-wide">Zenit AI Agent</h3>
+                  <p className="text-[10px] text-white/50 font-mono uppercase tracking-widest">En línea</p>
                 </div>
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="text-foreground/50 hover:text-accent font-mono text-xl transition-colors magnetic-area"
+                className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 text-white/50 hover:text-white transition-all"
               >
-                ✕
+                <X size={18} />
               </button>
             </div>
 
             {/* Body */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-background/50">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-black/20">
               {messages.map((msg, idx) => (
                 <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div 
-                    className={`max-w-[80%] p-3 text-sm font-mono ${
-                      msg.role === 'user' 
-                        ? 'bg-accent text-background border border-accent' 
-                        : 'bg-surface text-foreground border border-accent/20'
-                    }`}
-                  >
-                    {msg.text}
+                  <div className={`flex gap-2 max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+                    <div className={`mt-auto w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${msg.role === 'user' ? 'bg-white/10' : 'bg-[#D62828]/20'}`}>
+                      {msg.role === 'user' ? <User size={12} className="text-white/70" /> : <Bot size={12} className="text-[#D62828]" />}
+                    </div>
+                    <div 
+                      className={`p-3 text-sm leading-relaxed ${
+                        msg.role === 'user' 
+                          ? 'bg-[#D62828] text-white rounded-2xl rounded-tr-none shadow-[0_5px_15px_rgba(214,40,40,0.2)]' 
+                          : 'bg-white/5 text-white/90 border border-white/10 rounded-2xl rounded-tl-none'
+                      }`}
+                    >
+                      {msg.text}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -92,23 +98,22 @@ export default function AiChatWidget() {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-accent/20 bg-background">
-              <div className="relative flex items-center">
+            <div className="p-4 bg-white/5 border-t border-white/10">
+              <div className="relative flex items-center gap-2">
                 <input
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="COMANDOS..."
-                  className="w-full bg-surface border border-accent/20 rounded-none py-3 px-4 text-sm font-mono text-accent focus:outline-none focus:border-accent transition-colors uppercase"
+                  placeholder="Escribe un mensaje..."
+                  className="flex-1 bg-white/5 border border-white/10 rounded-full py-3 px-5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#D62828]/50 focus:ring-1 focus:ring-[#D62828]/20 transition-all"
                 />
                 <button 
                   onClick={handleSend}
-                  className="absolute right-2 p-2 bg-accent hover:bg-foreground text-background transition-colors magnetic-area"
+                  disabled={!inputValue.trim()}
+                  className="w-10 h-10 rounded-full bg-[#D62828] hover:bg-[#ff4d4d] disabled:opacity-50 disabled:hover:bg-[#D62828] text-white flex items-center justify-center transition-all shadow-[0_5px_15px_rgba(214,40,40,0.3)] hover:shadow-[0_8px_20px_rgba(214,40,40,0.4)] active:scale-95"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                    <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
-                  </svg>
+                  <Send size={18} />
                 </button>
               </div>
             </div>
@@ -121,16 +126,33 @@ export default function AiChatWidget() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-16 h-16 bg-accent rounded-none flex items-center justify-center shadow-2xl text-background relative group magnetic-area border border-background"
+        className="w-14 h-14 bg-[#D62828] rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(214,40,40,0.4)] text-white relative group border border-white/20 hover:bg-[#ff4d4d] transition-all duration-300"
       >
-        {isOpen ? (
-          <span className="text-2xl font-mono">✕</span>
-        ) : (
-          <div className="font-mono font-black text-sm tracking-widest flex flex-col items-center">
-            <span>SYS</span>
-            <span className="w-full h-0.5 bg-background mt-1"></span>
-          </div>
-        )}
+        <AnimatePresence mode="wait">
+          {isOpen ? (
+            <motion.div
+              key="close"
+              initial={{ opacity: 0, rotate: -90 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              exit={{ opacity: 0, rotate: 90 }}
+              transition={{ duration: 0.2 }}
+            >
+              <X size={24} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="open"
+              initial={{ opacity: 0, rotate: 90 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              exit={{ opacity: 0, rotate: -90 }}
+              transition={{ duration: 0.2 }}
+              className="relative"
+            >
+              <MessageSquare size={24} />
+              <span className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full border-2 border-[#D62828] animate-bounce"></span>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.button>
     </div>
   );
