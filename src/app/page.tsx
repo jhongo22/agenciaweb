@@ -74,7 +74,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              Tecnología de élite.
+              Agencia de I.A. &
             </motion.div>
             <motion.div 
               className="mt-2 lg:mt-0 relative overflow-hidden inline-block"
@@ -83,7 +83,7 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D62828] to-white bg-[length:200%_auto] animate-shimmer">
-                Resultados implacables.
+                Desarrollo Web de Élite.
               </span>
             </motion.div>
           </h1>
@@ -94,7 +94,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="mt-8 text-white/50 font-sans max-w-2xl text-base md:text-xl font-light leading-relaxed mx-auto"
           >
-            Sistemas web de altísimo rendimiento escalados por Inteligencia Artificial. <strong className="text-white font-medium">Construimos infraestructura digital para empresas que dominan su sector.</strong>
+            Diseñamos sistemas autónomos, agentes de IA y ecosistemas web de alto rendimiento. <strong className="text-white font-medium">Arquitectura digital premium para empresas que buscan dominar su mercado y Google.</strong>
           </motion.p>
 
           <motion.div
@@ -145,8 +145,8 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.2] font-semibold tracking-tight text-white"
           >
-            Una agencia convencional te entrega una web. <br/>
-            <span className="text-white/40 italic font-light">Nosotros diseñamos ecosistemas autónomos.</span> 
+            No somos solo una agencia web. <br/>
+            <span className="text-white/40 italic font-light">Somos tus arquitectos de automatización e inteligencia artificial.</span> 
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 30 }}
@@ -155,7 +155,7 @@ export default function Home() {
             transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="mt-12 text-white/70 text-lg md:text-xl max-w-2xl font-light leading-relaxed"
           >
-            Reemplazamos el trabajo manual obsoleto con procesos automatizados e integraciones de IA. Desde sitios web ultrarrápidos en Next.js hasta agentes que operan tu negocio 24/7.
+            Integramos tecnología de vanguardia para que tu negocio trabaje por ti. Desde sitios web ultrarrápidos con Next.js hasta agentes de IA que cualifican leads y cierran ventas 24/7. Si puede ser automatizado, nosotros lo llevamos al siguiente nivel.
           </motion.p>
           
           <motion.div
@@ -377,6 +377,56 @@ export default function Home() {
         `}} />
       </section>
 
+      {/* WHY ZENIT - DIFFERENTIATORS */}
+      <section className="w-full bg-[#111] relative z-10 py-24 md:py-40 px-6 md:px-12 border-t border-white/5 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 md:gap-20">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-1"
+            >
+              <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-6">/ Ventaja Competitiva</p>
+              <h2 className="font-display text-4xl md:text-5xl font-black uppercase tracking-tight text-white mb-8">
+                Ingeniería <br /> sin <span className="text-[#D62828]">Fricción.</span>
+              </h2>
+              <p className="text-white/50 font-light leading-relaxed mb-10">
+                La mayoría de las agencias se quedan en lo superficial. Nosotros profundizamos en la lógica de tu negocio para construir sistemas que no solo se ven bien, sino que operan con precisión quirúrgica.
+              </p>
+              <div className="flex items-center gap-4">
+                 <div className="text-white font-display text-5xl font-black">99%</div>
+                 <div className="text-white/30 font-mono text-[10px] uppercase tracking-widest leading-tight">Uptime & <br/> Eficiencia</div>
+              </div>
+            </motion.div>
+
+            <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+               {[
+                 { title: "IA-Native Workflow", desc: "Nuestros procesos nacen de la Inteligencia Artificial, permitiendo entregas 3x más rápidas que la competencia." },
+                 { title: "Arquitectura Cloud", desc: "Sistemas distribuidos globalmente que escalan automáticamente según tu demanda de tráfico." },
+                 { title: "Seguridad por Diseño", desc: "Cifrado de grado empresarial en cada capa de datos para proteger tu activo más valioso." },
+                 { title: "Soporte Proactivo", desc: "Monitoreamos tu sistema 24/7. Si algo falla, lo sabemos y arreglamos antes que tú." }
+               ].map((item, i) => (
+                 <motion.div 
+                   key={i}
+                   initial={{ opacity: 0, scale: 0.9 }}
+                   whileInView={{ opacity: 1, scale: 1 }}
+                   viewport={{ once: true }}
+                   transition={{ delay: i * 0.1 }}
+                   className="p-8 bg-[#080808] border border-white/5 rounded-2xl hover:border-[#D62828]/30 transition-all group"
+                 >
+                    <h4 className="text-white font-bold text-lg mb-4 flex items-center gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#D62828] group-hover:scale-150 transition-transform"></span>
+                      {item.title}
+                    </h4>
+                    <p className="text-white/40 text-sm leading-relaxed">{item.desc}</p>
+                 </motion.div>
+               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* NEW: PROYECTOS DESTACADOS GALLERY */}
       <section className="w-full bg-[#080808] relative z-10 py-24 md:py-40 px-6 md:px-12 border-t border-white/5 overflow-hidden">
         <div className="max-w-7xl mx-auto">
@@ -432,6 +482,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* WORK PROCESS SECTION */}
+      <section className="w-full bg-[#080808] relative z-10 py-24 md:py-40 px-6 md:px-12 border-t border-white/5 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[1px] bg-gradient-to-r from-transparent via-[#D62828]/50 to-transparent"></div>
+        
+        <div className="max-w-7xl mx-auto text-center mb-24">
+           <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-4">/ Metodología Zenit</p>
+           <h2 className="font-display text-4xl md:text-7xl font-black uppercase tracking-tight text-white">Del Caos al <span className="text-[#D62828]">Orden.</span></h2>
+        </div>
+
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+           {/* Connecting Line (Desktop) */}
+           <div className="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-white/5 z-0"></div>
+           
+           {[
+             { step: "01", title: "Descubrimiento", desc: "Auditoría profunda de tus procesos actuales y definición de objetivos estratégicos." },
+             { step: "02", title: "Ingeniería", desc: "Construcción iterativa de tu ecosistema web y agentes de IA bajo estándares de élite." },
+             { step: "03", title: "Escalado", desc: "Lanzamiento, optimización de conversión y expansión automática de capacidades." }
+           ].map((item, i) => (
+             <motion.div 
+               key={i}
+               initial={{ opacity: 0, y: 30 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ delay: i * 0.2 }}
+               className="relative z-10 flex flex-col items-center text-center group"
+             >
+                <div className="w-24 h-24 rounded-full bg-[#111] border border-white/10 flex items-center justify-center mb-8 group-hover:border-[#D62828] group-hover:shadow-[0_0_20px_rgba(214,40,40,0.2)] transition-all">
+                   <span className="font-display text-3xl font-black text-white/20 group-hover:text-[#D62828] transition-colors">{item.step}</span>
+                </div>
+                <h3 className="text-white font-bold text-2xl mb-4 uppercase tracking-tight">{item.title}</h3>
+                <p className="text-white/40 text-sm leading-relaxed px-4">{item.desc}</p>
+             </motion.div>
+           ))}
+        </div>
+      </section>
+
       {/* SERVICES GRID */}
       <section className="w-full bg-[#111111] relative z-10 py-24 md:py-40 px-6 md:px-12 border-t border-white/5 overflow-hidden">
         {/* Floating decorations */}
@@ -446,8 +532,8 @@ export default function Home() {
             className="w-full flex justify-between items-end mb-16 md:mb-24"
           >
             <div>
-              <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-4">/ Nuestras Áreas</p>
-              <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tight text-white">Sistemas</h2>
+              <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-4">/ Nuestras Áreas de Dominio</p>
+              <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tight text-white">Soluciones.</h2>
             </div>
             <p className="font-sans text-sm text-white/50 hidden md:block max-w-xs text-right">
               Capacidades técnicas diseñadas para multiplicar tu tracción.
@@ -535,47 +621,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ELEGANT FOOTER */}
-      <footer className="w-full bg-[#080808] relative z-10 px-6 py-24 md:px-12 md:py-32 border-t border-[#D62828]/20 overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col items-center justify-center text-center">
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#D62828] mb-8 flex items-center gap-3"
-          >
-            <span className="w-6 h-[1px] bg-[#D62828]/50"></span> Llevando negocios al siguiente nivel <span className="w-6 h-[1px] bg-[#D62828]/50"></span>
-          </motion.p>
-          <Link href="/start" className="inline-block relative group">
-            <motion.h2 
-              initial={{ opacity: 0, scale: 0.9, y: 50 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display flex flex-col items-center text-4xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.9] font-black uppercase tracking-tight text-white"
-            >
-              <span className="inline-block transition-transform duration-500 ease-out group-hover:-translate-y-4">CONTÁCTANOS</span>
-            </motion.h2>
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-0 h-1 md:h-2 bg-[#D62828] group-hover:w-full transition-all duration-700 ease-out shadow-[0_0_15px_#D62828]"></div>
-          </Link>
+      {/* FAQ SECTION */}
+      <section className="w-full bg-[#0A0A0A] relative z-10 py-24 md:py-40 px-6 md:px-12 border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+           <div className="text-center mb-20">
+              <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-4">/ Preguntas Frecuentes</p>
+              <h2 className="font-display text-4xl md:text-5xl font-black uppercase tracking-tight text-white">Despeja tus <span className="text-[#D62828]">Dudas.</span></h2>
+           </div>
+
+           <div className="space-y-6">
+              {[
+                { q: "¿Cuánto tarda en implementarse un sistema de IA?", a: "Dependiendo de la complejidad, un Agente de IA funcional puede estar listo en 2 a 4 semanas. Sistemas de automatización más complejos pueden tomar un poco más." },
+                { q: "¿Tengo que saber programar para usar las herramientas?", a: "En absoluto. Nosotros diseñamos interfaces intuitivas y paneles de control para que tú y tu equipo operen el sistema sin tocar una sola línea de código." },
+                { q: "¿Cómo garantizan que la IA no cometa errores?", a: "Utilizamos técnicas de RAG y 'Guardrails' de seguridad para que la IA solo responda basándose en tu documentación oficial y con el tono de tu marca." },
+                { q: "¿Qué mantenimiento requieren estos sistemas?", a: "Ofrecemos planes de soporte continuo para asegurar que las integraciones (n8n, APIs) se mantengan actualizadas y que los modelos de IA sigan aprendiendo de tu negocio." }
+              ].map((faq, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="p-8 bg-[#111] border border-white/5 rounded-2xl hover:border-white/10 transition-all cursor-help"
+                >
+                   <h4 className="text-white font-bold text-lg mb-4 flex items-start gap-4">
+                      <span className="text-[#D62828] font-mono">?</span>
+                      {faq.q}
+                   </h4>
+                   <p className="text-white/40 text-sm leading-relaxed pl-6">{faq.a}</p>
+                </motion.div>
+              ))}
+           </div>
         </div>
-        
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="max-w-7xl mx-auto mt-24 md:mt-40 flex flex-col md:flex-row justify-between items-center border-t border-white/10 pt-8 font-mono text-[10px] md:text-xs uppercase tracking-widest text-white/40"
-        >
-          <p className="mb-4 md:mb-0">© {new Date().getFullYear()} ZENIT WEB & IA.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-[#D62828] hover:-translate-y-1 transition-all">Instagram</a>
-            <a href="#" className="hover:text-[#D62828] hover:-translate-y-1 transition-all">LinkedIn</a>
-            <a href="#" className="hover:text-[#D62828] hover:-translate-y-1 transition-all">GitHub</a>
-          </div>
-        </motion.div>
-      </footer>
+      </section>
 
     </main>
   );

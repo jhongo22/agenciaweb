@@ -6,10 +6,10 @@ import Link from 'next/link';
 
 const NAV_ITEMS = [
   { name: 'Inicio', href: '/' },
-  { name: 'Web', href: '/servicios/desarrollo-web-alto-impacto' },
-  { name: 'I.A.', href: '/servicios/agentes-ia' },
-  { name: 'Autom.', href: '/servicios/automatizacion-n8n' },
-  { name: 'Sistemas', href: '/servicios/soluciones-a-medida' },
+  { name: 'Desarrollo Web', href: '/servicios/desarrollo-web-alto-impacto' },
+  { name: 'Agentes I.A.', href: '/servicios/agentes-ia' },
+  { name: 'Automatización', href: '/servicios/automatizacion-n8n' },
+  { name: 'Soluciones', href: '/servicios/soluciones-a-medida' },
 ];
 
 export default function Navigation() {
@@ -48,13 +48,13 @@ export default function Navigation() {
         </Link>
 
         {/* MIDDLE LINKS BLOCK (Spans remaining space, hidden on mobile) */}
-        <nav className="hidden md:flex flex-grow items-center justify-center">
+        <nav className="hidden lg:flex flex-grow items-center justify-center">
           <ul className="flex h-full w-full justify-center">
             {NAV_ITEMS.map((item, index) => (
-              <li key={item.name} className={`flex-1 flex max-w-[150px] border-r border-white/5 ${index === 0 ? 'border-l' : ''}`}>
+              <li key={item.name} className={`flex-grow flex border-r border-white/5 ${index === 0 ? 'border-l' : ''}`}>
                 <Link
                   href={item.href}
-                  className="w-full h-full flex items-center justify-center font-mono text-[10px] md:text-xs tracking-widest text-white/60 hover:text-white hover:bg-white/5 transition-all uppercase magnetic-area"
+                  className="w-full h-full flex items-center justify-center px-4 font-mono text-[9px] xl:text-[10px] tracking-[0.15em] text-white/60 hover:text-white hover:bg-white/5 transition-all uppercase magnetic-area whitespace-nowrap"
                 >
                   {item.name}
                 </Link>

@@ -6,6 +6,7 @@ import AiChatWidget from '@/components/AiChatWidget';
 import CustomCursor from '@/components/CustomCursor';
 import Preloader from '@/components/Preloader';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 // Reusing Syne as a display font fallback since we'll configure Clash later if needed
@@ -29,6 +30,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <Navigation />
           {children}
+          <Footer />
           <AiChatWidget />
         </SmoothScrollProvider>
       </body>
