@@ -6,9 +6,9 @@ import { MessageSquare, X, Send, Bot, User } from 'lucide-react';
 
 // Simulación de respuestas del Agente
 const AGENT_RESPONSES = [
-  "Hola, soy el agente de IA de Zenit. ¿En qué puedo ayudarte a escalar tu negocio hoy?",
-  "Nuestras automatizaciones con n8n pueden ahorrarte hasta 20 horas a la semana. ¿Quieres saber cómo?",
-  "Diseñamos ecosistemas digitales, no solo páginas web. ¿Cuál es tu mayor desafío actual?",
+  "Hola, soy el agente de IA de Autonomek. ¿En qué puedo ayudarte a escalar tu negocio hoy?",
+  "Nuestros sistemas de automatización de tareas y procesos pueden ahorrarte hasta 20 horas de trabajo a la semana. ¿Quieres saber cómo?",
+  "Diseñamos plataformas web inteligentes, no solo páginas simples. ¿Cuál es tu mayor desafío actual?",
 ];
 
 export default function AiChatWidget() {
@@ -62,7 +62,7 @@ export default function AiChatWidget() {
                   <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-black rounded-full animate-pulse"></span>
                 </div>
                 <div>
-                  <h3 className="text-white font-display font-bold text-sm tracking-wide">Zenit AI Agent</h3>
+                  <h3 className="text-white font-display font-bold text-sm tracking-wide">Autonomek AI Agent</h3>
                   <p className="text-[10px] text-white/50 font-mono uppercase tracking-widest">En línea</p>
                 </div>
               </div>

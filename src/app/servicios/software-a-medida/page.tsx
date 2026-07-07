@@ -19,8 +19,7 @@ export default function SolucionesPage() {
       <div className="absolute bottom-[-10%] left-[20%] w-[40vw] h-[40vh] bg-[#D62828]/10 blur-[120px] pointer-events-none rounded-full" />
       
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        
-        {/* Breadcrumb */}
+             {/* Breadcrumb */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -30,11 +29,11 @@ export default function SolucionesPage() {
           <span>/</span>
           <Link href="/servicios" className="hover:text-white transition-colors">Servicios</Link>
           <span>/</span>
-          <span className="text-[#D62828] font-bold">Soluciones a Medida</span>
+          <span className="text-[#D62828] font-bold">Software a Medida</span>
         </motion.div>
 
         {/* Hero split layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-40">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 md:mb-40">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -42,7 +41,7 @@ export default function SolucionesPage() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 border border-white/10 rounded-full mb-8 bg-[#050505]">
                <Cpu size={14} className="text-[#D62828]" />
-              <span className="font-mono text-[10px] text-white/80 uppercase tracking-widest">Escalabilidad Cloud</span>
+              <span className="font-mono text-[10px] text-white/80 uppercase tracking-widest">Alta Disponibilidad</span>
             </div>
             
             <h1 className="font-display text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[0.9]">
@@ -52,12 +51,12 @@ export default function SolucionesPage() {
               </span>
             </h1>
             
-            <p className="font-sans text-lg md:text-xl text-white/60 leading-relaxed mb-10 max-w-xl">
-              Cuando el software comercial ya no es suficiente, construimos herramientas propias. ERPs ligeros, paneles de analítica y plataformas de gestión centralizadas para tu operación.
+            <p className="font-sans text-base md:text-xl text-white/60 leading-relaxed mb-10 max-w-xl">
+              Cuando el software comercial ya no es suficiente, construimos herramientas propias. Sistemas de gestión, paneles de analítica y plataformas de administración centralizadas para tu negocio.
             </p>
             
             <Link href="/start" className="inline-flex items-center gap-4 px-8 py-4 border border-[#D62828]/50 text-white font-bold text-xs tracking-widest uppercase hover:bg-[#D62828] hover:text-[#080808] transition-all shadow-lg">
-              Cotizar Infraestructura <ArrowRight size={16} />
+              Cotizar Software a Medida <ArrowRight size={16} />
             </Link>
           </motion.div>
 
@@ -66,16 +65,16 @@ export default function SolucionesPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full aspect-square md:aspect-[4/3] bg-[#0A0A0A] border border-white/5 rounded-3xl overflow-hidden relative shadow-2xl flex flex-col"
+            className="w-full aspect-square md:aspect-[4/3] bg-[#0A0A0A] border border-white/5 rounded-2xl md:rounded-3xl overflow-hidden relative shadow-2xl flex flex-col"
           >
              <div className="h-12 border-b border-white/5 bg-[#111] flex items-center px-6 gap-4">
                 <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
-                  <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
-                  <div className="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+                   <div className="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                   <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                   <div className="w-3 h-3 rounded-full bg-[#27C93F]"></div>
                 </div>
                 <div className="flex-1 max-w-[240px] mx-auto h-6 bg-[#050505] rounded-full border border-white/5 flex items-center px-4">
-                  <span className="text-[10px] font-mono text-white/20 truncate tracking-widest">platform.zenit.cloud</span>
+                  <span className="text-[10px] font-mono text-white/20 truncate tracking-widest">platform.autonomek.cloud</span>
                 </div>
              </div>
 
@@ -120,13 +119,13 @@ export default function SolucionesPage() {
         </div>
 
         {/* Process Section */}
-        <section className="mb-40">
-           <div className="text-center mb-20">
+        <section className="mb-24 md:mb-40">
+           <div className="text-center mb-16 md:mb-20">
              <h2 className="font-display text-4xl md:text-5xl font-black uppercase mb-6">De la idea al despliegue</h2>
              <div className="w-20 h-1 bg-[#D62828] mx-auto"></div>
            </div>
            
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
              {processSteps.map((step, i) => (
                <motion.div
                  key={i}
@@ -137,7 +136,7 @@ export default function SolucionesPage() {
                  className="relative"
                >
                  <div className="text-5xl font-display font-black text-white/5 absolute -top-8 -left-4">{i + 1}</div>
-                 <h3 className="font-bold text-xl mb-4 relative z-10">{step.title}</h3>
+                 <h3 className="font-bold text-lg md:text-xl mb-4 relative z-10">{step.title}</h3>
                  <p className="text-white/50 text-sm leading-relaxed">{step.desc}</p>
                </motion.div>
              ))}
@@ -145,39 +144,39 @@ export default function SolucionesPage() {
         </section>
 
         {/* Capabilities Grid */}
-        <section className="mb-40 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <section className="mb-24 md:mb-40 grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { icon: <Lock className="text-[#D62828]" />, title: "Seguridad Bancaria", desc: "Cifrado de datos en reposo y tránsito, autenticación MFA y auditorías de seguridad." },
-            { icon: <Server className="text-[#D62828]" />, title: "Infraestructura Cloud", desc: "Sistemas montados en AWS o Google Cloud para escalabilidad garantizada." },
-            { icon: <BarChart3 className="text-[#D62828]" />, title: "BI & Analítica", desc: "Paneles de control a medida para visualizar cada KPI de tu negocio en tiempo real." },
-            { icon: <Layers className="text-[#D62828]" />, title: "Microservicios", desc: "Arquitecturas modulares que permiten actualizar partes del sistema sin detener la operación." },
-            { icon: <Globe className="text-[#D62828]" />, title: "APIs Propias", desc: "Creamos la documentación y la infraestructura para que otras apps se conecten a la tuya." },
-            { icon: <LifeBuoy className="text-[#D62828]" />, title: "Mantenimiento", desc: "No te dejamos solo. Incluimos soporte técnico continuo para actualizaciones y mejoras." }
+            { icon: <Lock className="text-[#D62828]" />, title: "Seguridad Corporativa", desc: "Cifrado de datos en reposo y tránsito, acceso protegido de dos pasos y auditorías de seguridad." },
+            { icon: <Server className="text-[#D62828]" />, title: "Sistemas en la Nube", desc: "Sistemas alojados de forma segura en internet para acceder de forma rápida desde cualquier lugar." },
+            { icon: <BarChart3 className="text-[#D62828]" />, title: "Reportes y Estadísticas", desc: "Paneles de control para visualizar el estado y los números clave de tu negocio en tiempo real." },
+            { icon: <Layers className="text-[#D62828]" />, title: "Estructura Modular", desc: "Sistemas diseñados por partes independientes que permiten actualizar funciones sin detener tu operación." },
+            { icon: <Globe className="text-[#D62828]" />, title: "Conexiones Externas", desc: "Preparamos la infraestructura para que otros sistemas o aplicaciones se conecten y hablen con el tuyo." },
+            { icon: <LifeBuoy className="text-[#D62828]" />, title: "Mantenimiento Continuo", desc: "No te dejamos solo. Incluimos soporte técnico continuo para actualizaciones y mejoras preventivas." }
           ].map((cap, i) => (
             <motion.div
               key={i}
               whileHover={{ scale: 1.02 }}
-              className="p-10 bg-[#111] border border-white/5 rounded-[2rem] hover:border-[#D62828]/20 transition-all"
+              className="p-6 md:p-10 bg-[#111] border border-white/5 rounded-2xl hover:border-[#D62828]/20 transition-all"
             >
               <div className="mb-6">{cap.icon}</div>
-              <h3 className="font-display text-2xl font-bold mb-4">{cap.title}</h3>
+              <h3 className="font-display text-xl md:text-2xl font-bold mb-4">{cap.title}</h3>
               <p className="text-white/50 text-sm leading-relaxed">{cap.desc}</p>
             </motion.div>
           ))}
         </section>
 
         {/* Final CTA */}
-        <section className="relative py-32 rounded-[3rem] bg-gradient-to-br from-[#111] to-black border border-white/10 overflow-hidden text-center">
+        <section className="relative py-16 md:py-32 rounded-2xl md:rounded-[3rem] bg-gradient-to-br from-[#111] to-black border border-white/10 overflow-hidden text-center">
           <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
           <div className="relative z-10 max-w-4xl mx-auto px-6">
-            <h2 className="font-display text-4xl md:text-7xl font-black uppercase text-white mb-8 tracking-tighter leading-none">
+            <h2 className="font-display text-3xl md:text-7xl font-black uppercase text-white mb-8 tracking-tighter leading-none">
               Tu software es <br /> tu <span className="text-[#D62828]">activo</span> más valioso.
             </h2>
-            <p className="text-white/40 text-lg md:text-xl mb-12 font-light max-w-2xl mx-auto">
+            <p className="text-white/40 text-base md:text-lg mb-8 md:mb-12 font-light max-w-2xl mx-auto">
               Deja de adaptarte a las herramientas de otros. Crea la herramienta que se adapte perfectamente a tu forma de trabajar.
             </p>
-            <Link href="/start" className="inline-flex items-center gap-4 px-12 py-6 bg-[#D62828] text-white font-black text-sm tracking-widest uppercase hover:scale-105 transition-all shadow-2xl">
-              HABLAR CON UN ARQUITECTO <ArrowRight size={20} />
+            <Link href="/start" className="inline-flex items-center gap-4 px-8 py-4 md:px-12 md:py-6 bg-[#D62828] text-white font-black text-xs md:text-sm tracking-widest uppercase hover:scale-105 transition-all shadow-2xl">
+              HABLAR CON UN INGENIERO <ArrowRight size={20} />
             </Link>
           </div>
         </section>

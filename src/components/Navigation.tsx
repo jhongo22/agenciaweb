@@ -6,10 +6,10 @@ import Link from 'next/link';
 
 const NAV_ITEMS = [
   { name: 'Inicio', href: '/' },
-  { name: 'Desarrollo Web', href: '/servicios/desarrollo-web-alto-impacto' },
-  { name: 'Agentes I.A.', href: '/servicios/agentes-ia' },
-  { name: 'Automatización', href: '/servicios/automatizacion-n8n' },
-  { name: 'Soluciones', href: '/servicios/soluciones-a-medida' },
+  { name: 'Páginas Web', href: '/servicios/paginas-web-alto-rendimiento' },
+  { name: 'Agentes IA', href: '/servicios/agentes-inteligencia-artificial' },
+  { name: 'Automatización', href: '/servicios/automatizacion-de-procesos' },
+  { name: 'Software a Medida', href: '/servicios/software-a-medida' },
 ];
 
 export default function Navigation() {
@@ -43,7 +43,7 @@ export default function Navigation() {
           className="flex-shrink-0 flex items-center justify-center px-6 md:px-12 border-r border-white/10 group hover:bg-white/5 transition-colors magnetic-area"
         >
           <span className="font-display font-black text-xl md:text-2xl tracking-[0.2em] text-white uppercase">
-            ZENIT<span className="text-[#D62828] group-hover:drop-shadow-[0_0_8px_#D62828] transition-all">_</span>
+            AUTONOMEK<span className="text-[#D62828] group-hover:drop-shadow-[0_0_8px_#D62828] transition-all">_</span>
           </span>
         </Link>
 

@@ -9,10 +9,10 @@ const FOOTER_LINKS = [
   {
     title: "Servicios",
     links: [
-      { name: "Desarrollo Web", href: "/servicios/desarrollo-web-alto-impacto" },
-      { name: "Agentes I.A.", href: "/servicios/agentes-ia" },
-      { name: "Automatización", href: "/servicios/automatizacion-n8n" },
-      { name: "Soluciones a Medida", href: "/servicios/soluciones-a-medida" }
+      { name: "Páginas Web", href: "/servicios/paginas-web-alto-rendimiento" },
+      { name: "Agentes IA", href: "/servicios/agentes-inteligencia-artificial" },
+      { name: "Automatización", href: "/servicios/automatizacion-de-procesos" },
+      { name: "Software a Medida", href: "/servicios/software-a-medida" }
     ]
   },
   {
@@ -66,7 +66,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-8 group">
               <span className="font-display font-black text-3xl tracking-[0.2em] text-white uppercase">
-                ZENIT<span className="text-[#D62828] group-hover:drop-shadow-[0_0_8px_#D62828] transition-all">_</span>
+                AUTONOMEK<span className="text-[#D62828] group-hover:drop-shadow-[0_0_8px_#D62828] transition-all">_</span>
               </span>
             </Link>
             <p className="text-white/40 text-sm leading-relaxed max-w-sm mb-10">
@@ -111,7 +111,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-12 font-mono text-[10px] uppercase tracking-widest text-white/30">
-          <p>© {new Date().getFullYear()} ZENIT WEB & IA. TODOS LOS DERECHOS RESERVADOS.</p>
+          <p>© {new Date().getFullYear()} AUTONOMEK WEB & IA. TODOS LOS DERECHOS RESERVADOS.</p>
           <div className="flex gap-8 mt-6 md:mt-0">
              <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-[#00CC66] animate-pulse"></div>

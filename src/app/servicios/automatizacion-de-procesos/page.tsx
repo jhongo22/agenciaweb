@@ -72,8 +72,8 @@ export default function AutomatizacionPage() {
               </span>
             </h1>
             
-            <p className="font-sans text-lg md:text-xl text-white/60 leading-relaxed mb-10 max-w-xl">
-              Eliminamos las tareas repetitivas de tu equipo mediante flujos de trabajo autónomos en n8n. Conectamos todas tus herramientas para que los datos fluyan sin intervención humana.
+            <p className="font-sans text-base md:text-xl text-white/60 leading-relaxed mb-10 max-w-xl">
+              Eliminamos las tareas repetitivas de tu equipo mediante flujos de trabajo autónomos. Conectamos todas tus herramientas para que la información fluya sin intervención humana.
             </p>
             
             <div className="flex flex-wrap gap-6">
@@ -92,15 +92,15 @@ export default function AutomatizacionPage() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full aspect-square bg-[#0A0A0A] border border-white/5 rounded-[2rem] p-8 md:p-12 relative overflow-hidden flex flex-col justify-center shadow-2xl"
+            className="w-full aspect-square bg-[#0A0A0A] border border-white/5 rounded-2xl md:rounded-[2rem] p-6 md:p-12 relative overflow-hidden flex flex-col justify-center shadow-2xl"
           >
              <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] bg-[size:2rem_2rem]"></div>
              
              <div className="relative z-10 space-y-12 ml-4 md:ml-12 border-l-2 border-white/5 pl-8 md:pl-12">
                 {[
-                  { name: "Trigger", detail: "Formulario Web / Webhook", color: "#DFDFDF" },
-                  { name: "Process", detail: "IA: Clasificación de Datos", color: "#D62828" },
-                  { name: "Action", detail: "Sync HubSpot + Slack", color: "#00CC66" }
+                  { name: "Inicio", detail: "Formulario Web de Contacto", color: "#DFDFDF" },
+                  { name: "Procesamiento", detail: "Clasificación Inteligente", color: "#D62828" },
+                  { name: "Acción", detail: "Envío a tu Base de Datos y Alertas", color: "#00CC66" }
                 ].map((step, i) => (
                   <motion.div 
                     key={i}
@@ -126,14 +126,14 @@ export default function AutomatizacionPage() {
         </div>
 
         {/* Integration Grid */}
-        <section className="mb-40">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+        <section className="mb-24 md:mb-40">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-20 gap-8">
             <div className="max-w-xl">
               <p className="font-mono text-[#00CC66] text-xs tracking-[0.3em] uppercase mb-4">Conectividad Total</p>
               <h2 className="font-display text-4xl md:text-5xl font-black uppercase tracking-tight">Cualquier App, <br /> un solo Flujo.</h2>
             </div>
             <p className="text-white/40 text-sm max-w-xs font-light">
-              No importa qué software uses. Si tiene una API, podemos automatizarlo y conectarlo con el resto de tu stack.
+              No importa qué software uses. Si tus herramientas permiten comunicación, podemos automatizarlas y conectarlas en un solo flujo.
             </p>
           </div>
           
@@ -142,7 +142,7 @@ export default function AutomatizacionPage() {
               <motion.div
                 key={i}
                 whileHover={{ y: -5, backgroundColor: 'rgba(255,255,255,0.05)' }}
-                className="p-8 bg-[#111] border border-white/5 rounded-2xl flex flex-col items-center justify-center gap-4 text-center transition-all"
+                className="p-4 md:p-8 bg-[#111] border border-white/5 rounded-2xl flex flex-col items-center justify-center gap-4 text-center transition-all"
               >
                 <div className="text-[#00CC66]">{tool.icon}</div>
                 <span className="font-mono text-[9px] uppercase tracking-widest text-white/60">{tool.name}</span>
@@ -152,55 +152,55 @@ export default function AutomatizacionPage() {
         </section>
 
         {/* Efficiency Stats */}
-        <section className="mb-40 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <section className="mb-24 md:mb-40 grid grid-cols-1 md:grid-cols-3 gap-8">
           {benefits.map((b, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="p-10 bg-[#111] border-t-4 border-[#00CC66] rounded-2xl shadow-xl"
+              className="p-6 md:p-10 bg-[#111] border-t-4 border-[#00CC66] rounded-2xl shadow-xl"
             >
               <div className="mb-6">{b.icon}</div>
-              <h3 className="font-display text-2xl font-bold mb-4">{b.title}</h3>
+              <h3 className="font-display text-xl md:text-2xl font-bold mb-4">{b.title}</h3>
               <p className="text-white/50 text-sm leading-relaxed">{b.desc}</p>
             </motion.div>
           ))}
         </section>
 
         {/* Use Cases Horizontal */}
-        <section className="mb-40 relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-[#111] to-black border border-white/5 p-12 md:p-20">
+        <section className="mb-24 md:mb-40 relative overflow-hidden rounded-2xl md:rounded-[3rem] bg-gradient-to-br from-[#111] to-black border border-white/5 p-6 md:p-20">
           <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-               <h2 className="font-display text-4xl md:text-6xl font-black uppercase mb-12">Casos de <br /> <span className="text-[#00CC66]">Impacto.</span></h2>
+               <h2 className="font-display text-3xl md:text-6xl font-black uppercase mb-12">Casos de <br /> <span className="text-[#00CC66]">Impacto.</span></h2>
                <div className="space-y-12">
                   <div className="group cursor-pointer">
                     <h4 className="font-mono text-[#00CC66] text-[10px] mb-2 uppercase tracking-widest">Ventas & CRM</h4>
-                    <p className="text-xl text-white/80 group-hover:text-white transition-colors">Sincronización automática de facturas desde Stripe hacia HubSpot y QuickBooks.</p>
+                    <p className="text-lg md:text-xl text-white/80 group-hover:text-white transition-colors">Sincronización automática de facturas desde pasarelas de pago hacia tu sistema contable.</p>
                   </div>
                   <div className="group cursor-pointer">
                     <h4 className="font-mono text-[#00CC66] text-[10px] mb-2 uppercase tracking-widest">Atención al Cliente</h4>
-                    <p className="text-xl text-white/80 group-hover:text-white transition-colors">Sistema de tickets que auto-responde vía WhatsApp y escala a Slack en casos críticos.</p>
+                    <p className="text-lg md:text-xl text-white/80 group-hover:text-white transition-colors">Sistema de tickets que auto-responde vía WhatsApp y notifica en tiempo real al equipo en casos críticos.</p>
                   </div>
                   <div className="group cursor-pointer">
-                    <h4 className="font-mono text-[#00CC66] text-[10px] mb-2 uppercase tracking-widest">Marketing</h4>
-                    <p className="text-xl text-white/80 group-hover:text-white transition-colors">Web scraping automático de competencia con reportes semanales directos a tu email.</p>
+                    <h4 className="font-mono text-[#00CC66] text-[10px] mb-2 uppercase tracking-widest">Operaciones</h4>
+                    <p className="text-lg md:text-xl text-white/80 group-hover:text-white transition-colors">Generación de reportes automáticos semanales sobre el estado de tu negocio directos a tu email.</p>
                   </div>
                </div>
             </div>
             <div className="relative">
               <div className="absolute inset-0 bg-[#00CC66]/10 blur-[100px] rounded-full animate-pulse"></div>
-              <div className="relative bg-[#1A1A1A] border border-white/10 rounded-3xl p-8 shadow-2xl">
+              <div className="relative bg-[#1A1A1A] border border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl">
                 <div className="flex items-center gap-2 mb-6">
                   <div className="w-3 h-3 rounded-full bg-red-500"></div>
                   <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
                 </div>
                 <div className="font-mono text-[10px] md:text-xs text-white/40 space-y-4">
-                  <p className="text-[#00CC66]">{">"} Initializing Zenit_Engine_v2...</p>
-                  <p>{">"} Scanning connected APIs: 42 found.</p>
-                  <p>{">"} Deploying n8n instances... [OK]</p>
+                  <p className="text-[#00CC66]">{">"} Initializing Autonomek_Engine_v2...</p>
+                  <p>{">"} Scanning connected applications: 42 found.</p>
+                  <p>{">"} Deploying automation servers... [OK]</p>
                   <p>{">"} Latency: 4ms</p>
                   <p>{">"} Status: Running_Autopilot</p>
                   <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden mt-8">
@@ -218,17 +218,17 @@ export default function AutomatizacionPage() {
         </section>
 
         {/* Final CTA */}
-        <section className="text-center py-20">
+        <section className="text-center py-10 md:py-20">
           <motion.div
             whileHover={{ scale: 1.02 }}
-            className="inline-block p-1 bg-gradient-to-r from-[#00CC66] to-[#D62828] rounded-[2rem]"
+            className="inline-block p-1 bg-gradient-to-r from-[#00CC66] to-[#D62828] rounded-2xl md:rounded-[2rem]"
           >
-            <div className="bg-[#080808] px-12 py-16 md:px-24 rounded-[1.9rem]">
-              <h2 className="font-display text-4xl md:text-6xl font-black uppercase mb-8">Libera a tu Equipo.</h2>
-              <p className="text-white/50 text-lg md:text-xl mb-12 max-w-xl mx-auto">
+            <div className="bg-[#080808] px-6 py-10 md:px-24 rounded-[1.9rem]">
+              <h2 className="font-display text-3xl md:text-6xl font-black uppercase mb-8">Libera a tu Equipo.</h2>
+              <p className="text-white/50 text-base md:text-xl mb-8 md:mb-12 max-w-xl mx-auto">
                 No contrates más personas para tareas que un servidor puede hacer mejor, más rápido y sin errores.
               </p>
-              <Link href="/start" className="inline-flex items-center gap-4 px-10 py-5 bg-[#00CC66] text-[#080808] font-black text-sm tracking-widest uppercase hover:bg-white transition-all shadow-2xl">
+              <Link href="/start" className="inline-flex items-center gap-4 px-8 py-4 md:px-10 md:py-5 bg-[#00CC66] text-[#080808] font-black text-xs md:text-sm tracking-widest uppercase hover:bg-white transition-all shadow-2xl">
                 COMENZAR AUDITORÍA <ArrowRight size={20} />
               </Link>
             </div>

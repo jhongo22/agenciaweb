@@ -1,3 +1,5 @@
+import path from 'path';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Optimizaciones de build para Vercel
@@ -17,7 +19,6 @@ const nextConfig = {
   },
   // Otras optimizaciones
   reactStrictMode: true,
-  swcMinify: true,
   // Desactivar verificación de tipos y ESLint durante el build para evitar errores
   typescript: {
     ignoreBuildErrors: true,
@@ -25,6 +26,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  outputFileTracingRoot: path.resolve(process.cwd()),
 };
 
 export default nextConfig;

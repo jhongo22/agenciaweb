@@ -38,7 +38,7 @@ export default function Preloader() {
               animate={{ opacity: 1, scale: 1 }}
               className="text-accent font-display font-black text-6xl tracking-tighter mb-4"
             >
-              ZENIT.
+              AUTONOMEK.
             </motion.div>
             
             <div className="w-full h-[1px] bg-surface relative overflow-hidden">

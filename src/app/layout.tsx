@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const syne = Syne({ subsets: ['latin'], variable: '--font-syne' });
 
 export const metadata: Metadata = {
-  title: 'Zenit Web & IA | Tecnología Implacable',
+  title: 'Autonomek Web & IA | Tecnología Implacable',
   description: 'Desarrollo web estratégico y sistemas de agentes IA para dominar tu mercado.',
 };
 

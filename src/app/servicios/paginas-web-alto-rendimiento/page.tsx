@@ -7,21 +7,21 @@ import { Monitor, Zap, Search, Layout, Code2, Cpu, Globe, Rocket, Shield, ArrowR
 
 export default function DesarrolloWebPage() {
   const lighthouseStats = [
-    { label: "Performance", value: 100, color: "#00CC66" },
-    { label: "Accessibility", value: 100, color: "#00CC66" },
-    { label: "Best Practices", value: 100, color: "#00CC66" },
-    { label: "SEO", value: 100, color: "#00CC66" }
+    { label: "Rendimiento", value: 100, color: "#00CC66" },
+    { label: "Accesibilidad", value: 100, color: "#00CC66" },
+    { label: "Calidad", value: 100, color: "#00CC66" },
+    { label: "Posicionamiento (SEO)", value: 100, color: "#00CC66" }
   ];
 
   const techStack = [
-    { name: "Next.js", desc: "El framework de React para la web de alto rendimiento.", icon: <Rocket /> },
-    { name: "Tailwind CSS", desc: "Estilizado preciso y optimizado para carga rápida.", icon: <Layout /> },
-    { name: "TypeScript", desc: "Código robusto y libre de errores de ejecución.", icon: <Code2 /> },
-    { name: "Vercel Edge", desc: "Despliegue global en milisegundos cerca del usuario.", icon: <Globe /> }
+    { name: "Carga Instantánea", desc: "Optimizada al milisegundo para retener clientes.", icon: <Rocket /> },
+    { name: "Diseño Inteligente", desc: "Preciso y adaptado a cualquier dispositivo y pantalla.", icon: <Layout /> },
+    { name: "Estabilidad Total", desc: "Estructuras sólidas que no se rompen ante picos de tráfico.", icon: <Code2 /> },
+    { name: "Seguridad Robusta", desc: "Protección avanzada para resguardar tus datos y transacciones.", icon: <Globe /> }
   ];
 
   return (
-    <main className="min-h-screen w-full bg-[#080808] text-white pt-24 md:pt-32 pb-24 relative overflow-hidden">
+    <main className="min-h-screen w-full bg-[#080808] text-white pt-24 md:pt-32 pb-16 md:pb-24 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-[10%] right-[-10%] w-[60vw] h-[60vh] bg-[#D62828]/10 blur-[150px] pointer-events-none rounded-full" />
       <div className="absolute bottom-[10%] left-[-10%] w-[40vw] h-[40vh] bg-white/5 blur-[120px] pointer-events-none rounded-full" />
@@ -38,11 +38,11 @@ export default function DesarrolloWebPage() {
           <span>/</span>
           <Link href="/servicios" className="hover:text-white transition-colors">Servicios</Link>
           <span>/</span>
-          <span className="text-[#D62828] font-bold">Web Headless</span>
+          <span className="text-[#D62828] font-bold">Páginas Web</span>
         </motion.div>
 
         {/* Hero split layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-40">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 md:mb-40">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -53,15 +53,15 @@ export default function DesarrolloWebPage() {
               <span className="font-mono text-[10px] text-[#D62828] uppercase tracking-widest">Ingeniería Web de Élite</span>
             </div>
             
-            <h1 className="font-display text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[0.9]">
+            <h1 className="font-display text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[0.9]">
               Webs que <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-white">
                 Dominan la Red.
               </span>
             </h1>
             
-            <p className="font-sans text-lg md:text-xl text-white/60 leading-relaxed mb-10 max-w-xl">
-              No hacemos sitios web comunes. Construimos infraestructuras digitales de altísimo rendimiento con Next.js y React, diseñadas para convertir visitas en ingresos.
+            <p className="font-sans text-base md:text-xl text-white/60 leading-relaxed mb-10 max-w-xl">
+              No hacemos sitios web comunes. Construimos plataformas digitales de altísimo rendimiento optimizadas para convertir visitas en clientes reales y maximizar tus ingresos.
             </p>
             
             <div className="flex flex-wrap gap-6">
@@ -80,24 +80,24 @@ export default function DesarrolloWebPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="bg-[#111] border border-white/10 rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden"
+            className="bg-[#111] border border-white/10 rounded-2xl md:rounded-[3rem] p-6 md:p-12 shadow-2xl relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#D62828]/10 blur-[80px] -z-10"></div>
-            <div className="flex items-center gap-4 mb-12">
+            <div className="flex items-center gap-4 mb-8 md:mb-12">
                <div className="w-3 h-3 rounded-full bg-red-500"></div>
                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-               <span className="ml-4 font-mono text-[10px] text-white/20 uppercase tracking-widest">lighthouse_report_v2.log</span>
+               <span className="ml-4 font-mono text-[10px] text-white/20 uppercase tracking-widest">rendimiento_web.log</span>
             </div>
             
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-4 md:gap-8">
               {lighthouseStats.map((stat, i) => (
                 <div key={i} className="flex flex-col items-center gap-4">
-                  <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
+                  <div className="relative w-20 h-20 md:w-32 md:h-32 flex items-center justify-center">
                     <svg className="w-full h-full transform -rotate-90">
-                      <circle cx="50%" cy="50%" r="45%" fill="transparent" stroke="rgba(255,255,255,0.05)" strokeWidth="8" />
+                      <circle cx="50%" cy="50%" r="45%" fill="transparent" stroke="rgba(255,255,255,0.05)" strokeWidth="6 md:strokeWidth=8" />
                       <motion.circle 
-                        cx="50%" cy="50%" r="45%" fill="transparent" stroke={stat.color} strokeWidth="8" 
+                        cx="50%" cy="50%" r="45%" fill="transparent" stroke={stat.color} strokeWidth="6 md:strokeWidth=8" 
                         strokeDasharray="283"
                         initial={{ strokeDashoffset: 283 }}
                         whileInView={{ strokeDashoffset: 0 }}
@@ -105,9 +105,9 @@ export default function DesarrolloWebPage() {
                         transition={{ duration: 2, delay: 0.5 + i * 0.1 }}
                       />
                     </svg>
-                    <span className="absolute font-display text-2xl md:text-3xl font-bold">{stat.value}</span>
+                    <span className="absolute font-display text-xl md:text-3xl font-bold">{stat.value}</span>
                   </div>
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-white/50">{stat.label}</span>
+                  <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-widest text-white/50 text-center">{stat.label}</span>
                 </div>
               ))}
             </div>
@@ -115,23 +115,23 @@ export default function DesarrolloWebPage() {
         </div>
 
         {/* Tech Stack Grid */}
-        <section className="mb-40">
-          <div className="text-center mb-20">
-            <h2 className="font-display text-4xl md:text-5xl font-black uppercase mb-6">Stack Tecnológico</h2>
-            <p className="text-white/40 font-mono text-xs uppercase tracking-[0.3em]">Built for scale</p>
+        <section className="mb-24 md:mb-40">
+          <div className="text-center mb-16 md:mb-20">
+            <h2 className="font-display text-4xl md:text-5xl font-black uppercase mb-6">Pilares de Calidad</h2>
+            <p className="text-white/40 font-mono text-xs uppercase tracking-[0.3em]">Diseñado para Vender</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {techStack.map((tech, i) => (
               <motion.div
                 key={i}
                 whileHover={{ y: -10 }}
-                className="p-8 bg-[#111] border border-white/5 rounded-2xl hover:border-[#D62828]/30 transition-all group"
+                className="p-6 md:p-8 bg-[#111] border border-white/5 rounded-2xl hover:border-[#D62828]/30 transition-all group"
               >
                 <div className="text-[#D62828] mb-6 transform group-hover:scale-110 transition-transform">
                   {React.cloneElement(tech.icon as React.ReactElement, { size: 32 })}
                 </div>
-                <h3 className="font-bold text-xl mb-4 group-hover:text-[#D62828] transition-colors">{tech.name}</h3>
+                <h3 className="font-bold text-lg md:text-xl mb-4 group-hover:text-[#D62828] transition-colors">{tech.name}</h3>
                 <p className="text-white/50 text-sm leading-relaxed">{tech.desc}</p>
               </motion.div>
             ))}
@@ -139,45 +139,45 @@ export default function DesarrolloWebPage() {
         </section>
 
         {/* Architecture Detail */}
-        <section className="mb-40 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <section className="mb-24 md:mb-40 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="order-2 lg:order-1">
-            <div className="relative aspect-video bg-[#0A0A0A] border border-white/10 rounded-3xl overflow-hidden group shadow-2xl">
+            <div className="relative aspect-video bg-[#0A0A0A] border border-white/10 rounded-2xl md:rounded-3xl overflow-hidden group shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-tr from-[#D62828]/20 to-transparent"></div>
-              <div className="p-8 font-mono text-[10px] md:text-xs text-white/40">
-                <p className="text-[#00CC66] mb-4">{"//"} Next.js Server Side Rendering</p>
-                <p className="text-white">export async function generateStaticParams() {"{"}</p>
-                <p className="pl-4 text-white/60">return posts.map((post) ={">"} ({"{"}</p>
-                <p className="pl-8 text-white/60">slug: post.slug,</p>
-                <p className="pl-4 text-white/60">{"}"}));</p>
-                <p className="text-white">{"}"}</p>
+              <div className="p-6 md:p-8 font-mono text-[10px] md:text-xs text-white/40">
+                <p className="text-[#00CC66] mb-4">{"//"} Analizando velocidad y rendimiento</p>
+                <p className="text-white">Simulación de tráfico concurrente: 1,500 usuarios/min</p>
+                <p className="pl-4 text-white/60">Carga inicial de recursos... [OK]</p>
+                <p className="pl-8 text-white/60">Optimización de imágenes en la nube... [OK]</p>
+                <p className="pl-4 text-white/60">Compresión de datos... [OK]</p>
+                <p className="text-white">Resultado: Excelente</p>
                 
                 <div className="mt-8 p-4 bg-white/5 rounded-xl border border-white/10">
-                   <p className="text-white mb-2 uppercase tracking-widest text-[9px] font-bold">Build Statistics</p>
+                   <p className="text-white mb-2 uppercase tracking-widest text-[9px] font-bold">Estadísticas de Carga</p>
                    <div className="flex justify-between items-center text-[10px]">
-                      <span>Page Size (gzip)</span>
-                      <span className="text-[#00CC66]">12.4 kB</span>
+                      <span>Tiempo de carga</span>
+                      <span className="text-[#00CC66]">0.4 segundos</span>
                    </div>
                    <div className="flex justify-between items-center text-[10px] mt-2">
-                      <span>TTFB (Global)</span>
-                      <span className="text-[#00CC66]">42ms</span>
+                      <span>Velocidad de respuesta</span>
+                      <span className="text-[#00CC66]">Muy rápido</span>
                    </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="order-1 lg:order-2">
-            <p className="font-mono text-[#D62828] text-xs tracking-[0.3em] uppercase mb-4">La Diferencia Zenit</p>
-            <h2 className="font-display text-4xl md:text-6xl font-black uppercase mb-8 leading-[0.9]">Webs que <br /> No se Rompen.</h2>
+            <p className="font-mono text-[#D62828] text-xs tracking-[0.3em] uppercase mb-4">La Diferencia Autonomek</p>
+            <h2 className="font-display text-3xl md:text-6xl font-black uppercase mb-8 leading-[0.9]">Webs que <br /> No se Rompen.</h2>
             <div className="space-y-8">
                {[
-                 { title: "SEO Semántico", desc: "Estructuramos cada etiqueta para que los motores de búsqueda amen tu sitio.", icon: <Search size={20} /> },
-                 { title: "Mobile First", desc: "Interfaces adaptativas que se sienten como apps nativas en cualquier dispositivo.", icon: <Smartphone size={20} /> },
-                 { title: "Seguridad Robusta", desc: "Arquitecturas desacopladas que eliminan los vectores de ataque comunes.", icon: <Shield size={20} /> }
+                 { title: "Posicionamiento Web en Google (SEO)", desc: "Optimizamos cada detalle técnico del sitio para que tu negocio aparezca en los primeros lugares de Google.", icon: <Search size={20} /> },
+                 { title: "Diseño para Celulares (Mobile First)", desc: "Interfaces adaptativas que se ven espectaculares y cargan de forma instantánea en cualquier smartphone.", icon: <Smartphone size={20} /> },
+                 { title: "Seguridad Inviolable", desc: "Sistemas avanzados y blindados contra intrusos para proteger la información de tu negocio.", icon: <Shield size={20} /> }
                ].map((item, i) => (
                  <div key={i} className="flex gap-6">
                    <div className="mt-1 text-[#D62828]">{item.icon}</div>
                    <div>
-                     <h4 className="font-bold text-lg mb-2">{item.title}</h4>
+                     <h4 className="font-bold text-base md:text-lg mb-2">{item.title}</h4>
                      <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
                    </div>
                  </div>
@@ -187,14 +187,14 @@ export default function DesarrolloWebPage() {
         </section>
 
         {/* Final CTA */}
-        <section className="relative py-32 rounded-[4rem] bg-white overflow-hidden text-center">
+        <section className="relative py-16 md:py-32 rounded-2xl md:rounded-[4rem] bg-white overflow-hidden text-center">
           <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
           <div className="relative z-10 max-w-4xl mx-auto px-6">
             <p className="font-mono text-[#D62828] text-xs tracking-[0.3em] uppercase mb-8 font-black">Tu Visión, Nuestra Ingeniería</p>
-            <h2 className="font-display text-4xl md:text-8xl font-black uppercase text-[#080808] mb-12 tracking-tighter leading-none">
+            <h2 className="font-display text-3xl md:text-8xl font-black uppercase text-[#080808] mb-8 md:mb-12 tracking-tighter leading-none">
               Construyamos <br /> tu Ecosistema.
             </h2>
-            <Link href="/start" className="inline-flex items-center gap-4 px-12 py-6 bg-[#D62828] text-white font-black text-sm tracking-widest uppercase hover:scale-105 transition-all shadow-2xl">
+            <Link href="/start" className="inline-flex items-center gap-4 px-8 py-4 md:px-12 md:py-6 bg-[#D62828] text-white font-black text-xs md:text-sm tracking-widest uppercase hover:scale-105 transition-all shadow-2xl">
               INICIAR PROYECTO <ArrowRight size={20} />
             </Link>
           </div>

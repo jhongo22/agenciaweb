@@ -6,6 +6,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 export default function CustomCursor() {
   const [isMounted, setIsMounted] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Motion values for smooth 0-latency tracking
   const mouseX = useMotionValue(0);
@@ -18,6 +19,13 @@ export default function CustomCursor() {
 
   useEffect(() => {
     setIsMounted(true);
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
     const updateMousePosition = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -43,12 +51,13 @@ export default function CustomCursor() {
     window.addEventListener('mouseover', handleMouseOver);
 
     return () => {
+      window.removeEventListener('resize', checkMobile);
       window.removeEventListener('mousemove', updateMousePosition);
       window.removeEventListener('mouseover', handleMouseOver);
     };
   }, [mouseX, mouseY]);
 
-  if (!isMounted) return null; // Prevent hydration mismatch
+  if (!isMounted || isMobile) return null; // Prevent hydration mismatch or hide on mobile
 
   return (
     <>
