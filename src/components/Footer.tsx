@@ -20,7 +20,7 @@ const FOOTER_LINKS = [
     links: [
       { name: "Inicio", href: "/" },
       { name: "Explorar Servicios", href: "/servicios" },
-      { name: "Iniciar Proyecto", href: "/start" },
+      { name: "Iniciar Proyecto", href: "https://wa.me/573004435894?text=Hola%20Autonomek%2C%20me%20gustar%C3%ADa%20iniciar%20un%20proyecto." },
       { name: "Casos de Éxito", href: "#" }
     ]
   },
@@ -47,16 +47,21 @@ export default function Footer() {
         {/* Big Text CTA - ONLY ON HOME */}
         {isHome && (
           <div className="mb-24 overflow-hidden">
-             <Link href="/start" className="group block">
-                <motion.div
-                  whileHover={{ y: -20 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col"
-                >
-                  <span className="font-display text-[10vw] font-black uppercase tracking-tighter leading-none text-white/5 group-hover:text-[#D62828] transition-colors">ESTÁS LISTO?</span>
-                  <span className="font-display text-[10vw] font-black uppercase tracking-tighter leading-none text-[#D62828] group-hover:text-white transition-colors">HABLEMOS_</span>
-                </motion.div>
-             </Link>
+              <a 
+                href="https://wa.me/573004435894?text=Hola%20Autonomek%2C%20me%20gustar%C3%ADa%20iniciar%20un%20proyecto." 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block"
+              >
+                 <motion.div
+                   whileHover={{ y: -20 }}
+                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                   className="flex flex-col"
+                 >
+                   <span className="font-display text-[10vw] font-black uppercase tracking-tighter leading-none text-white/5 group-hover:text-[#D62828] transition-colors">ESTÁS LISTO?</span>
+                   <span className="font-display text-[10vw] font-black uppercase tracking-tighter leading-none text-[#D62828] group-hover:text-white transition-colors">HABLEMOS_</span>
+                 </motion.div>
+              </a>
           </div>
         )}
 
@@ -96,6 +101,8 @@ export default function Footer() {
                   <li key={link.name}>
                     <Link 
                       href={link.href} 
+                      target={link.href.startsWith('http') ? '_blank' : undefined}
+                      rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                       className="text-white/40 hover:text-white text-sm transition-colors flex items-center group gap-1"
                     >
                       {link.name}

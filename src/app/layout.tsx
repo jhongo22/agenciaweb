@@ -3,6 +3,7 @@ import { Inter, Syne } from 'next/font/google';
 import './globals.css';
 import SmoothScrollProvider from '@/components/SmoothScrollProvider';
 import AiChatWidget from '@/components/AiChatWidget';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import CustomCursor from '@/components/CustomCursor';
 import Preloader from '@/components/Preloader';
 import Navigation from '@/components/Navigation';
@@ -32,6 +33,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <AiChatWidget />
+          <WhatsAppButton />
         </SmoothScrollProvider>
       </body>
     </html>

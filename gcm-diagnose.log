@@ -1,0 +1,205 @@
+﻿Diagnose log at 2026-07-07T19:16:00Z
+
+AppPath: C:\Users\jngonzalez\AppData\Local\Programs\Git\mingw64\bin\git-credential-manager.exe
+InstallDir: C:\Users\jngonzalez\AppData\Local\Programs\Git\mingw64\bin\
+Version: 2.7.3+5fa7116896c82164996a609accd1c5ad90fe730a
+
+------------
+Diagnostic: Environment
+Skipped: False
+Success: True
+Exception: None
+Log:
+OSType: Windows
+OSVersion: 10.0 (build 26200)
+Reading environment variables... OK
+ Variables:
+OneDriveConsumer=C:\Users\jngonzalez\OneDrive
+ProgramFiles(x86)=C:\Program Files (x86)
+MSYSTEM=MINGW64
+ProgramW6432=C:\Program Files
+ChocolateyInstall=C:\ProgramData\chocolatey
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 165 Stepping 3, GenuineIntel
+TMP=C:\Users\JNGONZ~1\AppData\Local\Temp
+PROCESSOR_ARCHITECTURE=AMD64
+DriverData=C:\Windows\System32\Drivers\DriverData
+Path=C:/Users/jngonzalez/AppData/Local/Programs/Git/mingw64/libexec/git-core;C:\Users\jngonzalez\AppData\Local\Programs\Git\mingw64\bin;C:\Users\jngonzalez\AppData\Local\Programs\Git\usr\bin;C:\Users\jngonzalez\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Python313\Scripts\;C:\Python313\;C:\Scripts\;C:\;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python312\Scripts\;C:\Python312\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\ComposerSetup\bin;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Users\acanas\AppData\Roaming\npm;C:\Users\dcorream\AppData\Roaming\npm;C:\Program Files\PuTTY\;C:\Program Files\nodejs\npm;C:\Users\dcorream\AppData\Local\Programs\R\R-4.4.3\bin;C:\Program Files\nodejs\;C:\wamp64\bin\php\php8.2.26;C:\Users\jngonzalez\AppData\Local\agy\bin;C:\Users\jngonzalez\AppData\Local\Microsoft\WindowsApps;C:\Users\jngonzalez\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\jngonzalez\AppData\Roaming\npm;C:\Users\jngonzalez\AppData\Local\Programs\Git\cmd;C:\Users\jngonzalez\.lmstudio\bin;C:\Users\jngonzalez\AppData\Local\Programs\Ollama;c:\users\jngonzalez\.local\bin;C:\Users\jngonzalez\AppData\Local\Programs\Antigravity IDE\bin;C:\Users\jngonzalez\AppData\Local\Programs\Kiro\bin
+PUBLIC=C:\Users\Public
+VSCODE_GIT_ASKPASS_MAIN=c:\Users\jngonzalez\AppData\Local\Programs\Antigravity IDE\resources\app\extensions\git\dist\askpass-main.js
+ANTHROPIC_BASE_URL=https://api.b.ai
+DB_PASSWORD_PROD=~=r-R~PmeE|tCpM*%
+VSCODE_GIT_IPC_HANDLE=\\.\pipe\vscode-git-c0dd20cb7d-sock
+PROCESSOR_REVISION=a503
+TMPDIR=C:\Users\JNGONZ~1\AppData\Local\Temp
+TEMP=C:\Users\JNGONZ~1\AppData\Local\Temp
+USERPROFILE=C:\Users\jngonzalez
+LOGONSERVER=\\WIN-H92V1P27B17
+TERM=xterm-256color
+USERNAME=jngonzalez
+SystemRoot=C:\WINDOWS
+EFC_10152_1592913036=1
+CHROME_CRASHPAD_PIPE_NAME=\\.\pipe\crashpad_5400_ZWYWTWQNUFBKHDIY
+GIT_EXEC_PATH=C:/Users/jngonzalez/AppData/Local/Programs/Git/mingw64/libexec/git-core
+PLINK_PROTOCOL=ssh
+USERDNSDOMAIN=GCG.LOCAL
+OneDrive=C:\Users\jngonzalez\OneDrive
+USERDOMAIN_ROAMINGPROFILE=GCG
+CommonProgramFiles=C:\Program Files\Common Files
+ZES_ENABLE_SYSMAN=1
+VSCODE_PYTHON_AUTOACTIVATE_GUARD=1
+ProgramData=C:\ProgramData
+ANTHROPIC_MODEL=deepseek-v4-flash
+GIT_ASKPASS=c:\Users\jngonzalez\AppData\Local\Programs\Antigravity IDE\resources\app\extensions\git\dist\askpass.sh
+HOMEPATH=\Users\jngonzalez
+COMPUTERNAME=LB-63NL2G3
+EFC_10152_4126798990=1
+LANG=en_US.UTF-8
+DB_PASSWORD=R1sk9085
+VSCODE_INJECTION=1
+ALLUSERSPROFILE=C:\ProgramData
+CommonProgramW6432=C:\Program Files\Common Files
+ANTIGRAVITY_CLI_ALIAS=agy-ide
+SESSIONNAME=Console
+ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+DB_USERNAME=gcrisk
+windir=C:\WINDOWS
+GIT_TRACE2_PARENT_SID=50e56d1f-f64d-4250-a582-2e25989d9b6a
+SystemDrive=C:
+NUMBER_OF_PROCESSORS=12
+OS=Windows_NT
+DB_HOST=rds-gaco-bd-prd.c1le1aawxqj7.us-east-1.rds.amazonaws.com
+ComSpec=C:\WINDOWS\system32\cmd.exe
+HOMEDRIVE=C:
+DB_DATABASE=gcrisk_test
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL
+HOME=C:\Users\jngonzalez
+PSModulePath=C:\Users\jngonzalez\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+DB_DATABASE_PROD=gcrisk
+ProgramFiles=C:\Program Files
+DB_HOST_PROD=rds-gaco-bd-prd.c1le1aawxqj7.us-east-1.rds.amazonaws.com
+APPDATA=C:\Users\jngonzalez\AppData\Roaming
+USERDOMAIN=GCG
+PROCESSOR_LEVEL=6
+LOCALAPPDATA=C:\Users\jngonzalez\AppData\Local
+VSCODE_GIT_ASKPASS_NODE=C:\Users\jngonzalez\AppData\Local\Programs\Antigravity IDE\Antigravity IDE.exe
+TERM_PROGRAM_VERSION=1.107.0
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+COLORTERM=truecolor
+ANTHROPIC_AUTH_TOKEN=sk-sfayz6q0egdvjt81dwebch2n0y1hqq5d
+TERM_PROGRAM=vscode
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=
+DB_USERNAME_PROD=analitica_gcrisk_prod
+
+
+------------
+Diagnostic: File system
+Skipped: False
+Success: True
+Exception: None
+Log:
+Temporary directory is 'C:\Users\jngonzalez\AppData\Local\Temp\'...
+Checking basic file I/O...
+Writing to temporary file 'C:\Users\jngonzalez\AppData\Local\Temp\93f248fea2d1dde2ff371289'... OK
+Reading from temporary file 'C:\Users\jngonzalez\AppData\Local\Temp\93f248fea2d1dde2ff371289'... OK
+Deleting temporary file 'C:\Users\jngonzalez\AppData\Local\Temp\93f248fea2d1dde2ff371289'... OK
+Testing IFileSystem instance...
+UserHomePath: C:\Users\jngonzalez
+UserDataDirectoryPath: C:\Users\jngonzalez\.gcm
+GetCurrentDirectory(): D:\Jhongo\Autonomek
+
+------------
+Diagnostic: Networking
+Skipped: False
+Success: True
+Exception: None
+Log:
+Checking networking and HTTP stack...
+Creating HTTP client... OK
+IsNetworkAvailable: True
+Sending HEAD request to http://example.com...Sending HEAD request to https://example.com... OK
+ OK
+Acquiring free TCP port... OK
+Testing local HTTP loopback connections...
+Creating new HTTP listener for http://localhost:61325/... OK
+Waiting for loopback connection... OK
+Writing response... OK
+Waiting for response data... OK
+Loopback connection data OK
+
+------------
+Diagnostic: Git
+Skipped: False
+Success: True
+Exception: None
+Log:
+Getting Git version... OK
+Git version is '2.53.0.windows.2'
+Locating current repository...Git repository at 'D:/Jhongo/Autonomek/.git'
+ OK
+Listing all Git configuration... OK
+Git configuration:
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	diff.astextplain.textconv=astextplain
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	filter.lfs.required=true
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	http.sslbackend=schannel
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	core.autocrlf=true
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	core.fscache=true
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	core.symlinks=false
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	pull.rebase=false
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	credential.helper=manager
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	credential.https://dev.azure.com.usehttppath=true
+file:C:/Users/jngonzalez/AppData/Local/Programs/Git/etc/gitconfig	init.defaultbranch=master
+file:C:/Users/jngonzalez/.gitconfig	user.email=jngonzalez@garantiascomunitarias.com
+file:C:/Users/jngonzalez/.gitconfig	user.name=jngonzalez22
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=false
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.symlinks=false
+file:.git/config	core.ignorecase=true
+file:.git/config	remote.origin.url=https://github.com/jhongo22/agenciaweb
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+file:.git/config	branch.main.remote=origin
+file:.git/config	branch.main.merge=refs/heads/main
+file:.git/config	branch.main.vscode-merge-base=origin/main
+file:.git/config	user.name=Jhon Gonzalez
+file:.git/config	user.email=jhonneider1234567@gmail.com
+
+
+------------
+Diagnostic: Credential storage
+Skipped: False
+Success: True
+Exception: None
+Log:
+ICredentialStore instance is of type: CredentialStore
+Writing test credential... OK
+Reading test credential... OK
+Deleting test credential... OK
+
+------------
+Diagnostic: Microsoft authentication (AAD/MSA)
+Skipped: False
+Success: True
+Exception: None
+Log:
+Broker is not enabled.
+Flow type is: Auto
+Gathering MSAL token cache data... OK
+CacheDirectory: C:\Users\jngonzalez\AppData\Local\.IdentityService
+CacheFileName: msal.cache
+CacheFilePath: C:\Users\jngonzalez\AppData\Local\.IdentityService\msal.cache
+Creating cache helper... OK
+Verifying MSAL token cache persistence... OK
+
+------------
+Diagnostic: GitHub API
+Skipped: False
+Success: True
+Exception: None
+Log:
+Using 'https://github.com/' as API target.
+Querying '/meta' endpoint... OK
+

@@ -1,11 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Send, CheckCircle2, ArrowRight, MessageSquare, Mail, User, Briefcase } from 'lucide-react';
 import Link from 'next/link';
 
 export default function StartPage() {
+  useEffect(() => {
+    window.location.href = 'https://wa.me/573004435894?text=Hola%20Autonomek%2C%20me%20gustar%C3%ADa%20iniciar%20un%20proyecto.';
+  }, []);
+
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {

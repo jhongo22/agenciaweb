@@ -23,6 +23,27 @@ export default function Preloader() {
     return () => clearInterval(interval);
   }, [progress]);
 
+  useEffect(() => {
+    if (loading) {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.height = '100vh';
+      document.body.style.height = '100vh';
+    } else {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.height = '';
+      document.body.style.height = '';
+      window.scrollTo(0, 0);
+    }
+    return () => {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      document.documentElement.style.height = '';
+      document.body.style.height = '';
+    };
+  }, [loading]);
+
   return (
     <AnimatePresence>
       {loading && (

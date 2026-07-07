@@ -1,6 +1,6 @@
-# Zenit Web & IA - Agencia de Soluciones Digitales
+# Autonomek - Agencia de Soluciones Digitales
 
-Sitio web corporativo de **Zenit Web & IA**, una agencia de soluciones digitales enfocada en desarrollo web estratégico e implementación de inteligencia artificial para empresas.
+Sitio web corporativo de **Autonomek**, una agencia de soluciones digitales enfocada en desarrollo web estratégico e implementación de inteligencia artificial para empresas.
 
 ## 🚀 Tecnologías
 

@@ -10,13 +10,24 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  /* Hide default cursor to use custom magnetic cursor */
-  cursor: none;
 }
 
-/* Links and interactable elements also need cursor none if we replace it */
-a, button, input, select, textarea {
-  cursor: none !important;
+/* Ensure standard cursors on touch/mobile devices */
+a, button {
+  cursor: pointer;
+}
+input, select, textarea {
+  cursor: text;
+}
+
+/* Hide default cursor only on devices with hover capabilities, fine pointer, and screen width >= 768px */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, input, select, textarea {
+    cursor: none !important;
+  }
 }
 
 /* Lenis Smooth Scroll defaults */

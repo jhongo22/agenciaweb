@@ -16,6 +16,10 @@ import {
   Bot
 } from 'lucide-react';
 
+const formatNumber = (num: number) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
+
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -767,7 +771,7 @@ export default function Home() {
               <div>
                 <div className="flex justify-between text-sm mb-2">
                   <span className="text-white/60">Inversión única estimada en automatización</span>
-                  <span className="text-white font-bold">${investment.toLocaleString()} USD</span>
+                  <span className="text-white font-bold">${formatNumber(investment)} USD</span>
                 </div>
                 <input 
                   type="range" 
@@ -788,7 +792,7 @@ export default function Home() {
             
             <div className="border-b border-white/5 pb-6">
               <span className="text-xs font-mono text-white/40 block mb-2 uppercase">Ahorro anual estimado</span>
-              <span className="text-4xl md:text-5xl font-display font-black text-[#D62828]">${annualSavings.toLocaleString()} USD</span>
+              <span className="text-4xl md:text-5xl font-display font-black text-[#D62828]">${formatNumber(annualSavings)} USD</span>
               <span className="text-xs text-white/30 block mt-2">En tiempo productivo recuperado para tu empresa</span>
             </div>
 
@@ -805,7 +809,7 @@ export default function Home() {
 
             <div>
               <span className="text-xs font-mono text-white/40 block mb-2">Ahorro proyectado a 5 años</span>
-              <span className="text-2xl md:text-3xl font-display font-bold text-white">${fiveYearSavings.toLocaleString()} USD</span>
+              <span className="text-2xl md:text-3xl font-display font-bold text-white">${formatNumber(fiveYearSavings)} USD</span>
             </div>
 
             <Link href="/start" className="mt-4 w-full py-4 bg-[#D62828] text-white font-bold text-xs tracking-widest uppercase text-center hover:bg-white hover:text-black transition-all">
