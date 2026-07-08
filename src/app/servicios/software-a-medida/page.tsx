@@ -74,7 +74,7 @@ export default function SolucionesPage() {
                    <div className="w-3 h-3 rounded-full bg-[#27C93F]"></div>
                 </div>
                 <div className="flex-1 max-w-[240px] mx-auto h-6 bg-[#050505] rounded-full border border-white/5 flex items-center px-4">
-                  <span className="text-[10px] font-mono text-white/20 truncate tracking-widest">platform.autonomek.cloud</span>
+                  <span className="text-[10px] font-mono text-white/20 truncate tracking-widest">platform.autonomek.com</span>
                 </div>
              </div>
 

@@ -58,7 +58,7 @@ export default function StartPage() {
               </div>
               <div>
                 <h3 className="font-bold text-lg mb-2">Escríbenos</h3>
-                <p className="text-white/40 text-sm">hola@autonomek.cloud</p>
+                <p className="text-white/40 text-sm">contacto@autonomek.com</p>
               </div>
             </div>
             <div className="flex gap-6">
