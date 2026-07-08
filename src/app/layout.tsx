@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Syne } from 'next/font/google';
 import './globals.css';
+import Script from 'next/script';
 import SmoothScrollProvider from '@/components/SmoothScrollProvider';
-import AiChatWidget from '@/components/AiChatWidget';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import CustomCursor from '@/components/CustomCursor';
 import Preloader from '@/components/Preloader';
@@ -32,7 +32,44 @@ export default function RootLayout({
           <Navigation />
           {children}
           <Footer />
-          <AiChatWidget />
+          <Script
+            strategy="afterInteractive"
+            src="https://www.googletagmanager.com/gtag/js?id=G-WVPNQG20S1"
+          />
+          <Script
+            id="gtag-init"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-WVPNQG20S1');
+              `,
+            }}
+          />
+          <Script
+            id="chatwoot-init"
+            strategy="lazyOnload"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.chatwootSettings = {"position":"right","type":"standard","launcherTitle":""};
+                (function(d,t) {
+                  var BASE_URL="https://chatwoot.autonomek.com";
+                  var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+                  g.src=BASE_URL+"/packs/js/sdk.js";
+                  g.async = true;
+                  s.parentNode.insertBefore(g,s);
+                  g.onload=function(){
+                    window.chatwootSDK.run({
+                      websiteToken: 'sgKYEgxKz4TFe6LqbeTCupQA',
+                      baseUrl: BASE_URL
+                    })
+                  }
+                })(document,"script");
+              `,
+            }}
+          />
           <WhatsAppButton />
         </SmoothScrollProvider>
       </body>
