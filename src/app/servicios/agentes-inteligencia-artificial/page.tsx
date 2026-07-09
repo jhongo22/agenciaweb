@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   Bot, 
   Cpu, 
@@ -17,14 +17,23 @@ import {
   Building,
   Smartphone,
   Server,
-  Sparkles
+  Sparkles,
+  Plus
 } from 'lucide-react';
+import { PROJECTS, Project } from '@/data/projects';
+import ProjectDetailsModal from '@/components/ProjectDetailsModal';
 
 export default function AgentesIAPage() {
-  // Playground Configurator State
   const [channel, setChannel] = useState<'whatsapp' | 'web' | 'instagram'>('whatsapp');
   const [goal, setGoal] = useState<'leads' | 'citas' | 'soporte'>('citas');
   const [dataSource, setDataSource] = useState<'pdf' | 'sheets' | 'crm'>('sheets');
+
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const iaProjects = useMemo(() => {
+    return PROJECTS.filter(p => p.category === 'IA').slice(0, 4);
+  }, []);
 
   const getGoalAction = () => {
     switch (goal) {
@@ -100,6 +109,11 @@ export default function AgentesIAPage() {
     }
   ];
 
+  const handleOpenDetails = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
   return (
     <main className="min-h-screen w-full bg-[#080808] text-white pt-24 md:pt-32 pb-16 md:pb-24 relative overflow-hidden">
       {/* Background decoration */}
@@ -133,7 +147,7 @@ export default function AgentesIAPage() {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 border border-white/10 rounded-full mb-8 bg-white/5">
                 <span className="w-2 h-2 rounded-full bg-[#00CC66] animate-pulse"></span>
-                <span className="font-mono text-[10px] text-white/80 uppercase tracking-widest">Sistemas de Respuesta Autónoma</span>
+                <span className="font-mono text-[10px] text-white/80 uppercase tracking-widest font-bold">Sistemas de Respuesta Autónoma</span>
               </div>
               
               <h1 className="font-display text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[0.9]">
@@ -148,7 +162,7 @@ export default function AgentesIAPage() {
               </p>
               
               <div className="flex flex-wrap gap-6 mb-8 lg:mb-0">
-                <Link href="/start" className="px-8 py-4 bg-[#D62828] text-white font-bold text-xs tracking-widest uppercase hover:bg-white hover:text-[#080808] transition-all shadow-[0_0_30px_rgba(214,40,40,0.3)]">
+                <Link href="/start" className="px-8 py-4 bg-[#D62828] text-white font-bold text-xs tracking-widest uppercase hover:bg-white hover:text-[#080808] transition-all shadow-[0_0_30px_rgba(214,40,40,0.3)] rounded-xl">
                   Solicitar Demo
                 </Link>
                 <div className="flex items-center gap-4 text-white/40 font-mono text-[10px] uppercase tracking-widest">
@@ -165,7 +179,7 @@ export default function AgentesIAPage() {
             </motion.div>
           </div>
 
-          {/* Right Side: Interactive AI Agent Blueprint Playground */}
+          {/* Right Side: Interactive AI Agent Playground */}
           <div className="lg:col-span-6 w-full">
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
@@ -183,9 +197,9 @@ export default function AgentesIAPage() {
                 <span className="text-xs font-mono text-white/40 block mb-3 uppercase tracking-wider">1. Canal de Entrada</span>
                 <div className="grid grid-cols-3 gap-3">
                   {[
-                    { id: 'whatsapp', label: 'WhatsApp', icon: <Smartphone size={14} /> },
-                    { id: 'web', label: 'Sitio Web', icon: <Smartphone size={14} /> },
-                    { id: 'instagram', label: 'Instagram', icon: <Smartphone size={14} /> }
+                    { id: 'whatsapp', label: 'WhatsApp' },
+                    { id: 'web', label: 'Sitio Web' },
+                    { id: 'instagram', label: 'Instagram' }
                   ].map(ch => (
                     <button
                       key={ch.id}
@@ -269,7 +283,7 @@ export default function AgentesIAPage() {
                 </div>
               </div>
 
-              <Link href={`/start?channel=${channel}&goal=${goal}`} className="mt-6 w-full py-4 bg-[#D62828] text-white font-bold text-xs tracking-widest uppercase text-center hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2">
+              <Link href={`/start?channel=${channel}&goal=${goal}`} className="mt-6 w-full py-4 bg-[#D62828] text-white font-bold text-xs tracking-widest uppercase text-center hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2 rounded-xl">
                 Solicitar este Blueprint de Agente <ArrowRight size={14} />
               </Link>
             </motion.div>
@@ -281,7 +295,7 @@ export default function AgentesIAPage() {
         <section className="mb-24 md:mb-40">
           <div className="text-center mb-16 md:mb-20">
             <h2 className="font-display text-4xl md:text-5xl font-black uppercase mb-6">Capacidades de Élite</h2>
-            <div className="w-20 h-1 bg-[#D62828] mx-auto"></div>
+            <p className="font-mono text-xs text-white/30 uppercase tracking-widest font-bold">Respuesta Inteligente Garantizada</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -314,7 +328,7 @@ export default function AgentesIAPage() {
                 <span className="text-white/20 italic">Chatbots Torpes.</span>
               </h2>
               <p className="text-white/60 text-base md:text-lg mb-8 md:mb-12">
-                Los sistemas tradicionales con botones rígidos son obsoletos. Bienvenido a la era de la atención fluida que comprende de forma natural a tus clientes.
+                Los sistemas tradicionales con menús numéricos rígidos son obsoletos. Bienvenido a la era de la atención fluida que comprende de forma natural a tus clientes.
               </p>
               <div className="space-y-6">
                 {[
@@ -339,7 +353,7 @@ export default function AgentesIAPage() {
                 <div className="p-6 bg-[#D62828]/10 border-l-4 border-[#D62828] shadow-lg shadow-[#D62828]/5">
                   <p className="text-xs font-mono text-[#D62828] mb-2 uppercase tracking-widest font-bold">AUTONOMEK AI AGENT</p>
                   <p className="text-sm leading-relaxed italic">
-                    "Claro, entiendo que buscas una solución personalizada para tu clínica en Madrid. Basado en tus requerimientos, el plan de automatización e integración sería el ideal. ¿Te gustaría que te agende una llamada con un consultor para mañana a las 10:00?"
+                    "Claro, entiendo que buscas una solución personalizada para tu clínica. Basado en tus requerimientos, el plan de automatización e integración sería el ideal. ¿Te gustaría que te agende una llamada con un consultor para mañana a las 10:00?"
                   </p>
                 </div>
               </div>
@@ -351,7 +365,7 @@ export default function AgentesIAPage() {
         <section className="mb-24 md:mb-40">
           <div className="text-center mb-16 md:mb-20">
              <p className="font-mono text-[#D62828] text-xs tracking-[0.3em] uppercase mb-4">Adaptabilidad Total</p>
-            <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tight">Casos de Éxito</h2>
+            <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tight">Sectores de Aplicación</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -376,6 +390,49 @@ export default function AgentesIAPage() {
           </div>
         </section>
 
+        {/* RELATED PROJECTS SECTION */}
+        <section className="mb-24 md:mb-40 border-t border-white/5 pt-20">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <p className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-4">/ Casos Desplegados</p>
+              <h2 className="font-display text-3xl md:text-5xl font-black uppercase">Agentes de IA Activos</h2>
+            </div>
+            <Link href="/proyectos" className="font-mono text-xs uppercase tracking-widest text-[#D62828] hover:text-white transition-colors border-b border-[#D62828]/20 pb-1">
+              Ver Todos →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {iaProjects.map((project) => (
+              <div
+                key={project.id}
+                onClick={() => handleOpenDetails(project)}
+                className="group relative bg-[#111]/60 border border-white/5 rounded-3xl overflow-hidden hover:border-[#D62828]/40 transition-all duration-300 flex flex-col cursor-pointer"
+              >
+                <div className="relative w-full aspect-[16/10] overflow-hidden bg-black">
+                  <img
+                    src={`/projects/${project.folder}/${project.images[0]}`}
+                    alt={project.title}
+                    className="w-full h-full object-cover opacity-65 group-hover:opacity-100 group-hover:scale-103 transition-all duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent pointer-events-none" />
+                </div>
+                <div className="p-6 flex flex-col justify-between flex-1">
+                  <div>
+                    <span className="font-mono text-[9px] text-[#D62828] uppercase tracking-widest mb-1.5 block font-bold">{project.client}</span>
+                    <h3 className="font-display text-lg font-bold text-white mb-2">{project.title}</h3>
+                    <p className="text-white/40 text-xs leading-relaxed mb-4 line-clamp-2">{project.description}</p>
+                  </div>
+                  <div className="flex items-center justify-between pt-3 border-t border-white/5 text-[10px] font-mono uppercase tracking-widest text-[#D62828]">
+                    <span>Ver Detalles</span>
+                    <Plus size={12} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Final CTA */}
         <section className="relative py-16 md:py-32 rounded-2xl md:rounded-[3rem] bg-[#D62828] overflow-hidden text-center">
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
@@ -388,13 +445,22 @@ export default function AgentesIAPage() {
             <p className="text-white/80 text-base md:text-lg mb-8 md:mb-12 font-light">
               Tus competidores ya están usando IA. No te quedes atrás en la carrera por la eficiencia.
             </p>
-            <Link href="/start" className="inline-flex items-center gap-4 px-8 py-4 md:px-10 md:py-5 bg-white text-[#D62828] font-black text-xs md:text-sm tracking-widest uppercase hover:scale-105 transition-all shadow-2xl">
+            <Link href="/start" className="inline-flex items-center gap-4 px-8 py-4 md:px-10 md:py-5 bg-white text-[#D62828] font-black text-xs md:text-sm tracking-widest uppercase hover:scale-105 transition-all shadow-2xl rounded-xl">
               DESPLEGAR MI AGENTE <ArrowRight size={20} />
             </Link>
           </div>
         </section>
 
       </div>
+
+      <ProjectDetailsModal
+        isOpen={isModalOpen}
+        project={selectedProject}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedProject(null);
+        }}
+      />
     </main>
   );
 }

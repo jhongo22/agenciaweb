@@ -1,11 +1,20 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Monitor, Zap, Search, Layout, Code2, Cpu, Globe, Rocket, Shield, ArrowRight, Smartphone, Gauge } from 'lucide-react';
+import { Monitor, Zap, Search, Layout, Code2, Cpu, Globe, Rocket, Shield, ArrowRight, Smartphone, Gauge, Plus } from 'lucide-react';
+import { PROJECTS, Project } from '@/data/projects';
+import ProjectDetailsModal from '@/components/ProjectDetailsModal';
 
 export default function DesarrolloWebPage() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const webProjects = useMemo(() => {
+    return PROJECTS.filter(p => p.category === 'Web').slice(0, 4); // Limit to top 4 for service overview
+  }, []);
+
   const lighthouseStats = [
     { label: "Rendimiento", value: 100, color: "#00CC66" },
     { label: "Accesibilidad", value: 100, color: "#00CC66" },
@@ -19,6 +28,11 @@ export default function DesarrolloWebPage() {
     { name: "Estabilidad Total", desc: "Estructuras sólidas que no se rompen ante picos de tráfico.", icon: <Code2 /> },
     { name: "Seguridad Robusta", desc: "Protección avanzada para resguardar tus datos y transacciones.", icon: <Globe /> }
   ];
+
+  const handleOpenDetails = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
 
   return (
     <main className="min-h-screen w-full bg-[#080808] text-white pt-24 md:pt-32 pb-16 md:pb-24 relative overflow-hidden">
@@ -50,23 +64,23 @@ export default function DesarrolloWebPage() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 border border-[#D62828]/30 rounded-full mb-8 bg-[#D62828]/5">
               <span className="w-2 h-2 rounded-full bg-[#D62828] animate-pulse"></span>
-              <span className="font-mono text-[10px] text-[#D62828] uppercase tracking-widest">Ingeniería Web de Élite</span>
+              <span className="font-mono text-[10px] text-[#D62828] uppercase tracking-widest font-bold">Máquina de Adquisición de Clientes</span>
             </div>
             
             <h1 className="font-display text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[0.9]">
-              Webs que <br />
+              Desarrollo Web <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-white">
-                Dominan la Red.
+                Premium & SEO.
               </span>
             </h1>
             
             <p className="font-sans text-base md:text-xl text-white/60 leading-relaxed mb-10 max-w-xl">
-              No hacemos sitios web comunes. Construimos plataformas digitales de altísimo rendimiento optimizadas para convertir visitas en clientes reales y maximizar tus ingresos.
+              No hacemos sitios web informativos estáticos. Diseñamos páginas ultra rápidas y optimizadas para Google que operan como tu principal canal de atracción de clientes y ventas.
             </p>
             
             <div className="flex flex-wrap gap-6">
-              <Link href="/start" className="px-8 py-4 bg-white text-[#080808] font-bold text-xs tracking-widest uppercase hover:bg-[#D62828] hover:text-white transition-all shadow-2xl">
-                Cotizar Proyecto
+              <Link href="/start" className="px-8 py-4 bg-white text-[#080808] font-bold text-xs tracking-widest uppercase hover:bg-[#D62828] hover:text-white transition-all shadow-2xl rounded-xl">
+                Diseñar Mi Web
               </Link>
               <div className="flex items-center gap-3 text-white/40 font-mono text-[10px] uppercase tracking-widest">
                 <Zap size={14} className="text-[#D62828]" />
@@ -95,9 +109,9 @@ export default function DesarrolloWebPage() {
                 <div key={i} className="flex flex-col items-center gap-4">
                   <div className="relative w-20 h-20 md:w-32 md:h-32 flex items-center justify-center">
                     <svg className="w-full h-full transform -rotate-90">
-                      <circle cx="50%" cy="50%" r="45%" fill="transparent" stroke="rgba(255,255,255,0.05)" strokeWidth="6 md:strokeWidth=8" />
+                      <circle cx="50%" cy="50%" r="45%" fill="transparent" stroke="rgba(255,255,255,0.05)" strokeWidth="6" />
                       <motion.circle 
-                        cx="50%" cy="50%" r="45%" fill="transparent" stroke={stat.color} strokeWidth="6 md:strokeWidth=8" 
+                        cx="50%" cy="50%" r="45%" fill="transparent" stroke={stat.color} strokeWidth="6" 
                         strokeDasharray="283"
                         initial={{ strokeDashoffset: 283 }}
                         whileInView={{ strokeDashoffset: 0 }}
@@ -118,7 +132,7 @@ export default function DesarrolloWebPage() {
         <section className="mb-24 md:mb-40">
           <div className="text-center mb-16 md:mb-20">
             <h2 className="font-display text-4xl md:text-5xl font-black uppercase mb-6">Pilares de Calidad</h2>
-            <p className="text-white/40 font-mono text-xs uppercase tracking-[0.3em]">Diseñado para Vender</p>
+            <p className="text-white/40 font-mono text-xs uppercase tracking-[0.3em] font-bold">Diseñado para Vender</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -166,11 +180,11 @@ export default function DesarrolloWebPage() {
             </div>
           </div>
           <div className="order-1 lg:order-2">
-            <p className="font-mono text-[#D62828] text-xs tracking-[0.3em] uppercase mb-4">La Diferencia Autonomek</p>
+            <p className="font-mono text-[#D62828] text-xs tracking-[0.3em] uppercase mb-4 font-bold">La Diferencia Autonomek</p>
             <h2 className="font-display text-3xl md:text-6xl font-black uppercase mb-8 leading-[0.9]">Webs que <br /> No se Rompen.</h2>
             <div className="space-y-8">
                {[
-                 { title: "Posicionamiento Web en Google (SEO)", desc: "Optimizamos cada detalle técnico del sitio para que tu negocio aparezca en los primeros lugares de Google.", icon: <Search size={20} /> },
+                 { title: "Posicionamiento Web en Google (SEO)", desc: "Optimizamos cada detalle técnico del sitio para que tu negocio aparezca en los primeros lugares de Google y capte tráfico sin costo por clic.", icon: <Search size={20} /> },
                  { title: "Diseño para Celulares (Mobile First)", desc: "Interfaces adaptativas que se ven espectaculares y cargan de forma instantánea en cualquier smartphone.", icon: <Smartphone size={20} /> },
                  { title: "Seguridad Inviolable", desc: "Sistemas avanzados y blindados contra intrusos para proteger la información de tu negocio.", icon: <Shield size={20} /> }
                ].map((item, i) => (
@@ -186,6 +200,49 @@ export default function DesarrolloWebPage() {
           </div>
         </section>
 
+        {/* RELATED PROJECTS SECTION */}
+        <section className="mb-24 md:mb-40 border-t border-white/5 pt-20">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <p className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-4">/ Portafolio Relacionado</p>
+              <h2 className="font-display text-3xl md:text-5xl font-black uppercase">Casos Web Destacados</h2>
+            </div>
+            <Link href="/proyectos" className="font-mono text-xs uppercase tracking-widest text-[#D62828] hover:text-white transition-colors border-b border-[#D62828]/20 pb-1">
+              Ver Todos →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {webProjects.map((project) => (
+              <div
+                key={project.id}
+                onClick={() => handleOpenDetails(project)}
+                className="group relative bg-[#111]/60 border border-white/5 rounded-3xl overflow-hidden hover:border-[#D62828]/40 transition-all duration-300 flex flex-col cursor-pointer"
+              >
+                <div className="relative w-full aspect-[16/10] overflow-hidden bg-black">
+                  <img
+                    src={`/projects/${project.folder}/${project.images[0]}`}
+                    alt={project.title}
+                    className="w-full h-full object-cover opacity-65 group-hover:opacity-100 group-hover:scale-103 transition-all duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent pointer-events-none" />
+                </div>
+                <div className="p-6 flex flex-col justify-between flex-1">
+                  <div>
+                    <span className="font-mono text-[9px] text-[#D62828] uppercase tracking-widest mb-1.5 block font-bold">{project.client}</span>
+                    <h3 className="font-display text-lg font-bold text-white mb-2">{project.title}</h3>
+                    <p className="text-white/40 text-xs leading-relaxed mb-4 line-clamp-2">{project.description}</p>
+                  </div>
+                  <div className="flex items-center justify-between pt-3 border-t border-white/5 text-[10px] font-mono uppercase tracking-widest text-[#D62828]">
+                    <span>Ver Detalles</span>
+                    <Plus size={12} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Final CTA */}
         <section className="relative py-16 md:py-32 rounded-2xl md:rounded-[4rem] bg-white overflow-hidden text-center">
           <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
@@ -194,13 +251,22 @@ export default function DesarrolloWebPage() {
             <h2 className="font-display text-3xl md:text-8xl font-black uppercase text-[#080808] mb-8 md:mb-12 tracking-tighter leading-none">
               Construyamos <br /> tu Ecosistema.
             </h2>
-            <Link href="/start" className="inline-flex items-center gap-4 px-8 py-4 md:px-12 md:py-6 bg-[#D62828] text-white font-black text-xs md:text-sm tracking-widest uppercase hover:scale-105 transition-all shadow-2xl">
+            <Link href="/start" className="inline-flex items-center gap-4 px-8 py-4 md:px-12 md:py-6 bg-[#D62828] text-white font-black text-xs md:text-sm tracking-widest uppercase hover:scale-105 transition-all shadow-2xl rounded-xl">
               INICIAR PROYECTO <ArrowRight size={20} />
             </Link>
           </div>
         </section>
 
       </div>
+
+      <ProjectDetailsModal
+        isOpen={isModalOpen}
+        project={selectedProject}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedProject(null);
+        }}
+      />
     </main>
   );
 }

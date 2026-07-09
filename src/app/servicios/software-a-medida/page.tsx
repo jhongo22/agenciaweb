@@ -1,16 +1,32 @@
 'use client';
 
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Database, Shield, Server, Layers, Cpu, Code, Globe, Lock, Search, LifeBuoy, BarChart3, ArrowRight } from 'lucide-react';
+import { Database, Shield, Server, Layers, Cpu, Code, Globe, Lock, Search, LifeBuoy, BarChart3, ArrowRight, Plus } from 'lucide-react';
+import { PROJECTS, Project } from '@/data/projects';
+import ProjectDetailsModal from '@/components/ProjectDetailsModal';
 
 export default function SolucionesPage() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const customProjects = useMemo(() => {
+    // Show custom platforms and advanced software systems
+    return PROJECTS.filter(p => [3, 1, 10, 14].includes(p.id));
+  }, []);
+
   const processSteps = [
     { title: "Auditoría Técnica", desc: "Analizamos tu flujo actual para detectar cuellos de botella y fugas de datos." },
     { title: "Arquitectura", desc: "Diseñamos un sistema escalable que soporte el crecimiento de tu empresa." },
     { title: "Desarrollo Ágil", desc: "Entregas iterativas cada dos semanas para validar cada módulo del software." },
     { title: "Soporte 24/7", desc: "Mantenimiento proactivo para asegurar que tu sistema nunca se detenga." }
   ];
+
+  const handleOpenDetails = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
 
   return (
     <main className="min-h-screen w-full bg-[#080808] text-white pt-24 md:pt-32 pb-24 relative overflow-hidden">
@@ -41,7 +57,7 @@ export default function SolucionesPage() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 border border-white/10 rounded-full mb-8 bg-[#050505]">
                <Cpu size={14} className="text-[#D62828]" />
-              <span className="font-mono text-[10px] text-white/80 uppercase tracking-widest">Alta Disponibilidad</span>
+              <span className="font-mono text-[10px] text-white/80 uppercase tracking-widest font-bold font-mono">Alta Disponibilidad</span>
             </div>
             
             <h1 className="font-display text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[0.9]">
@@ -55,7 +71,7 @@ export default function SolucionesPage() {
               Cuando el software comercial ya no es suficiente, construimos herramientas propias. Sistemas de gestión, paneles de analítica y plataformas de administración centralizadas para tu negocio.
             </p>
             
-            <Link href="/start" className="inline-flex items-center gap-4 px-8 py-4 border border-[#D62828]/50 text-white font-bold text-xs tracking-widest uppercase hover:bg-[#D62828] hover:text-[#080808] transition-all shadow-lg">
+            <Link href="/start" className="inline-flex items-center gap-4 px-8 py-4 border border-[#D62828]/50 text-white font-bold text-xs tracking-widest uppercase hover:bg-[#D62828] hover:text-[#080808] transition-all shadow-lg rounded-xl">
               Cotizar Software a Medida <ArrowRight size={16} />
             </Link>
           </motion.div>
@@ -80,39 +96,39 @@ export default function SolucionesPage() {
 
              <div className="flex-1 flex p-6 gap-6 bg-[#0A0A0A]">
                 <div className="w-1/3 h-full flex flex-col gap-4">
-                  <div className="w-full h-12 bg-white/5 rounded-xl border border-white/5"></div>
-                  <div className="w-full h-4 bg-white/5 rounded-full"></div>
-                  <div className="w-4/5 h-4 bg-white/5 rounded-full"></div>
-                  <div className="w-full h-4 bg-[#D62828]/10 rounded-full mt-auto"></div>
+                   <div className="w-full h-12 bg-white/5 rounded-xl border border-white/5"></div>
+                   <div className="w-full h-4 bg-white/5 rounded-full"></div>
+                   <div className="w-4/5 h-4 bg-white/5 rounded-full"></div>
+                   <div className="w-full h-4 bg-[#D62828]/10 rounded-full mt-auto"></div>
                 </div>
 
                 <div className="flex-1 h-full flex flex-col gap-6">
-                  <div className="grid grid-cols-2 gap-4">
-                     {[1,2].map(i => (
-                       <div key={i} className="bg-[#111] border border-white/5 rounded-2xl p-4 flex flex-col gap-2">
-                         <div className="w-12 h-2 bg-white/10 rounded-full"></div>
-                         <div className="flex justify-between items-end mt-2">
-                            <div className="w-16 h-6 bg-white/60 rounded-full"></div>
-                            <div className={`w-2 h-2 rounded-full ${i === 2 ? 'bg-[#D62828] animate-pulse' : 'bg-blue-400'}`}></div>
-                         </div>
-                       </div>
-                     ))}
-                  </div>
+                   <div className="grid grid-cols-2 gap-4">
+                      {[1,2].map(i => (
+                        <div key={i} className="bg-[#111] border border-white/5 rounded-2xl p-4 flex flex-col gap-2">
+                          <div className="w-12 h-2 bg-white/10 rounded-full"></div>
+                          <div className="flex justify-between items-end mt-2">
+                             <div className="w-16 h-6 bg-white/60 rounded-full"></div>
+                             <div className={`w-2 h-2 rounded-full ${i === 2 ? 'bg-[#D62828] animate-pulse' : 'bg-blue-400'}`}></div>
+                          </div>
+                        </div>
+                      ))}
+                   </div>
 
-                  <div className="flex-1 bg-[#111] border border-white/5 rounded-2xl p-6 relative overflow-hidden flex flex-col">
-                    <div className="w-32 h-3 bg-white/10 rounded-full mb-auto"></div>
-                    <div className="w-full h-24 flex items-end justify-between px-2 gap-3 mt-4">
-                       {[40, 60, 30, 85, 50, 100, 70, 90].map((h, i) => (
-                         <motion.div 
-                           key={i}
-                           initial={{ height: 0 }}
-                           animate={{ height: `${h}%` }}
-                           transition={{ duration: 1, delay: i * 0.1 }}
-                           className="w-full bg-gradient-to-t from-[#D62828]/50 to-[#D62828] rounded-t-lg"
-                         ></motion.div>
-                       ))}
-                    </div>
-                  </div>
+                   <div className="flex-1 bg-[#111] border border-white/5 rounded-2xl p-6 relative overflow-hidden flex flex-col">
+                     <div className="w-32 h-3 bg-white/10 rounded-full mb-auto"></div>
+                     <div className="w-full h-24 flex items-end justify-between px-2 gap-3 mt-4">
+                        {[40, 60, 30, 85, 50, 100, 70, 90].map((h, i) => (
+                          <motion.div 
+                            key={i}
+                            initial={{ height: 0 }}
+                            animate={{ height: `${h}%` }}
+                            transition={{ duration: 1, delay: i * 0.1 }}
+                            className="w-full bg-gradient-to-t from-[#D62828]/50 to-[#D62828] rounded-t-lg"
+                          ></motion.div>
+                        ))}
+                     </div>
+                   </div>
                 </div>
              </div>
           </motion.div>
@@ -127,18 +143,18 @@ export default function SolucionesPage() {
            
            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
              {processSteps.map((step, i) => (
-               <motion.div
-                 key={i}
-                 initial={{ opacity: 0, y: 20 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 transition={{ delay: i * 0.1 }}
-                 className="relative"
-               >
-                 <div className="text-5xl font-display font-black text-white/5 absolute -top-8 -left-4">{i + 1}</div>
-                 <h3 className="font-bold text-lg md:text-xl mb-4 relative z-10">{step.title}</h3>
-                 <p className="text-white/50 text-sm leading-relaxed">{step.desc}</p>
-               </motion.div>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="relative"
+                >
+                  <div className="text-5xl font-display font-black text-white/5 absolute -top-8 -left-4">{i + 1}</div>
+                  <h3 className="font-bold text-lg md:text-xl mb-4 relative z-10">{step.title}</h3>
+                  <p className="text-white/50 text-sm leading-relaxed">{step.desc}</p>
+                </motion.div>
              ))}
            </div>
         </section>
@@ -165,6 +181,49 @@ export default function SolucionesPage() {
           ))}
         </section>
 
+        {/* RELATED PROJECTS SECTION */}
+        <section className="mb-24 md:mb-40 border-t border-white/5 pt-20">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <p className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-4">/ Sistemas Propios</p>
+              <h2 className="font-display text-3xl md:text-5xl font-black uppercase">Software Real Desplegado</h2>
+            </div>
+            <Link href="/proyectos" className="font-mono text-xs uppercase tracking-widest text-[#D62828] hover:text-white transition-colors border-b border-[#D62828]/20 pb-1">
+              Ver Todos →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {customProjects.map((project) => (
+              <div
+                key={project.id}
+                onClick={() => handleOpenDetails(project)}
+                className="group relative bg-[#111]/60 border border-white/5 rounded-3xl overflow-hidden hover:border-[#D62828]/40 transition-all duration-300 flex flex-col cursor-pointer"
+              >
+                <div className="relative w-full aspect-[16/10] overflow-hidden bg-black">
+                  <img
+                    src={`/projects/${project.folder}/${project.images[0]}`}
+                    alt={project.title}
+                    className="w-full h-full object-cover opacity-65 group-hover:opacity-100 group-hover:scale-103 transition-all duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent pointer-events-none" />
+                </div>
+                <div className="p-6 flex flex-col justify-between flex-1">
+                  <div>
+                    <span className="font-mono text-[9px] text-[#D62828] uppercase tracking-widest mb-1.5 block font-bold">{project.client}</span>
+                    <h3 className="font-display text-lg font-bold text-white mb-2">{project.title}</h3>
+                    <p className="text-white/40 text-xs leading-relaxed mb-4 line-clamp-2">{project.description}</p>
+                  </div>
+                  <div className="flex items-center justify-between pt-3 border-t border-white/5 text-[10px] font-mono uppercase tracking-widest text-[#D62828]">
+                    <span>Ver Detalles</span>
+                    <Plus size={12} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Final CTA */}
         <section className="relative py-16 md:py-32 rounded-2xl md:rounded-[3rem] bg-gradient-to-br from-[#111] to-black border border-white/10 overflow-hidden text-center">
           <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -172,16 +231,25 @@ export default function SolucionesPage() {
             <h2 className="font-display text-3xl md:text-7xl font-black uppercase text-white mb-8 tracking-tighter leading-none">
               Tu software es <br /> tu <span className="text-[#D62828]">activo</span> más valioso.
             </h2>
-            <p className="text-white/40 text-base md:text-lg mb-8 md:mb-12 font-light max-w-2xl mx-auto">
+            <p className="text-white/40 text-base md:text-lg mb-8 md:mb-12 font-light max-w-2xl mx-auto leading-relaxed">
               Deja de adaptarte a las herramientas de otros. Crea la herramienta que se adapte perfectamente a tu forma de trabajar.
             </p>
-            <Link href="/start" className="inline-flex items-center gap-4 px-8 py-4 md:px-12 md:py-6 bg-[#D62828] text-white font-black text-xs md:text-sm tracking-widest uppercase hover:scale-105 transition-all shadow-2xl">
+            <Link href="/start" className="inline-flex items-center gap-4 px-8 py-4 md:px-12 md:py-6 bg-[#D62828] text-white font-black text-xs md:text-sm tracking-widest uppercase hover:scale-105 transition-all shadow-2xl rounded-xl">
               HABLAR CON UN INGENIERO <ArrowRight size={20} />
             </Link>
           </div>
         </section>
 
       </div>
+
+      <ProjectDetailsModal
+        isOpen={isModalOpen}
+        project={selectedProject}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedProject(null);
+        }}
+      />
     </main>
   );
 }
