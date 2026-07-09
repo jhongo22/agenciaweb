@@ -47,7 +47,7 @@ export default function Navigation() {
             className="flex-shrink-0 flex items-center justify-center px-6 md:px-12 border-r border-white/10 group hover:bg-white/5 transition-colors magnetic-area"
           >
             <span className="font-display font-black text-xl md:text-2xl tracking-[0.2em] text-white uppercase">
-              AUTONOMEK<span className="text-[#D62828] group-hover:drop-shadow-[0_0_8px_#D62828] transition-all">_</span>
+              AUTONOMEK<span className="text-[#72dbd3] group-hover:drop-shadow-[0_0_8px_#72dbd3] transition-all">_</span>
             </span>
           </Link>
 

@@ -71,17 +71,22 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-8 group">
               <span className="font-display font-black text-3xl tracking-[0.2em] text-white uppercase">
-                AUTONOMEK<span className="text-[#D62828] group-hover:drop-shadow-[0_0_8px_#D62828] transition-all">_</span>
+                AUTONOMEK<span className="text-[#72dbd3] group-hover:drop-shadow-[0_0_8px_#72dbd3] transition-all">_</span>
               </span>
             </Link>
             <p className="text-white/40 text-sm leading-relaxed max-w-sm mb-10">
               Arquitectos de infraestructura digital y sistemas autónomos impulsados por Inteligencia Artificial de élite. Llevamos la tracción de tu negocio al siguiente nivel operativo.
             </p>
             <div className="flex gap-4">
-              {[Instagram, Linkedin, Github].map((Icon, i) => (
+              {[
+                { icon: Instagram, label: "Instagram" },
+                { icon: Linkedin, label: "LinkedIn" },
+                { icon: Github, label: "GitHub" }
+              ].map(({ icon: Icon, label }, i) => (
                 <a 
                   key={i} 
                   href="#" 
+                  aria-label={label}
                   className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[#D62828] hover:border-[#D62828]/40 hover:bg-[#D62828]/5 transition-all"
                 >
                   <Icon size={18} />
@@ -121,7 +126,7 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} AUTONOMEK WEB & IA. TODOS LOS DERECHOS RESERVADOS.</p>
           <div className="flex gap-8 mt-6 md:mt-0">
              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-[#00CC66] animate-pulse"></div>
+                <div className="w-2 h-2 rounded-full bg-[#72dbd3] animate-pulse"></div>
                 <span>Sistemas Operativos</span>
              </div>
              <p className="hover:text-white transition-colors cursor-pointer">LATAM / GLOBAL</p>

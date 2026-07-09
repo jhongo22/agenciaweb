@@ -31,11 +31,13 @@ export default function Home() {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const textBgY = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
+  const [mounted, setMounted] = useState(false);
+
   // Interactive ROI Calculator State
   const [employees, setEmployees] = useState(5);
-  const [averageSalary, setAverageSalary] = useState(25000);
+  const [averageSalary, setAverageSalary] = useState(24000000);
   const [hoursWasted, setHoursWasted] = useState(8);
-  const [investment, setInvestment] = useState(3000);
+  const [investment, setInvestment] = useState(12000000);
 
   // ROI Calculations
   const hourlyRate = averageSalary / 1880;
@@ -49,6 +51,7 @@ export default function Home() {
   const [messages, setMessages] = useState<{text: string, isBot: boolean}[]>([]);
   
   useEffect(() => {
+    setMounted(true);
     const sequence = [
       { text: "Hola, me interesa implementar un sistema de reservas y respuestas automáticas para mi negocio. ¿Es muy complicado?", isBot: false, delay: 1000 },
       { text: "¡Hola! Para nada. Nosotros nos encargamos de toda la configuración. Entrenamos a tu agente con la información de tus servicios para que responda 24/7 y agende citas en piloto automático.", isBot: true, delay: 3500 },
@@ -73,29 +76,31 @@ export default function Home() {
       <CanvasBackground />
 
       {/* 2. Middle Layer: Giant Distorted Background Text */}
-      <motion.div 
-         style={{ y: textBgY }}
-        className="absolute top-[10%] md:top-[20%] left-[-10%] w-[120vw] h-[60vh] overflow-hidden pointer-events-none z-[1] opacity-20 select-none rotate-[-6deg]"
-      >
+      {mounted && (
         <motion.div 
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
-          className="flex whitespace-nowrap items-center h-full"
+           style={{ y: textBgY }}
+          className="absolute top-[10%] md:top-[20%] left-[-10%] w-[120vw] h-[60vh] overflow-hidden pointer-events-none z-[1] opacity-20 select-none rotate-[-6deg]"
         >
-          <span className="font-display text-[25vw] font-black leading-none text-white tracking-tighter pr-16">
-            AUTONOMEK<span className="text-[#D62828]">.</span>
-          </span>
-          <span className="font-display text-[25vw] font-black leading-none text-white tracking-tighter pr-16">
-            AUTONOMEK<span className="text-[#D62828]">.</span>
-          </span>
-          <span className="font-display text-[25vw] font-black leading-none text-white tracking-tighter pr-16">
-            AUTONOMEK<span className="text-[#D62828]">.</span>
-          </span>
-          <span className="font-display text-[25vw] font-black leading-none text-white tracking-tighter pr-16">
-            AUTONOMEK<span className="text-[#D62828]">.</span>
-          </span>
+          <motion.div 
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
+            className="flex whitespace-nowrap items-center h-full"
+          >
+            <span className="font-display text-[25vw] font-black leading-none text-white tracking-tighter pr-16">
+              AUTONOMEK<span className="text-[#D62828]">.</span>
+            </span>
+            <span className="font-display text-[25vw] font-black leading-none text-white tracking-tighter pr-16">
+              AUTONOMEK<span className="text-[#D62828]">.</span>
+            </span>
+            <span className="font-display text-[25vw] font-black leading-none text-white tracking-tighter pr-16">
+              AUTONOMEK<span className="text-[#D62828]">.</span>
+            </span>
+            <span className="font-display text-[25vw] font-black leading-none text-white tracking-tighter pr-16">
+              AUTONOMEK<span className="text-[#D62828]">.</span>
+            </span>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
 
       {/* 3. HERO SECTION WITH SPLIT CHAT SIMULATOR */}
       <motion.section 
@@ -112,8 +117,8 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="mb-8 flex items-center gap-4"
             >
-              <span className="w-8 md:w-12 h-[1px] bg-[#D62828]"></span>
-              <p className="font-mono text-[#D62828] text-[10px] md:text-xs tracking-[0.2em] uppercase">
+              <span className="w-8 md:w-12 h-[1px] bg-[#72dbd3]"></span>
+              <p className="font-mono text-[#72dbd3] text-[10px] md:text-xs tracking-[0.2em] uppercase">
                 Más clientes. Menos tareas manuales.
               </p>
             </motion.div>
@@ -219,38 +224,38 @@ export default function Home() {
       <section className="w-full bg-[#111111] relative z-10 py-20 md:py-32 px-6 md:px-12 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-4">/ Problemas Comunes</p>
+            <p className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-4">/ Problemas Comunes</p>
             <h2 className="font-display text-3xl md:text-5xl font-black uppercase text-white">¿Te suena familiar?</h2>
-            <div className="w-16 h-[2px] bg-[#D62828] mx-auto mt-4"></div>
+            <div className="w-16 h-[2px] bg-[#72dbd3] mx-auto mt-4"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-8 bg-[#080808] border border-white/5 rounded-2xl flex flex-col gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#D62828]/10 flex items-center justify-center text-[#D62828]">
+            <div className="group p-8 bg-[#080808] border border-white/5 rounded-2xl flex flex-col gap-4 transition-all duration-300 hover:border-[#D62828]/30 hover:shadow-[0_10px_30px_-10px_rgba(214,40,40,0.15)] hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-xl bg-[#D62828]/10 flex items-center justify-center text-[#D62828] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#D62828]/20">
                 <ShieldAlert size={24} />
               </div>
-              <h3 className="text-white font-bold text-xl uppercase tracking-tight">Leads y Clientes Perdidos</h3>
-              <p className="text-white/40 text-sm leading-relaxed">
+              <h3 className="text-white font-bold text-xl uppercase tracking-tight transition-all duration-300">Leads y Clientes Perdidos</h3>
+              <p className="text-white/40 text-sm leading-relaxed transition-all duration-300 group-hover:text-white/60">
                 Mensajes de WhatsApp o Instagram que llegan en la noche o fines de semana y nadie responde. Tu cliente potencial no espera: se va directo con tu competencia.
               </p>
             </div>
 
-            <div className="p-8 bg-[#080808] border border-white/5 rounded-2xl flex flex-col gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#D62828]/10 flex items-center justify-center text-[#D62828]">
+            <div className="group p-8 bg-[#080808] border border-white/5 rounded-2xl flex flex-col gap-4 transition-all duration-300 hover:border-[#D62828]/30 hover:shadow-[0_10px_30px_-10px_rgba(214,40,40,0.15)] hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-xl bg-[#D62828]/10 flex items-center justify-center text-[#D62828] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#D62828]/20">
                 <Clock size={24} />
               </div>
-              <h3 className="text-white font-bold text-xl uppercase tracking-tight">Horas Perdidas en Tareas Manuales</h3>
-              <p className="text-white/40 text-sm leading-relaxed">
+              <h3 className="text-white font-bold text-xl uppercase tracking-tight transition-all duration-300">Horas Perdidas en Tareas Manuales</h3>
+              <p className="text-white/40 text-sm leading-relaxed transition-all duration-300 group-hover:text-white/60">
                 Tu equipo pasa el día redactando cotizaciones, copiando datos en excels, enviando recordatorios de pago y facturando manualmente en vez de dedicarse a vender.
               </p>
             </div>
 
-            <div className="p-8 bg-[#080808] border border-white/5 rounded-2xl flex flex-col gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#D62828]/10 flex items-center justify-center text-[#D62828]">
+            <div className="group p-8 bg-[#080808] border border-white/5 rounded-2xl flex flex-col gap-4 transition-all duration-300 hover:border-[#D62828]/30 hover:shadow-[0_10px_30px_-10px_rgba(214,40,40,0.15)] hover:-translate-y-1">
+              <div className="w-12 h-12 rounded-xl bg-[#D62828]/10 flex items-center justify-center text-[#D62828] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#D62828]/20">
                 <Coins size={24} />
               </div>
-              <h3 className="text-white font-bold text-xl uppercase tracking-tight">Fugas de Dinero Constantes</h3>
-              <p className="text-white/40 text-sm leading-relaxed">
+              <h3 className="text-white font-bold text-xl uppercase tracking-tight transition-all duration-300">Fugas de Dinero Constantes</h3>
+              <p className="text-white/40 text-sm leading-relaxed transition-all duration-300 group-hover:text-white/60">
                 Cobros que se olvian enviar, cotizaciones sin seguimiento proactivo y prospectos que se enfrían porque nadie les dio atención inmediata.
               </p>
             </div>
@@ -271,7 +276,7 @@ export default function Home() {
             className="w-full flex justify-between items-end mb-16 md:mb-24"
           >
             <div>
-              <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-4">/ Nuestras Áreas de Dominio</p>
+              <p className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-4">/ Nuestras Áreas de Dominio</p>
               <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tight text-white">Soluciones.</h2>
             </div>
             <p className="font-sans text-sm text-white/50 hidden md:block max-w-xs text-right">
@@ -289,7 +294,7 @@ export default function Home() {
             >
               <Link href="/servicios/paginas-web-alto-rendimiento" className="group h-full relative bg-[#111] overflow-hidden p-10 md:p-14 border border-white/5 hover:border-[#D62828] hover:shadow-[0_0_30px_rgba(214,40,40,0.2)] transition-all duration-500 flex flex-col justify-between min-h-[400px]">
                 <div className="absolute inset-0 z-0">
-                  <img src="/projects/lamisia-6.webp" alt="Desarrollo Web" className="w-full h-full object-cover opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out" />
+                  <img src="/projects/villa-grande-la-misia/villa-grande-la-misia-cocina-comedor-6.webp" alt="Desarrollo Web" className="w-full h-full object-cover opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/80 to-transparent"></div>
                 </div>
                 
@@ -316,7 +321,7 @@ export default function Home() {
               >
                 <Link href="/servicios/agentes-inteligencia-artificial" className="group h-full relative bg-[#111] overflow-hidden p-8 border border-white/5 hover:border-[#D62828] hover:shadow-[0_0_30px_rgba(214,40,40,0.2)] transition-all duration-500 flex flex-col justify-between min-h-[250px]">
                   <div className="absolute inset-0 z-0">
-                    <img src="/projects/dashboard-ia-1.webp" alt="Agentes IA" className="w-full h-full object-cover opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out" />
+                    <img src="/projects/panel-control-agentes-ia/panel-control-agentes-ia-vista-general-1.webp" alt="Agentes IA" className="w-full h-full object-cover opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/80 to-transparent"></div>
                   </div>
 
@@ -340,7 +345,7 @@ export default function Home() {
               >
                 <Link href="/servicios/automatizacion-de-procesos" className="group h-full relative bg-[#111] overflow-hidden p-8 border border-white/5 hover:border-[#D62828] hover:shadow-[0_0_30px_rgba(214,40,40,0.2)] transition-all duration-500 flex flex-col justify-between min-h-[250px]">
                   <div className="absolute inset-0 z-0">
-                    <img src="/projects/dashboard-winners-1.webp" alt="Automatización" className="w-full h-full object-cover opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out" />
+                    <img src="/projects/panel-control-agentes-ia/panel-control-agentes-ia-analytics-1.webp" alt="Automatización" className="w-full h-full object-cover opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/80 to-transparent"></div>
                   </div>
 
@@ -372,14 +377,14 @@ export default function Home() {
             whileInView={{ opacity: 1, scaleX: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="w-12 h-[1px] bg-[#D62828] mb-8 origin-left"
+            className="w-12 h-[1px] bg-[#72dbd3] mb-8 origin-left"
           ></motion.div>
           <motion.p 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-8 flex items-center gap-4"
+            className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-8 flex items-center gap-4"
           >
             El Paradigma Autonomek
           </motion.p>
@@ -431,9 +436,9 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
-              className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-6 flex items-center gap-4"
+              className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-6 flex items-center gap-4"
             >
-              <span className="w-8 h-[1px] bg-[#D62828]"></span> Stack Tecnológico
+              <span className="w-8 h-[1px] bg-[#72dbd3]"></span> Stack Tecnológico
             </motion.p>
             
             <motion.h2 
@@ -625,7 +630,7 @@ export default function Home() {
       <section className="w-full bg-[#111] relative z-10 py-24 md:py-40 px-6 md:px-12 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-4">/ Especialización</p>
+            <p className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-4">/ Especialización</p>
             <h2 className="font-display text-4xl md:text-6xl font-black uppercase text-white">Soluciones por Sector</h2>
             <p className="text-white/40 text-base mt-4 font-light max-w-xl mx-auto">
               Implementamos sistemas adaptados a las dinámicas comerciales de tu industria para maximizar tu rentabilidad.
@@ -712,7 +717,7 @@ export default function Home() {
       <section className="w-full bg-[#080808] relative z-10 py-20 md:py-32 px-6 md:px-12 border-t border-white/5">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-4">/ Calculadora de Retorno</p>
+            <p className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-4">/ Calculadora de Retorno</p>
             <h2 className="font-display text-3xl md:text-5xl font-black uppercase text-white mb-6">
               Calcula tu ahorro real al automatizar
             </h2>
@@ -733,6 +738,7 @@ export default function Home() {
                   max="50" 
                   value={employees} 
                   onChange={(e) => setEmployees(Number(e.target.value))}
+                  aria-label="Número de Empleados"
                   className="w-full accent-[#D62828] bg-white/10 h-1 rounded-lg cursor-pointer"
                 />
               </div>
@@ -740,15 +746,16 @@ export default function Home() {
               <div>
                 <div className="flex justify-between text-sm mb-2">
                   <span className="text-white/60">Salario Promedio Anual (por empleado)</span>
-                  <span className="text-white font-bold">${averageSalary.toLocaleString()} USD</span>
+                  <span className="text-white font-bold">${formatNumber(averageSalary)} COP</span>
                 </div>
                 <input 
                   type="range" 
-                  min="10000" 
-                  max="100000" 
-                  step="5000"
+                  min="12000000" 
+                  max="120000000" 
+                  step="2000000"
                   value={averageSalary} 
                   onChange={(e) => setAverageSalary(Number(e.target.value))}
+                  aria-label="Salario Promedio Anual (por empleado)"
                   className="w-full accent-[#D62828] bg-white/10 h-1 rounded-lg cursor-pointer"
                 />
               </div>
@@ -764,6 +771,7 @@ export default function Home() {
                   max="25" 
                   value={hoursWasted} 
                   onChange={(e) => setHoursWasted(Number(e.target.value))}
+                  aria-label="Horas semanales en tareas repetitivas (por empleado)"
                   className="w-full accent-[#D62828] bg-white/10 h-1 rounded-lg cursor-pointer"
                 />
               </div>
@@ -771,15 +779,16 @@ export default function Home() {
               <div>
                 <div className="flex justify-between text-sm mb-2">
                   <span className="text-white/60">Inversión única estimada en automatización</span>
-                  <span className="text-white font-bold">${formatNumber(investment)} USD</span>
+                  <span className="text-white font-bold">${formatNumber(investment)} COP</span>
                 </div>
                 <input 
                   type="range" 
-                  min="1000" 
-                  max="15000" 
-                  step="500"
+                  min="4000000" 
+                  max="60000000" 
+                  step="1000000"
                   value={investment} 
                   onChange={(e) => setInvestment(Number(e.target.value))}
+                  aria-label="Inversión única estimada en automatización"
                   className="w-full accent-[#D62828] bg-white/10 h-1 rounded-lg cursor-pointer"
                 />
               </div>
@@ -792,7 +801,7 @@ export default function Home() {
             
             <div className="border-b border-white/5 pb-6">
               <span className="text-xs font-mono text-white/40 block mb-2 uppercase">Ahorro anual estimado</span>
-              <span className="text-4xl md:text-5xl font-display font-black text-[#D62828]">${formatNumber(annualSavings)} USD</span>
+              <span className="text-4xl md:text-5xl font-display font-black text-[#D62828]">${formatNumber(annualSavings)} COP</span>
               <span className="text-xs text-white/30 block mt-2">En tiempo productivo recuperado para tu empresa</span>
             </div>
 
@@ -809,7 +818,7 @@ export default function Home() {
 
             <div>
               <span className="text-xs font-mono text-white/40 block mb-2">Ahorro proyectado a 5 años</span>
-              <span className="text-2xl md:text-3xl font-display font-bold text-white">${formatNumber(fiveYearSavings)} USD</span>
+              <span className="text-2xl md:text-3xl font-display font-bold text-white">${formatNumber(fiveYearSavings)} COP</span>
             </div>
 
             <Link href="/start" className="mt-4 w-full py-4 bg-[#D62828] text-white font-bold text-xs tracking-widest uppercase text-center hover:bg-white hover:text-black transition-all">
@@ -833,7 +842,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="lg:col-span-1"
             >
-              <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-6">/ Ventaja Competitiva</p>
+              <p className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-6">/ Ventaja Competitiva</p>
               <h2 className="font-display text-4xl md:text-5xl font-black uppercase tracking-tight text-white mb-8">
                 Tecnología <br /> sin <span className="text-[#D62828]">Complicaciones.</span>
               </h2>
@@ -884,10 +893,10 @@ export default function Home() {
             className="w-full flex flex-col md:flex-row justify-between items-start md:items-end mb-16"
           >
             <div>
-              <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-4">/ Trabajo Reciente</p>
+              <p className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-4">/ Trabajo Reciente</p>
               <h2 className="font-display text-4xl md:text-6xl font-black uppercase tracking-tight text-white">Operaciones</h2>
             </div>
-            <Link href="/work" className="mt-6 md:mt-0 font-mono text-xs uppercase tracking-widest text-white/50 hover:text-[#D62828] transition-colors border-b border-[#D62828]/30 pb-1">
+            <Link href="/proyectos" className="mt-6 md:mt-0 font-mono text-xs uppercase tracking-widest text-white/50 hover:text-[#D62828] transition-colors border-b border-[#D62828]/30 pb-1">
               Ver Todos Los Proyectos →
             </Link>
           </motion.div>
@@ -901,7 +910,7 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="group relative w-full aspect-[4/3] bg-[#080808] overflow-hidden border border-white/5 hover:border-[#D62828] hover:shadow-[0_0_30px_rgba(214,40,40,0.3)] transition-all duration-500 cursor-pointer"
             >
-              <img src="/projects/toxxic-main.webp" alt="Toxxic Project" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
+              <img src="/projects/toxxic-tienda-ropa-urbana/toxxic-tienda-ropa-urbana-main.webp" alt="Toxxic Project" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none"></div>
               <div className="absolute bottom-6 left-6 right-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <span className="font-mono text-[10px] md:text-xs tracking-widest text-[#D62828] mb-2 block">E-COMMERCE / NEXT.JS</span>
@@ -917,7 +926,7 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="group relative w-full aspect-[4/3] bg-[#080808] overflow-hidden border border-white/5 hover:border-[#D62828] hover:shadow-[0_0_30px_rgba(214,40,40,0.3)] transition-all duration-500 cursor-pointer"
             >
-              <img src="/projects/lamisia-1.webp" alt="Lamisia Project" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
+              <img src="/projects/villa-grande-la-misia/villa-grande-la-misia-fachada-principal-1.webp" alt="Lamisia Project" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none"></div>
               <div className="absolute bottom-6 left-6 right-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <span className="font-mono text-[10px] md:text-xs tracking-widest text-[#D62828] mb-2 block">CORPORATIVO / IA</span>
@@ -933,7 +942,7 @@ export default function Home() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[1px] bg-gradient-to-r from-transparent via-[#D62828]/50 to-transparent"></div>
         
         <div className="max-w-7xl mx-auto text-center mb-24">
-           <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-4">/ Metodología Autonomek</p>
+           <p className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-4">/ Metodología Autonomek</p>
            <h2 className="font-display text-4xl md:text-7xl font-black uppercase tracking-tight text-white">Del Caos al <span className="text-[#D62828]">Orden.</span></h2>
         </div>
 
@@ -966,7 +975,7 @@ export default function Home() {
       <section className="w-full bg-[#0A0A0A] relative z-10 py-24 md:py-40 px-6 md:px-12 border-t border-white/5">
         <div className="max-w-4xl mx-auto">
            <div className="text-center mb-20">
-              <p className="font-mono text-[#D62828] text-xs tracking-[0.2em] uppercase mb-4">/ Preguntas Frecuentes</p>
+              <p className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-4">/ Preguntas Frecuentes</p>
               <h2 className="font-display text-4xl md:text-5xl font-black uppercase tracking-tight text-white">Despeja tus <span className="text-[#D62828]">Dudas.</span></h2>
            </div>
 

@@ -112,3 +112,56 @@ El proyecto utiliza scripts estándar de Next.js detallados en [package.json](fi
 *   `npm run build`: Genera la versión optimizada de producción (compilación estática y de servidor).
 *   `npm start`: Inicia el servidor de Next.js en producción.
 *   `npm run lint`: Ejecuta las comprobaciones de código estático (ESLint).
+
+---
+
+## 🔖 7. Etiquetado de Google & Integraciones de Terceros
+
+Todas las integraciones de terceros se inyectan en el layout raíz (`src/app/layout.tsx`) mediante el componente `next/script`.
+
+### 7.1. Google Analytics 4 (GA4)
+
+- **Measurement ID:** `G-W5P7806J2F`
+- **Tipo:** Google Analytics 4 (gtag.js) directo, **sin** Google Tag Manager (GTM).
+- **Estrategia de carga:** `afterInteractive` — se descarga después de que la página sea interactiva.
+- **Implementación actual:**
+  ```tsx
+  // Carga del script gtag.js
+  <Script strategy="afterInteractive"
+    src="https://www.googletagmanager.com/gtag/js?id=G-W5P7806J2F" />
+
+  // Inicialización del dataLayer y envío de page_view
+  <Script id="gtag-init" strategy="afterInteractive">
+    {`window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-W5P7806J2F');`}
+  </Script>
+  ```
+- **Eventos:** Solo se envía `page_view` automático. **No hay eventos de conversión** (contact_form_submit, button_click, etc.) implementados actualmente.
+- **ID hardcodeado:** El Measurement ID está escrito directamente en el código. Se recomienda migrar a variable de entorno (`NEXT_PUBLIC_GA_ID`) para facilitar cambios por entorno.
+- **Sin banner de consentimiento:** No hay implementación de cookie consent banner. La cookie `_ga` de GA4 se instala sin consentimiento previo.
+
+### 7.2. Chatwoot (Widget de Chat)
+
+- **URL de instancia:** `https://chatwoot.autonomek.com`
+- **Website Token:** `sgKYEgxKz4TFe6LqbeTCupQA`
+- **Estrategia de carga:** `lazyOnload` — se descarga después de todos los demás recursos.
+- **Comportamiento responsive:** El widget se oculta automáticamente en dispositivos móviles (viewport < 768px).
+- **ID de cuenta hardcodeado:** Misma recomendación de migrar a variable de entorno.
+
+### 7.3. WhatsApp (Botón Flotante)
+
+- **Número:** `+573004435894`
+- **Componentes que lo usan:** `WhatsAppButton.tsx`, `Navigation.tsx`, `Footer.tsx`, `start/page.tsx`
+- **Número hardcodeado** en todos los componentes.
+
+### 7.4. Resumen de Etiquetado
+
+| Servicio | Tipo | ID/Token | Estrategia | Cookie |
+|---|---|---|---|---|
+| Google Analytics 4 | Analítica web | G-W5P7806J2F | afterInteractive | _ga, _gid, _gat |
+| Chatwoot | Chat en vivo | sgKYEgxKz4TFe6LqbeTCupQA | lazyOnload | chatwoot-* |
+| WhatsApp | Mensajería | +573004435894 | N/A (link) | Ninguna |
+
+> ⚠️ **Pendientes:** No hay eventos de conversión personalizados en GA4, no hay Google Tag Manager, no hay Facebook Pixel, y no hay banner de consentimiento de cookies. Todos los IDs están hardcodeados — se recomienda moverlos a variables de entorno (`NEXT_PUBLIC_*`).

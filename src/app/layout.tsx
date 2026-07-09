@@ -16,6 +16,11 @@ const syne = Syne({ subsets: ['latin'], variable: '--font-syne' });
 export const metadata: Metadata = {
   title: 'Autonomek Web & IA | Tecnología Implacable',
   description: 'Desarrollo web estratégico y sistemas de agentes IA para dominar tu mercado.',
+  icons: {
+    icon: '/logo_pestaña.png',
+    shortcut: '/logo_pestaña.png',
+    apple: '/logo_pestaña.png',
+  },
 };
 
 export default function RootLayout({
@@ -25,6 +30,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${inter.variable} ${syne.variable} bg-background text-foreground antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://chatwoot.autonomek.com" />
+        <link rel="dns-prefetch" href="https://chatwoot.autonomek.com" />
+      </head>
       <body className="min-h-screen flex flex-col overflow-x-hidden selection:bg-accent selection:text-background">
         <Preloader />
         <CustomCursor />
@@ -67,6 +76,12 @@ export default function RootLayout({
                     })
                   }
                 })(document,"script");
+
+                window.addEventListener('chatwoot:ready', function () {
+                  if (window.innerWidth < 768) {
+                    window.$chatwoot.toggleBubbleVisibility('hide');
+                  }
+                });
               `,
             }}
           />

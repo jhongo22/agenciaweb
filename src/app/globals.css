@@ -60,3 +60,13 @@ html.lenis, html.lenis body {
     -webkit-text-fill-color: transparent;
   }
 }
+
+/* Hide Chatwoot widget on mobile */
+@media (max-width: 767px) {
+  .woot-widget-bubble,
+  .woot-widget-holder,
+  #chatwoot-widget-container,
+  .woot--bubble-holder {
+    display: none !important;
+  }
+}
