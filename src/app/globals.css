@@ -61,12 +61,18 @@ html.lenis, html.lenis body {
   }
 }
 
-/* Hide Chatwoot widget on mobile */
-@media (max-width: 767px) {
-  .woot-widget-bubble,
-  .woot-widget-holder,
-  #chatwoot-widget-container,
-  .woot--bubble-holder {
-    display: none !important;
-  }
+/* WhatsApp-style scrollbar for chat */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
 }

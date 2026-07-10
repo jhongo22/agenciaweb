@@ -27,9 +27,9 @@ const FOOTER_LINKS = [
   {
     title: "Legal",
     links: [
-      { name: "Privacidad", href: "#" },
-      { name: "Términos", href: "#" },
-      { name: "Cookies", href: "#" }
+      { name: "Privacidad", href: "/legal#privacidad" },
+      { name: "Términos", href: "/legal#terminos" },
+      { name: "Cookies", href: "/legal#cookies" }
     ]
   }
 ];

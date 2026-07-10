@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 import { Inter, Syne } from 'next/font/google';
 import './globals.css';
 import Script from 'next/script';
-import SmoothScrollProvider from '@/components/SmoothScrollProvider';
-import WhatsAppButton from '@/components/WhatsAppButton';
-import CustomCursor from '@/components/CustomCursor';
-import Preloader from '@/components/Preloader';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import SmoothScrollProvider from '@/components/layout/SmoothScrollProvider';
+import WhatsAppButton from '@/components/widgets/WhatsAppButton';
+import AiChatWidget from '@/components/widgets/AiChatWidget';
+import CustomCursor from '@/components/effects/CustomCursor';
+import Preloader from '@/components/effects/Preloader';
+import Navigation from '@/components/layout/Navigation';
+import Footer from '@/components/layout/Footer';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 // Reusing Syne as a display font fallback since we'll configure Clash later if needed
@@ -41,6 +42,7 @@ export default function RootLayout({
           <Navigation />
           {children}
           <Footer />
+          <AiChatWidget />
           <Script
             strategy="afterInteractive"
             src="https://www.googletagmanager.com/gtag/js?id=G-W5P7806J2F"
@@ -78,9 +80,7 @@ export default function RootLayout({
                 })(document,"script");
 
                 window.addEventListener('chatwoot:ready', function () {
-                  if (window.innerWidth < 768) {
-                    window.$chatwoot.toggleBubbleVisibility('hide');
-                  }
+                  // Visible en todos los dispositivos
                 });
               `,
             }}

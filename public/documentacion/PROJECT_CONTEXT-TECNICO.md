@@ -44,14 +44,20 @@ Autonomek/
 │   │   ├── globals.css     # Estilos globales y variables CSS de Tailwind
 │   │   ├── layout.tsx      # Estructura HTML base con navegación y pie de página
 │   │   └── page.tsx        # Página de inicio (Landing Page principal)
-│   └── components/         # Componentes compartidos de React
-│       ├── AiChatWidget.tsx
-│       ├── CanvasBackground.tsx
-│       ├── CustomCursor.tsx
-│       ├── Footer.tsx
-│       ├── Navigation.tsx
-│       ├── Preloader.tsx
-│       └── SmoothScrollProvider.tsx
+    │   └── components/         # Componentes compartidos de React
+    │       ├── effects/        # Efectos visuales (Canvas, Cursor, Preloader)
+    │       │   ├── CanvasBackground.tsx
+    │       │   ├── CustomCursor.tsx
+    │       │   └── Preloader.tsx
+    │       ├── layout/         # Componentes de estructura (Nav, Footer, Scroll)
+    │       │   ├── Footer.tsx
+    │       │   ├── Navigation.tsx
+    │       │   └── SmoothScrollProvider.tsx
+    │       ├── widgets/        # Widgets flotantes e interactivos
+    │       │   ├── AiChatWidget.tsx
+    │       │   ├── LottieBgIcon.tsx
+    │       │   └── WhatsAppButton.tsx
+    │       └── ProjectDetailsModal.tsx
 ├── package.json            # Scripts y dependencias
 ├── tailwind.config.ts      # Configuración de colores, fuentes y temas de Tailwind
 ├── tsconfig.json           # Configuración de compilación de TypeScript
@@ -76,14 +82,19 @@ El diseño del sitio sigue una estética premium "oscura con toques cyber-crimso
 
 ## 🧩 4. Componentes Clave
 
-Los componentes en [src/components/](file:///d:/Jhongo/Autonomek/src/components) manejan la interactividad y experiencia inmersiva:
+Los componentes en [src/components/](file:///d:/Jhongo/Autonomek/src/components) están organizados en subdirectorios y manejan la interactividad y experiencia inmersiva:
 
-1.  [CanvasBackground.tsx](file:///d:/Jhongo/Autonomek/src/components/CanvasBackground.tsx): Crea un fondo interactivo en 2D Canvas con partículas de colores machiavélicos (rojo, blanco, gris) que interactúan con el cursor del mouse, simulando una red inteligente conectada.
-2.  [AiChatWidget.tsx](file:///d:/Jhongo/Autonomek/src/components/AiChatWidget.tsx): Widget flotante en la esquina inferior derecha que simula un agente de inteligencia artificial interactivo con respuestas predefinidas para prospectos.
-3.  [Navigation.tsx](file:///d:/Jhongo/Autonomek/src/components/Navigation.tsx): Barra de navegación con comportamiento inteligente (se oculta al hacer scroll hacia abajo, aparece al hacer scroll hacia arriba).
-4.  [SmoothScrollProvider.tsx](file:///d:/Jhongo/Autonomek/src/components/SmoothScrollProvider.tsx): Implementa Lenis para proporcionar transiciones y scroll suave a lo largo del sitio.
-5.  [CustomCursor.tsx](file:///d:/Jhongo/Autonomek/src/components/CustomCursor.tsx): Reemplaza el cursor estándar por un puntero personalizado que reacciona a los elementos del sitio.
-6.  [Preloader.tsx](file:///d:/Jhongo/Autonomek/src/components/Preloader.tsx): Pantalla de carga inicial con animaciones para una experiencia premium desde el primer segundo.
+### effects/
+1.  [CanvasBackground.tsx](file:///d:/Jhongo/Autonomek/src/components/effects/CanvasBackground.tsx): Crea un fondo interactivo en 2D Canvas con partículas de colores machiavélicos (rojo, blanco, gris) que interactúan con el cursor del mouse, simulando una red inteligente conectada.
+2.  [CustomCursor.tsx](file:///d:/Jhongo/Autonomek/src/components/effects/CustomCursor.tsx): Reemplaza el cursor estándar por un puntero personalizado que reacciona a los elementos del sitio.
+3.  [Preloader.tsx](file:///d:/Jhongo/Autonomek/src/components/effects/Preloader.tsx): Pantalla de carga inicial con animaciones para una experiencia premium desde el primer segundo.
+
+### layout/
+4.  [Navigation.tsx](file:///d:/Jhongo/Autonomek/src/components/layout/Navigation.tsx): Barra de navegación con comportamiento inteligente (se oculta al hacer scroll hacia abajo, aparece al hacer scroll hacia arriba).
+5.  [SmoothScrollProvider.tsx](file:///d:/Jhongo/Autonomek/src/components/layout/SmoothScrollProvider.tsx): Implementa Lenis para proporcionar transiciones y scroll suave a lo largo del sitio.
+
+### widgets/
+6.  [AiChatWidget.tsx](file:///d:/Jhongo/Autonomek/src/components/widgets/AiChatWidget.tsx): Widget flotante en la esquina inferior derecha que simula un agente de inteligencia artificial interactivo con respuestas predefinidas para prospectos.
 
 ---
 
@@ -153,7 +164,7 @@ Todas las integraciones de terceros se inyectan en el layout raíz (`src/app/lay
 ### 7.3. WhatsApp (Botón Flotante)
 
 - **Número:** `+573004435894`
-- **Componentes que lo usan:** `WhatsAppButton.tsx`, `Navigation.tsx`, `Footer.tsx`, `start/page.tsx`
+- **Componentes que lo usan:** `components/widgets/WhatsAppButton.tsx`, `components/layout/Navigation.tsx`, `components/layout/Footer.tsx`, `app/start/page.tsx`
 - **Número hardcodeado** en todos los componentes.
 
 ### 7.4. Resumen de Etiquetado

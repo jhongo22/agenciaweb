@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Bot, Search, Calendar, MessageSquare, Zap, Globe, Sparkles } from 'lucide-react';
+import { ArrowRight, Bot, Search, Calendar, MessageSquare, Zap, Globe, Sparkles, CheckCircle } from 'lucide-react';
 
 const SERVICES = [
   {
@@ -143,6 +143,112 @@ export default function ServiciosPage() {
             </motion.div>
           ))}
         </div>
+
+        {/* PRICING REFERENCE SECTION */}
+        <section className="mb-24 md:mb-32">
+          <div className="text-center mb-12">
+            <p className="font-mono text-[#72dbd3] text-xs tracking-[0.3em] uppercase mb-4 font-bold">/ Inversión Transparente</p>
+            <h2 className="font-display text-3xl md:text-5xl font-black uppercase tracking-tighter">Planes desde <span className="text-[#D62828]">$1.200.000 COP</span></h2>
+            <p className="text-white/50 text-sm mt-4 max-w-xl mx-auto">
+              Precios de referencia para que dimensiones tu inversión. Cada proyecto se cotiza exactamente a tu medida.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                name: "Agente IA",
+                from: "$1.200.000",
+                setup: "Setup único",
+                month: "$150 USD/mes",
+                desc: "Agente para WhatsApp o Web con respuestas basadas en tu base de conocimiento.",
+                popular: false
+              },
+              {
+                name: "Web Premium",
+                from: "$2.800.000",
+                setup: "Proyecto completo",
+                month: "Desde $200 USD/mes",
+                desc: "Sitio ultra rápido con SEO, chat IA y panel administrable.",
+                popular: true
+              },
+              {
+                name: "Automatización",
+                from: "$1.800.000",
+                setup: "Setup único",
+                month: "$100 USD/mes",
+                desc: "Conexión de tus herramientas actuales en un flujo automático sin intervención humana.",
+                popular: false
+              }
+            ].map((plan, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`relative p-8 rounded-3xl border transition-all ${
+                  plan.popular
+                    ? 'bg-[#111] border-[#D62828]/40 shadow-[0_0_30px_rgba(214,40,40,0.1)]'
+                    : 'bg-[#111] border-white/5 hover:border-white/20'
+                }`}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#D62828] text-white text-[9px] font-mono font-bold uppercase tracking-widest px-4 py-1 rounded-full">
+                    Más Elegido
+                  </div>
+                )}
+                <div className="mt-4">
+                  <p className="font-mono text-[#D62828] text-[10px] tracking-widest uppercase mb-2">Desde</p>
+                  <p className="font-display text-4xl font-black text-white mb-1">{plan.from}</p>
+                  <p className="text-white/30 text-xs mb-4">{plan.setup}</p>
+                  <p className="text-white/60 text-sm mb-6">{plan.desc}</p>
+                  <div className="border-t border-white/5 pt-4 mb-6">
+                    <p className="text-[10px] font-mono text-white/30 uppercase">Mantenimiento</p>
+                    <p className="text-white font-semibold text-sm">{plan.month}</p>
+                  </div>
+                  <Link
+                    href="/start"
+                    className={`block w-full text-center py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${
+                      plan.popular
+                        ? 'bg-[#D62828] text-white hover:bg-white hover:text-black'
+                        : 'border border-white/10 text-white/70 hover:border-[#D62828] hover:text-white'
+                    }`}
+                  >
+                    Cotizar este Plan
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <p className="text-center text-[10px] text-white/20 mt-8 max-w-md mx-auto">
+            * Los precios son referencias de inversión inicial. El costo final depende del alcance, integraciones y personalización requerida. Incluye diagnóstico gratuito previo.
+          </p>
+        </section>
+
+        {/* Garantía / Confianza */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-24 md:mb-32 text-center"
+        >
+          <div className="inline-flex flex-wrap items-center justify-center gap-8 md:gap-16 px-8 py-10 bg-[#111] border border-white/5 rounded-3xl max-w-4xl mx-auto w-full">
+            {[
+              { label: "Diagnóstico sin costo", desc: "Primera reunión sin compromiso" },
+              { label: "Precio cerrado", desc: "Sin costos ocultos ni sorpresas" },
+              { label: "Soporte 24/7", desc: "Monitoreo constante" },
+              { label: "Resultados medibles", desc: "ROI demostrable" }
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col items-center text-center">
+                <div className="w-10 h-10 rounded-full bg-[#D62828]/10 flex items-center justify-center mb-2">
+                  <CheckCircle size={18} className="text-[#D62828]" />
+                </div>
+                <p className="text-white font-bold text-xs uppercase tracking-wider">{item.label}</p>
+                <p className="text-white/40 text-[10px] mt-1">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </motion.section>
 
         {/* Final CTA Card */}
         <motion.div
