@@ -76,3 +76,15 @@ html.lenis, html.lenis body {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
 }
+
+/* High-performance CSS Marquee */
+@keyframes marquee-horizontal {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+.marquee-text-bg {
+  display: flex;
+  width: max-content;
+  animation: marquee-horizontal 25s linear infinite;
+  will-change: transform;
+}

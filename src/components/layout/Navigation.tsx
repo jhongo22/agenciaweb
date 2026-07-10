@@ -4,16 +4,28 @@ import React, { useState } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { X, Menu } from 'lucide-react';
-
-const NAV_ITEMS = [
-  { name: 'Inicio', href: '/' },
-  { name: 'Páginas Web', href: '/servicios/paginas-web-alto-rendimiento' },
-  { name: 'Agentes IA', href: '/servicios/agentes-inteligencia-artificial' },
-  { name: 'Automatización', href: '/servicios/automatizacion-de-procesos' },
-  { name: 'Software a Medida', href: '/servicios/software-a-medida' },
-];
+import { usePathname } from 'next/navigation';
 
 export default function Navigation() {
+  const pathname = usePathname() || '';
+  const isEn = pathname.startsWith('/us');
+
+  const navItems = isEn ? [
+    { name: 'Home', href: '/us' },
+    { name: 'Web Pages', href: '/servicios/paginas-web-alto-rendimiento' },
+    { name: 'AI Agents', href: '/servicios/agentes-inteligencia-artificial' },
+    { name: 'Automation', href: '/servicios/automatizacion-de-procesos' },
+    { name: 'Custom Software', href: '/servicios/software-a-medida' },
+  ] : [
+    { name: 'Inicio', href: '/' },
+    { name: 'Páginas Web', href: '/servicios/paginas-web-alto-rendimiento' },
+    { name: 'Agentes IA', href: '/servicios/agentes-inteligencia-artificial' },
+    { name: 'Automatización', href: '/servicios/automatizacion-de-procesos' },
+    { name: 'Software a Medida', href: '/servicios/software-a-medida' },
+  ];
+
+  const ctaText = isEn ? 'Start Project' : 'Iniciar Proyecto';
+
   const [hidden, setHidden] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { scrollY } = useScroll();
@@ -42,7 +54,7 @@ export default function Navigation() {
           
           {/* LOGO BLOCK (Left) */}
           <Link 
-            href="/" 
+            href={isEn ? "/us" : "/"} 
             onClick={() => setIsOpen(false)}
             className="flex-shrink-0 flex items-center justify-center px-6 md:px-12 border-r border-white/10 group hover:bg-white/5 transition-colors magnetic-area"
           >
@@ -54,7 +66,7 @@ export default function Navigation() {
           {/* MIDDLE LINKS BLOCK (Spans remaining space, hidden on mobile/tablet) */}
           <nav className="hidden lg:flex flex-grow items-center justify-center">
             <ul className="flex h-full w-full justify-center">
-              {NAV_ITEMS.map((item, index) => (
+              {navItems.map((item, index) => (
                 <li key={item.name} className={`flex-grow flex border-r border-white/5 ${index === 0 ? 'border-l' : ''}`}>
                   <Link
                     href={item.href}
@@ -74,7 +86,7 @@ export default function Navigation() {
             rel="noopener noreferrer"
             className="hidden sm:flex flex-shrink-0 items-center justify-center px-6 md:px-12 bg-[#D62828] hover:bg-white text-white hover:text-[#080808] font-bold text-[10px] md:text-xs uppercase tracking-[0.2em] transition-colors border-l border-white/10 magnetic-area"
           >
-            Iniciar Proyecto
+            {ctaText}
           </a>
 
           {/* Mobile Menu Burger (Visible only when desktop layout is hidden) */}
@@ -104,7 +116,7 @@ export default function Navigation() {
             
             <nav className="relative z-10 w-full max-w-lg mx-auto">
               <ul className="flex flex-col gap-6 text-left">
-                {NAV_ITEMS.map((item, index) => (
+                {navItems.map((item, index) => (
                   <motion.li
                     key={item.name}
                     initial={{ opacity: 0, x: -30 }}
@@ -137,7 +149,7 @@ export default function Navigation() {
                   onClick={() => setIsOpen(false)}
                   className="w-full inline-block text-center py-4 bg-[#D62828] hover:bg-white text-white hover:text-black font-bold text-xs uppercase tracking-widest transition-all shadow-[0_0_30px_rgba(214,40,40,0.3)]"
                 >
-                  Iniciar Proyecto (WhatsApp)
+                  {ctaText} (WhatsApp)
                 </a>
               </motion.div>
             </nav>

@@ -11,11 +11,20 @@
 ### Iconos en Soluciones — Lucide React
 - Eliminados los archivos SVG externos en `public/icons` y reemplazados por componentes vectoriales directos de `lucide-react` (`MessageSquare`, `Search`, `Calendar`, `Bot`, `Cpu`, `Globe`).
 
+### Rendimiento Web & Optimización CLS (Lighthouse)
+- **Eliminación de CLS por Marquesina:** Reemplazamos la marquesina de Framer Motion por una marquesina nativa pura en CSS (`marquee-horizontal` con `translate3d`). Esto elimina el retraso por hidratación del lado del cliente y reduce el Cumulative Layout Shift (CLS) de `0.684` a `0`.
+- **Alineación de CTA en Footer:** Modificado el componente `Footer` para mostrar el CTA "ESTÁS LISTO? HABLEMOS_" en todas las variantes localizadas (`/mx`, `/es`, `/us`), resolviendo un fallo donde solo se renderizaba en el root `/`.
+- **Optimización de Preconnect:** Agregado el atributo `crossOrigin="anonymous"` al tag `link rel="preconnect"` de Chatwoot en `layout.tsx`, solucionando el aviso de Lighthouse y ahorrando `340ms` de LCP al reutilizar la conexión socket.
+
 ### Testimonios — Nueva Sección
 - Creada una nueva sección de testimonios de clientes del portafolio (Toxxic, Villa Grande La Misia, Agente IA Comidas Rápidas) con diseño de tarjetas premium, estrellas y avatars personalizados.
 
 ### Trust Badges — Eliminados
 - Se eliminó por completo la sección de Trust Badges (Diagnóstico Gratuito, Precio Cerrado, etc.) del Home y se actualizó la documentación de la página de inicio (`01-inicio.md`).
+
+### SEO — Sitemap & Robots
+- Agregada la ruta `/start` en `sitemap.ts` para permitir el rastreo e indexado de la página del cotizador.
+- Modificado `robots.ts` para prohibir explícitamente el rastreo en la ruta de endpoints de la API (`/api/`), protegiendo webhooks de Chatwoot.
 
 ## 10 Julio 2026 (Segunda tanda)
 

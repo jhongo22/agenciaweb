@@ -15,12 +15,49 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const syne = Syne({ subsets: ['latin'], variable: '--font-syne' });
 
 export const metadata: Metadata = {
-  title: 'Autonomek Web & IA | Tecnología Implacable',
-  description: 'Desarrollo web estratégico y sistemas de agentes IA para dominar tu mercado.',
+  metadataBase: new URL('https://autonomek.com'),
+  title: {
+    default: 'Autonomek Web & IA | Tecnología Implacable',
+    template: '%s | Autonomek'
+  },
+  description: 'Convertimos tu flujo de WhatsApp, tus redes y tu web en una máquina de adquisición de clientes. Diseñamos tus webs de alto rendimiento y agentes de IA.',
   icons: {
     icon: '/logo_pestaña.png',
     shortcut: '/logo_pestaña.png',
     apple: '/logo_pestaña.png',
+  },
+  openGraph: {
+    title: 'Autonomek Web & IA | Tecnología Implacable',
+    description: 'Convertimos tu flujo de WhatsApp, tus redes y tu web en una máquina de adquisición de clientes. Diseñamos tus webs de alto rendimiento y agentes de IA.',
+    url: 'https://autonomek.com',
+    siteName: 'Autonomek',
+    images: [
+      {
+        url: '/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Autonomek Logo - Inteligencia Artificial y Desarrollo Web',
+      },
+    ],
+    locale: 'es_CO',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Autonomek Web & IA | Tecnología Implacable',
+    description: 'Convertimos tu flujo de WhatsApp, tus redes y tu web en una máquina de adquisición de clientes. Diseñamos tus webs de alto rendimiento y agentes de IA.',
+    images: ['/logo.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -32,7 +69,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${syne.variable} bg-background text-foreground antialiased`}>
       <head>
-        <link rel="preconnect" href="https://chatwoot.autonomek.com" />
+        <link rel="preconnect" href="https://chatwoot.autonomek.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://chatwoot.autonomek.com" />
       </head>
       <body className="min-h-screen flex flex-col overflow-x-hidden selection:bg-accent selection:text-background">

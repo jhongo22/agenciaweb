@@ -5,38 +5,77 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ArrowUpRight, Github, Linkedin, Instagram, Mail, Globe } from 'lucide-react';
 
-const FOOTER_LINKS = [
-  {
-    title: "Servicios",
-    links: [
-      { name: "Páginas Web", href: "/servicios/paginas-web-alto-rendimiento" },
-      { name: "Agentes IA", href: "/servicios/agentes-inteligencia-artificial" },
-      { name: "Automatización", href: "/servicios/automatizacion-de-procesos" },
-      { name: "Software a Medida", href: "/servicios/software-a-medida" }
-    ]
-  },
-  {
-    title: "Agencia",
-    links: [
-      { name: "Inicio", href: "/" },
-      { name: "Explorar Servicios", href: "/servicios" },
-      { name: "Iniciar Proyecto", href: "https://wa.me/573004435894?text=Hola%20Autonomek%2C%20me%20gustar%C3%ADa%20iniciar%20un%20proyecto." },
-      { name: "Casos de Éxito", href: "#" }
-    ]
-  },
-  {
-    title: "Legal",
-    links: [
-      { name: "Privacidad", href: "/legal#privacidad" },
-      { name: "Términos", href: "/legal#terminos" },
-      { name: "Cookies", href: "/legal#cookies" }
-    ]
-  }
-];
-
 export default function Footer() {
-  const pathname = usePathname();
-  const isHome = pathname === '/';
+  const pathname = usePathname() || '';
+  const isHome = pathname === '/' || pathname === '/mx' || pathname === '/es' || pathname === '/us';
+  const isEn = pathname.startsWith('/us');
+
+  const footerLinks = isEn ? [
+    {
+      title: "Services",
+      links: [
+        { name: "Web Pages", href: "/servicios/paginas-web-alto-rendimiento" },
+        { name: "AI Agents", href: "/servicios/agentes-inteligencia-artificial" },
+        { name: "Automation", href: "/servicios/automatizacion-de-procesos" },
+        { name: "Custom Software", href: "/servicios/software-a-medida" }
+      ]
+    },
+    {
+      title: "Agency",
+      links: [
+        { name: "Home", href: "/us" },
+        { name: "Explore Services", href: "/servicios" },
+        { name: "Start Project", href: "https://wa.me/573004435894?text=Hello%20Autonomek%2C%20I%20would%20like%20to%20start%20a%20project." },
+        { name: "Success Stories", href: "#" }
+      ]
+    },
+    {
+      title: "Legal",
+      links: [
+        { name: "Privacy", href: "/legal#privacidad" },
+        { name: "Terms", href: "/legal#terminos" },
+        { name: "Cookies", href: "/legal#cookies" }
+      ]
+    }
+  ] : [
+    {
+      title: "Servicios",
+      links: [
+        { name: "Páginas Web", href: "/servicios/paginas-web-alto-rendimiento" },
+        { name: "Agentes IA", href: "/servicios/agentes-inteligencia-artificial" },
+        { name: "Automatización", href: "/servicios/automatizacion-de-procesos" },
+        { name: "Software a Medida", href: "/servicios/software-a-medida" }
+      ]
+    },
+    {
+      title: "Agencia",
+      links: [
+        { name: "Inicio", href: "/" },
+        { name: "Explorar Servicios", href: "/servicios" },
+        { name: "Iniciar Proyecto", href: "https://wa.me/573004435894?text=Hola%20Autonomek%2C%20me%20gustar%C3%ADa%20iniciar%20un%20proyecto." },
+        { name: "Casos de Éxito", href: "#" }
+      ]
+    },
+    {
+      title: "Legal",
+      links: [
+        { name: "Privacidad", href: "/legal#privacidad" },
+        { name: "Términos", href: "/legal#terminos" },
+        { name: "Cookies", href: "/legal#cookies" }
+      ]
+    }
+  ];
+
+  const brandDesc = isEn 
+    ? "Architects of elite digital infrastructure and autonomous systems powered by Artificial Intelligence. We take your business traction to the next operational level."
+    : "Arquitectos de infraestructura digital y sistemas autónomos impulsados por Inteligencia Artificial de élite. Llevamos la tracción de tu negocio al siguiente nivel operativo.";
+
+  const ctaTitle1 = isEn ? "ARE YOU READY?" : "ESTÁS LISTO?";
+  const ctaTitle2 = isEn ? "LET'S TALK_" : "HABLEMOS_";
+  const copyright = isEn 
+    ? `© ${new Date().getFullYear()} AUTONOMEK WEB & IA. ALL RIGHTS RESERVED.`
+    : `© ${new Date().getFullYear()} AUTONOMEK WEB & IA. TODOS LOS DERECHOS RESERVADOS.`;
+  const systemsLabel = isEn ? "Active Systems" : "Sistemas Operativos";
 
   return (
     <footer className="w-full bg-[#080808] border-t border-white/5 relative z-10 overflow-hidden">
@@ -48,7 +87,7 @@ export default function Footer() {
         {isHome && (
           <div className="mb-24 overflow-hidden">
               <a 
-                href="https://wa.me/573004435894?text=Hola%20Autonomek%2C%20me%20gustar%C3%ADa%20iniciar%20un%20proyecto." 
+                href={isEn ? "https://wa.me/573004435894?text=Hello%20Autonomek%2C%20I%20would%20like%20to%20start%20a%20project." : "https://wa.me/573004435894?text=Hola%20Autonomek%2C%20me%20gustar%C3%ADa%20iniciar%20un%20proyecto."}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group block"
@@ -58,8 +97,8 @@ export default function Footer() {
                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                    className="flex flex-col"
                  >
-                   <span className="font-display text-[10vw] font-black uppercase tracking-tighter leading-none text-white/5 group-hover:text-[#D62828] transition-colors">ESTÁS LISTO?</span>
-                   <span className="font-display text-[10vw] font-black uppercase tracking-tighter leading-none text-[#D62828] group-hover:text-white transition-colors">HABLEMOS_</span>
+                   <span className="font-display text-[10vw] font-black uppercase tracking-tighter leading-none text-white/5 group-hover:text-[#D62828] transition-colors">{ctaTitle1}</span>
+                   <span className="font-display text-[10vw] font-black uppercase tracking-tighter leading-none text-[#D62828] group-hover:text-white transition-colors">{ctaTitle2}</span>
                  </motion.div>
               </a>
           </div>
@@ -69,13 +108,13 @@ export default function Footer() {
           
           {/* Brand Info */}
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-block mb-8 group">
+            <Link href={isEn ? "/us" : "/"} className="inline-block mb-8 group">
               <span className="font-display font-black text-3xl tracking-[0.2em] text-white uppercase">
                 AUTONOMEK<span className="text-[#72dbd3] group-hover:drop-shadow-[0_0_8px_#72dbd3] transition-all">_</span>
               </span>
             </Link>
             <p className="text-white/40 text-sm leading-relaxed max-w-sm mb-10">
-              Arquitectos de infraestructura digital y sistemas autónomos impulsados por Inteligencia Artificial de élite. Llevamos la tracción de tu negocio al siguiente nivel operativo.
+              {brandDesc}
             </p>
             <div className="flex gap-4">
               {[
@@ -96,7 +135,7 @@ export default function Footer() {
           </div>
 
           {/* Links Columns */}
-          {FOOTER_LINKS.map((column) => (
+          {footerLinks.map((column) => (
             <div key={column.title} className="lg:col-span-1">
               <h3 className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#D62828] mb-8 font-black">
                 {column.title}
@@ -123,11 +162,11 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-12 font-mono text-[10px] uppercase tracking-widest text-white/30">
-          <p>© {new Date().getFullYear()} AUTONOMEK WEB & IA. TODOS LOS DERECHOS RESERVADOS.</p>
+          <p>{copyright}</p>
           <div className="flex gap-8 mt-6 md:mt-0">
              <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-[#72dbd3] animate-pulse"></div>
-                <span>Sistemas Operativos</span>
+                <span>{systemsLabel}</span>
              </div>
              <p className="hover:text-white transition-colors cursor-pointer">LATAM / GLOBAL</p>
           </div>
