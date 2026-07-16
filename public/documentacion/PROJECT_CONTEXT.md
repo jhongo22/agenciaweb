@@ -60,7 +60,7 @@ Convertimos el flujo de WhatsApp, redes sociales y sitio web de un negocio en un
 - **Estilo:** Oscuro con acentos rojo carmesí (#D62828) y teal (#72dbd3), tipografía display bold, diseño inmersivo con partículas animadas
 
 ## Redes / Contacto
-- **WhatsApp:** +57 300 435 894
+- **WhatsApp:** +57 3004435894
 - **Email:** contacto@autonomek.com
 - **Chat IA Widget:** AiChatWidget (flotante, esquina inferior derecha) — activo globalmente
 - **Chatwoot:** chatwoot.autonomek.com — visible en todos los dispositivos (ya no se oculta en móvil)

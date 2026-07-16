@@ -1,0 +1,161 @@
+# Autonomek — Documentación Completa y Especificaciones Técnicas
+
+Este documento reúne toda la información técnica, comercial, metodológica y el portafolio de proyectos de Autonomek. Está diseñado para facilitar el consumo y procesamiento por parte de modelos de lenguaje (LLMs) y motores de búsqueda semántica.
+
+---
+
+## 1. Información General y Propuesta de Valor
+
+Autonomek es una agencia digital colombiana especializada en automatización de procesos de negocio y desarrollo de soluciones de Inteligencia Artificial (IA) y software a medida.
+- **Tagline:** "Tecnología Implacable"
+- **Visión:** Convertimos el flujo de comunicación (WhatsApp, redes sociales y sitios web) de las empresas en una máquina de captación y retención de clientes altamente eficiente.
+- **Modelo:** Creamos empleados y asistentes digitales inteligentes capaces de calificar leads, responder consultas complejas 24/7 y agendar citas de forma 100% autónoma.
+- **Sitio Web:** https://autonomek.com
+- **Contacto:** 
+  - WhatsApp: +57 3004435894
+  - Email: contacto@autonomek.com
+- **Público Objetivo Principal:** Clínicas y consultorios (odontología, medicina general, veterinarias, spas), constructoras e inmobiliarias, tiendas de comercio electrónico (E-commerce), hoteles, academias y empresas B2B en general que requieran prospección o agendamiento constante.
+
+---
+
+## 2. Portafolio de Servicios Detallado
+
+### 2.1. Empleado de Ventas IA (Producto Estrella)
+- **Descripción:** Agente conversacional inteligente que opera principalmente a través de WhatsApp Business API u widgets web. Responde preguntas recurrentes, califica el interés de los prospectos en tiempo real, genera y envía enlaces de pago, y agenda citas en Calendars/CRMs.
+- **Diferenciador:** Capacidad de transferir la conversación de manera fluida a un agente humano en caso de detectar consultas no cubiertas en su base de datos o solicitudes expresas de contacto humano.
+- **Ideal para:** Clínicas, inmobiliarias, academias, concesionarios y constructoras.
+
+### 2.2. Prospector IA B2B
+- **Descripción:** Un motor automatizado de generación de leads y prospección. Realiza búsqueda activa de empresas target, extrae datos de contacto verificados (correos, teléfonos), califica prospectos mediante IA y envía el primer mensaje de contacto personalizado, gestionando las respuestas iniciales.
+- **Ideal para:** Consultoras, agencias, distribuidores mayoristas y empresas B2B.
+
+### 2.3. Recepcionista IA
+- **Descripción:** Asistente conversacional especializado en gestión de citas y reservas en tiempo real. Sincronizado bidireccionalmente con Google Calendar o CRMs médicos/empresariales. Realiza agendamientos, cancelaciones, reprogramaciones y envía recordatorios automáticos de asistencia.
+- **Impacto:** Reduce las tasas de inasistencia (no-show) hasta en un 90%.
+
+### 2.4. Agente de Servicio al Cliente IA
+- **Descripción:** Sistema de soporte omnicanal integrado con bases de conocimiento vectorizadas (RAG). Responde instantáneamente dudas técnicas o de soporte con precisión quirúrgica basándose en la documentación oficial de la empresa.
+- **Integración:** Sincronizado con paneles como Chatwoot. Resuelve de manera autónoma hasta el 85% de las consultas frecuentes.
+
+### 2.5. Automatización Comercial
+- **Descripción:** Integración y sincronización de flujos de trabajo (workflows). Conectamos formularios web, Google Sheets, correos de Gmail, CRMs de ventas (como HubSpot o Salesforce) y sistemas ERP internos para eliminar la carga administrativa manual y el error humano de copiar y pegar datos.
+
+### 2.6. Desarrollo Web Premium
+- **Descripción:** Diseño y desarrollo de sitios web e-commerce o landings corporativas de alto rendimiento. Enfoque absoluto en velocidad de carga ultrarrápida, optimización SEO para motores de búsqueda y arquitectura orientada a la conversión de leads (embudo de ventas con botones IA directos).
+
+---
+
+## 3. Tarifas y Planes de Referencia (en Pesos Colombianos - COP)
+
+- **Plan Agente IA:** Desde $1.200.000 COP (Setup único) + Mantenimiento de $150 USD/mes. Incluye agente entrenado para WhatsApp o Web basado en base de conocimientos corporativa.
+- **Plan Web Premium:** Desde $2.800.000 COP (Setup único) + Mantenimiento desde $200 USD/mes. Sitios ultra veloces y optimizados para SEO local/global con Chat IA y paneles de autogestión.
+- **Plan Automatización:** Desde $1.800.000 COP (Setup único) + Mantenimiento de $100 USD/mes. Conexiones nativas de herramientas mediante APIs e integradores.
+
+*Nota:* Todos los proyectos incluyen un diagnóstico de procesos inicial sin costo. Las tarifas finales se adaptan al volumen de integraciones y complejidad técnica requerida.
+
+---
+
+## 4. Stack Tecnológico de Autonomek
+
+Para el desarrollo de soluciones, Autonomek emplea tecnologías robustas y modernas de alto rendimiento:
+- **Frontend / Web:** Next.js (App Router), React, TypeScript, Tailwind CSS, Framer Motion, Lenis (scroll suave).
+- **Backend / Bases de Datos:** Node.js, Supabase, PostgreSQL, PostgreSQL Vector (para almacenamiento de embeddings).
+- **Inteligencia Artificial:** Modelos de OpenAI (GPT, Vision, Embeddings), arquitecturas RAG (Retrieval-Augmented Generation).
+- **Automatización de Procesos:** n8n (instancias cloud/locales), Apify, Firecrawl, API de WhatsApp Cloud, Chatwoot, integraciones con Google Drive, Sheets y Gmail.
+
+---
+
+## 5. Portafolio de Proyectos Reales Entregados
+
+A continuación se detalla el listado de 15 proyectos completados y operativos construidos por Autonomek:
+
+### 1. Alquiler de Ecógrafos (Web & Gestión)
+- **Cliente:** Alquiler de Ecógrafos
+- **URL:** https://alquilerdeecografos.com/
+- **Tecnologías:** TypeScript, Node.js, Supabase
+- **Descripción:** Plataforma full-stack para alquiler de equipos médicos de ultrasonido. Cuenta con panel de administración, calendario de disponibilidad interactivo, validación de fechas en tiempo real y registro automatizado en Google Sheets con alertas automatizadas.
+
+### 2. IA Medicina Regenerativa (IA & CRM)
+- **Cliente:** Clínica de Medicina Regenerativa
+- **Tecnologías:** OpenAI (GPT), Redis, n8n, Chatwoot, WhatsApp API
+- **Descripción:** Ecosistema CRM con agente IA omnicanal que procesa texto, audios y recibos de pago. Incluye memoria conversacional a largo plazo, generación de resúmenes de historial médico, agendamiento autónomo de turnos y escalado automatizado a médicos según gravedad.
+
+### 3. Panel de Control Agentes IA (Web & Monitor)
+- **Cliente:** Dashboard Winners
+- **Tecnologías:** Next.js, TypeScript, n8n, Chart.js
+- **Descripción:** Panel web en tiempo real para monitoreo de interacciones de agentes de Inteligencia Artificial. Permite analizar el sentimiento del cliente, los tiempos de respuesta del bot y ajustar dinámicamente la personalidad/instrucciones del agente.
+
+### 4. La Juana de Cerro Tusa (Web Local)
+- **Cliente:** Finca Vacacional La Juana
+- **URL:** https://lajuanacerrotusa.com/
+- **Tecnologías:** Next.js, Supabase, Tailwind CSS, Airbnb API
+- **Descripción:** Landing page inmersiva de gran formato para finca de descanso colonial. Sincronización en tiempo real de calendarios con plataformas de reserva (Airbnb, Booking y VRBO). Optimización SEO local orientada a turismo.
+
+### 5. E-commerce Toxxic (Web E-commerce)
+- **Cliente:** Marca de Ropa Urbana Toxxic
+- **URL:** https://toxxic.vercel.app/
+- **Tecnologías:** Laravel, PHP, MySQL
+- **Descripción:** Comercio electrónico completo para tienda de ropa en Medellín. Cuenta con carrito de compras, gestión de inventario en panel administrativo, roles de usuario y pasarela de comunicación con clientes.
+
+### 6. Telocalizo MX (Web B2B)
+- **Cliente:** Distribuidora GPS Mayorista
+- **URL:** https://telocalizo.mx/
+- **Tecnologías:** Next.js, Tailwind CSS, TypeScript
+- **Descripción:** Sitio corporativo B2B enfocado en captación de distribuidores de rastreadores GPS en México. Catálogo virtual de productos con especificaciones de mayoreo y captación de leads comerciales con SEO local optimizado para México.
+
+### 7. Villa Grande La Misia (Web Local)
+- **Cliente:** Finca Vacacional Villa Grande
+- **Tecnologías:** Next.js, Supabase, Tailwind CSS, Airbnb API
+- **Descripción:** Landing page premium para finca de descanso en Llanogrande, Rionegro. Sincronización automática de reservas (Airbnb, Booking, VRBO) y optimización de posicionamiento local orgánico en buscadores.
+
+### 8. Prospección y Leads IA (Automatización)
+- **Cliente:** Lead Generation System
+- **Tecnologías:** Apify, Firecrawl, OpenAI, n8n
+- **Descripción:** Sistema de prospección automatizado B2B. Extrae prospectos mediante criterios específicos de búsqueda en la web, realiza raspado de datos (scraping), califica el perfil de la empresa con IA y genera mensajes fríos personalizados para Instagram y correo electrónico.
+
+### 9. Agente IA Restaurante Mexicano (IA Multimodal)
+- **Cliente:** Restaurante Comida Mexicana
+- **Tecnologías:** WhatsApp API, OpenAI Vision, PostgreSQL, Telegram API
+- **Descripción:** Agente IA capaz de procesar pedidos en lenguaje natural, comandos de voz y verificar comprobantes de pago mediante visión artificial. Integra panel en Telegram para que el personal de cocina apruebe/rechace pedidos con botones físicos interactivos.
+
+### 10. Sistema RAG Empresarial (IA & Datos)
+- **Cliente:** Knowledge Base Corporativa
+- **Tecnologías:** OpenAI Embeddings, n8n, PostgreSQL Vector, Google Drive API
+- **Descripción:** Sistema RAG corporativo que monitorea carpetas de Google Drive de forma activa. Al detectar nuevos documentos, los clasifica, divide y vectoriza automáticamente, actualizando la base de conocimientos semántica del agente IA en Supabase Vector.
+
+### 11. E-commerce Hot Cheese (Web de Comidas)
+- **Cliente:** Cadena de Comidas Rápidas Hot Cheese
+- **URL:** https://www.hotcheese.com.co/
+- **Tecnologías:** Next.js, Tailwind CSS, WhatsApp API
+- **Descripción:** Landing page interactiva con menú digital modular. Cuenta con selector de sedes en Colombia y redirecciona automáticamente el carrito de compras a la línea de WhatsApp de la sucursal más cercana.
+
+### 12. Agente IA Comidas Rápidas (IA Conversacional)
+- **Cliente:** Restaurante de Comidas Rápidas
+- **Tecnologías:** WhatsApp API, n8n, OpenAI Vision, Telegram
+- **Descripción:** Asistente IA para atención de clientes de comida rápida. Convierte chats de lenguaje natural e informales (incluso mensajes de voz y capturas de pantalla de transferencias bancarias) en pedidos estructurados y listos en la cocina.
+
+### 13. Vive Feliz Sin Dolor (Web & Audio IA)
+- **Cliente:** Clínica de Medicina Regenerativa
+- **URL:** https://vivefelizsindolor.com/
+- **Tecnologías:** WordPress, ElevenLabs Voice AI, SEO Local
+- **Descripción:** Portal web corporativo enfocado en medicina regenerativa. Integra un agente de voz desarrollado con ElevenLabs para responder llamadas de pacientes e información básica de tratamientos.
+
+### 14. Contratos Digitales Automáticos (Automatización)
+- **Cliente:** Firma Legal Tech
+- **Tecnologías:** n8n, Gmail API, WhatsApp API, Google Sheets
+- **Descripción:** Sistema que automatiza el ciclo de creación de contratos. Al recibir datos a través de un webhook, genera el documento legal personalizado y lo despacha de forma automática por correo y WhatsApp con los términos y políticas aplicables.
+
+### 15. Backup Cloud Dual n8n (Automatización & DevOps)
+- **Cliente:** Infraestructura Interna de TI
+- **Tecnologías:** n8n, Google Drive API
+- **Descripción:** Flujo que realiza copias de seguridad de forma redundante y periódica. Monitorea y extrae los workflows activos de dos instancias cloud independientes de n8n, los empaqueta y los aloja de forma segura en Google Drive.
+
+---
+
+## 6. Metodología de Trabajo y Garantías
+
+Para asegurar la máxima calidad y retorno de inversión en cada desarrollo, implementamos cuatro pilares fundamentales:
+1. **Diagnóstico Sin Costo:** Evaluamos detalladamente los cuellos de botella del cliente sin compromisos financieros iniciales.
+2. **Precio Cerrado:** Presupuestos con alcances y entregables específicos; sin cobros sorpresa o tarifas ocultas de última hora.
+3. **Soporte y Monitoreo Activo:** Garantizamos el óptimo funcionamiento técnico de las automatizaciones y agentes de IA.
+4. **ROI Demostrable:** Todo software que desarrollamos está pensado para ahorrar horas de trabajo manual u optimizar directamente las ventas del negocio.

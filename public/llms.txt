@@ -1,0 +1,22 @@
+# Autonomek
+
+> Agencia digital colombiana de automatización e inteligencia artificial. Creamos "Tecnología Implacable" para convertir el flujo de WhatsApp, redes sociales y sitios web en máquinas de adquisición de clientes.
+
+## Información de Contacto
+- **Sitio Web Principal:** https://autonomek.com
+- **WhatsApp:** +57 3004435894
+- **Email:** contacto@autonomek.com
+- **Ubicación:** Colombia (Cobertura internacional: Colombia, México, España, Estados Unidos)
+
+## Servicios Principales
+- [Servicios](/servicios): Hub principal con tarifas e inversión transparente.
+- [Empleado de Ventas IA](/servicios/agentes-inteligencia-artificial): Agentes entrenados para WhatsApp y Web que atienden, cotizan y agendan 24/7.
+- [Desarrollo Web Premium](/servicios/paginas-web-alto-rendimiento): Sitios ultrarrápidos y optimizados para Google (SEO) con embudo de ventas y chat IA integrados.
+- [Automatización Comercial](/servicios/automatizacion-de-procesos): Flujos automáticos que conectan Web, Sheets, Gmail, CRMs y ERPs eliminando tareas manuales repetitivas.
+- [Software a Medida](/servicios/software-a-medida): Desarrollo a medida de software empresarial de alto rendimiento.
+
+## Portafolio y Casos de Éxito
+- [Proyectos](/proyectos): Lista de 15 proyectos reales entregados que solucionan cuellos de botella de ventas y organización, con stack de tecnologías detallado.
+
+## Recursos para Modelos de Lenguaje (LLMs)
+- [Full Context / Documentación Completa](/llms-full.txt): Archivo unificado de texto con toda la información técnica, portafolio de proyectos expandido y preguntas frecuentes detalladas de Autonomek.
