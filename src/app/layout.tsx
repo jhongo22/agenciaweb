@@ -77,6 +77,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://chatwoot.autonomek.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://chatwoot.autonomek.com" />
+        <link rel="alternate" type="text/markdown" href="/llms.txt" title="Autonomek LLM & AI Documentation" />
       </head>
       <body className="min-h-screen flex flex-col overflow-x-hidden selection:bg-accent selection:text-background">
         <Preloader />

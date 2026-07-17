@@ -901,7 +901,7 @@ export default function Home({ region = 'co' }: { region?: 'co' | 'mx' | 'es' | 
 
       {/* 2. Middle Layer: Giant Distorted Background Text */}
       <div 
-        className="absolute top-[10%] md:top-[20%] left-[-10%] w-[120vw] h-[60vh] overflow-hidden pointer-events-none z-[1] opacity-20 select-none rotate-[-6deg]"
+        className="hidden md:block absolute top-[10%] md:top-[20%] left-[-10%] w-[120vw] h-[60vh] overflow-hidden pointer-events-none z-[1] opacity-20 select-none rotate-[-6deg]"
         style={{ contain: 'layout paint' }}
       >
         <div className="flex whitespace-nowrap items-center h-full marquee-text-bg">
