@@ -17,7 +17,8 @@ export default function CanvasBackground() {
     
     // Variables for the "machiavellian" effect
     const particles: Particle[] = [];
-    const particleCount = window.innerWidth < 768 ? 40 : 100;
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 40 : 100;
     
     // Mouse interaction
     let mouse = { x: w / 2, y: h / 2, radius: 250 };
@@ -92,14 +93,18 @@ export default function CanvasBackground() {
         if (!ctx) return;
         ctx.fillStyle = this.col;
         ctx.beginPath();
-        // Give particles a subtle glow
-        ctx.shadowBlur = 12;
-        ctx.shadowColor = this.col;
+        // Give particles a subtle glow (only on desktop to save mobile CPU/GPU cycles)
+        if (!isMobile) {
+          ctx.shadowBlur = 12;
+          ctx.shadowColor = this.col;
+        }
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.closePath();
         ctx.fill();
         // Reset shadow for other drawings
-        ctx.shadowBlur = 0;
+        if (!isMobile) {
+          ctx.shadowBlur = 0;
+        }
       }
     }
 
