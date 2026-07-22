@@ -12,22 +12,12 @@ body {
   background: var(--background);
 }
 
-/* Ensure standard cursors on touch/mobile devices */
+/* Ensure standard cursors across all devices */
 a, button {
   cursor: pointer;
 }
 input, select, textarea {
   cursor: text;
-}
-
-/* Hide default cursor only on devices with hover capabilities, fine pointer, and screen width >= 768px */
-@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
-  body {
-    cursor: none;
-  }
-  a, button, input, select, textarea {
-    cursor: none !important;
-  }
 }
 
 /* Lenis Smooth Scroll defaults */

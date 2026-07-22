@@ -1,26 +1,17 @@
 import type { Metadata } from 'next';
 import { Inter, Syne } from 'next/font/google';
 import './globals.css';
-import Script from 'next/script';
-import SmoothScrollProvider from '@/components/layout/SmoothScrollProvider';
-import WhatsAppButton from '@/components/widgets/WhatsAppButton';
-import AiChatWidget from '@/components/widgets/AiChatWidget';
-import CustomCursor from '@/components/effects/CustomCursor';
-import Preloader from '@/components/effects/Preloader';
-import Navigation from '@/components/layout/Navigation';
-import Footer from '@/components/layout/Footer';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-// Reusing Syne as a display font fallback since we'll configure Clash later if needed
 const syne = Syne({ subsets: ['latin'], variable: '--font-syne' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://autonomek.com'),
   title: {
-    default: 'Autonomek Web & IA | Tecnología Implacable',
+    default: 'Autonomek: Automatización & Desarrollo Web | Posicionamiento SEO & Agentes IA',
     template: '%s | Autonomek'
   },
-  description: 'Convertimos tu flujo de WhatsApp, tus redes y tu web en una máquina de adquisición de clientes. Diseñamos tus webs de alto rendimiento y agentes de IA.',
+  description: 'Posicionamos tu página web en los primeros resultados de Google y convertimos tus visitas en clientes con WhatsApp y Agentes IA 24/7. Automatización de procesos comerciales y desarrollo web para tu negocio.',
   icons: {
     icon: [
       {
@@ -33,8 +24,8 @@ export const metadata: Metadata = {
     apple: '/logo_pestaña.png',
   },
   openGraph: {
-    title: 'Autonomek Web & IA | Tecnología Implacable',
-    description: 'Convertimos tu flujo de WhatsApp, tus redes y tu web en una máquina de adquisición de clientes. Diseñamos tus webs de alto rendimiento y agentes de IA.',
+    title: 'Autonomek: Automatización & Desarrollo Web | Posicionamiento SEO & Agentes IA',
+    description: 'Posicionamos tu página web en los primeros resultados de Google y convertimos tus visitas en clientes con WhatsApp y Agentes IA 24/7. Automatización de procesos comerciales y desarrollo web para tu negocio.',
     url: 'https://autonomek.com',
     siteName: 'Autonomek',
     images: [
@@ -42,7 +33,7 @@ export const metadata: Metadata = {
         url: '/logo.png',
         width: 1200,
         height: 401,
-        alt: 'Autonomek Logo - Inteligencia Artificial y Desarrollo Web',
+        alt: 'Autonomek - Agencia de Automatización de Procesos y Desarrollo Web con IA',
       },
     ],
     locale: 'es_CO',
@@ -50,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Autonomek Web & IA | Tecnología Implacable',
-    description: 'Convertimos tu flujo de WhatsApp, tus redes y tu web en una máquina de adquisición de clientes. Diseñamos tus webs de alto rendimiento y agentes de IA.',
+    title: 'Autonomek: Automatización & Desarrollo Web | Posicionamiento SEO & Agentes IA',
+    description: 'Posicionamos tu página web en los primeros resultados de Google y convertimos tus visitas en clientes con WhatsApp y Agentes IA 24/7.',
     images: ['/logo.png'],
   },
   robots: {
@@ -80,73 +71,7 @@ export default function RootLayout({
         <link rel="alternate" type="text/markdown" href="/llms.txt" title="Autonomek LLM & AI Documentation" />
       </head>
       <body className="min-h-screen flex flex-col overflow-x-hidden selection:bg-accent selection:text-background">
-        <Preloader />
-        <CustomCursor />
-        <SmoothScrollProvider>
-          <Navigation />
-          {children}
-          <Footer />
-          <AiChatWidget />
-          <Script
-            id="lazy-third-parties"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.chatwootSettings = {"position":"right","type":"standard","launcherTitle":""};
-                
-                (function() {
-                  var initialized = false;
-                  function initThirdParties() {
-                    if (initialized) return;
-                    initialized = true;
-                    
-                    // Remove event listeners
-                    window.removeEventListener('pointermove', initThirdParties);
-                    window.removeEventListener('scroll', initThirdParties);
-                    window.removeEventListener('touchstart', initThirdParties);
-                    window.removeEventListener('keydown', initThirdParties);
-                    
-                    // 1. Load Google Analytics
-                    var gaScript = document.createElement('script');
-                    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-W5P7806J2F';
-                    gaScript.async = true;
-                    document.head.appendChild(gaScript);
-                    
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', 'G-W5P7806J2F');
-                    
-                    // 2. Load Chatwoot
-                    (function(d,t) {
-                      var BASE_URL="https://chatwoot.autonomek.com";
-                      var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-                      g.src=BASE_URL+"/packs/js/sdk.js";
-                      g.async = true;
-                      s.parentNode.insertBefore(g,s);
-                      g.onload=function(){
-                        window.chatwootSDK.run({
-                          websiteToken: 'sgKYEgxKz4TFe6LqbeTCupQA',
-                          baseUrl: BASE_URL
-                        })
-                      }
-                    })(document,"script");
-                  }
-                  
-                  // Listen to first user interaction
-                  window.addEventListener('pointermove', initThirdParties, { passive: true });
-                  window.addEventListener('scroll', initThirdParties, { passive: true });
-                  window.addEventListener('touchstart', initThirdParties, { passive: true });
-                  window.addEventListener('keydown', initThirdParties, { passive: true });
-                  
-                  // Fallback: load after 5 seconds if no interaction
-                  setTimeout(initThirdParties, 5000);
-                })();
-              `,
-            }}
-          />
-          <WhatsAppButton />
-        </SmoothScrollProvider>
+        {children}
       </body>
     </html>
   );

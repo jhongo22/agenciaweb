@@ -35,6 +35,7 @@ import {
 import { PROJECTS, Project } from '@/data/projects';
 import ProjectDetailsModal from '@/components/ProjectDetailsModal';
 import LottieBgIcon from '@/components/widgets/LottieBgIcon';
+import WhatsAppDemoWidget from '@/components/widgets/WhatsAppDemoWidget';
 
 const SOLUTIONS_DATA_ES = [
   {
@@ -358,10 +359,10 @@ const SOLUTIONS_DATA_EN = [
 
 const LOCALIZED_CONTENT = {
   co: {
-    heroTag: "MÁS CLIENTES EN AUTOMÁTICO. CERO COMPLICACIONES.",
-    heroTitle1: "Agencia de Automatización &",
-    heroTitle2: "Desarrollo Web con IA.",
-    heroSub: "Convertimos tu flujo de WhatsApp, tus redes y tu web en una máquina de adquisición de clientes. Creamos empleados de ventas inteligentes que responden, cotizan y agendan citas 24/7 de forma autónoma.",
+    heroTag: "POSICIONAMIENTO EN GOOGLE & AUTOMATIZACIÓN COMERCIAL",
+    heroTitle1: "Automatización de Procesos &",
+    heroTitle2: "Desarrollo Web para tu Negocio.",
+    heroSub: "Posicionamos tu página web en los primeros resultados de Google y convertimos tus visitas en clientes potenciales. Creamos agentes de IA y sistemas de atención 24/7 por WhatsApp para escalar tus ventas.",
     heroCtaPrimary: "Diseñar Mi Agente",
     heroCtaSecondary: "Explorar Soluciones",
     painTitle: "/ Fugas de Dinero Ocultas",
@@ -829,6 +830,7 @@ export default function Home({ region = 'co' }: { region?: 'co' | 'mx' | 'es' | 
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeSolution, setActiveSolution] = useState(0);
+  const [activeSector, setActiveSector] = useState(0);
 
   // Dynamic projects selection for featured list (Toxxic, Lamisia, Ecógrafos, Comidas Rápidas)
   const featuredProjects = useMemo(() => {
@@ -988,111 +990,15 @@ export default function Home({ region = 'co' }: { region?: 'co' | 'mx' | 'es' | 
             </motion.div>
           </div>
 
-          {/* Right: WhatsApp-Style Chat Simulator */}
-          <div className="lg:col-span-5 w-full flex flex-col items-center">
-            {/* Mode selector tabs */}
-            <div className="flex gap-1.5 mb-3 w-full max-w-sm mx-auto">
-              {[
-                { id: 'ventas' as const, label: '💬 Ventas IA' },
-                { id: 'agendamiento' as const, label: '📅 Agenda Citas' },
-                { id: 'soporte' as const, label: '👤 Escalar Humano' }
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => handleModeChange(tab.id)}
-                  className={`flex-1 py-1.5 rounded-lg text-[9px] font-semibold tracking-wide transition-all ${
-                    chatMode === tab.id
-                      ? 'bg-[#075E54] text-white shadow-lg'
-                      : 'bg-white/5 text-white/40 hover:text-white/70'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-
+          {/* Right: WhatsApp-Style Chat Simulator (Only visible on Desktop/Tablet md+) */}
+          <div className="lg:col-span-5 w-full hidden md:flex flex-col items-center justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="w-full max-w-sm relative"
+              className="w-full flex justify-center"
             >
-
-              {/* WhatsApp container */}
-              <div className="w-full bg-[#0B141A] rounded-[28px] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 relative">
-                
-                {/* WhatsApp Header - Exact WhatsApp Dark Style */}
-                <div className="bg-[#1F2C33] px-4 py-3 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    {/* Avatar */}
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#00A884] to-[#075E54] flex items-center justify-center flex-shrink-0 shadow-lg">
-                      <span className="text-white font-bold text-sm">A</span>
-                    </div>
-                    <div>
-                      <h3 className="text-white text-sm font-semibold leading-tight">Agente Autonomek</h3>
-                      <p className="text-[#00A884] text-[10px] font-medium">en línea</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-5 text-white/70">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.55 12c0 1.09-.29 2.12-.79 3l2.53 2.53-1.42 1.42-2.53-2.53c-.88.5-1.91.79-3 .79-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6zm-6-4c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm-10 4c0-1.09.29-2.12.79-3l-2.53-2.53 1.42-1.42 2.53 2.53c.88-.5 1.91-.79 3-.79v2c-2.21 0-4 1.79-4 4zm2 4c0 2.21 1.79 4 4 4v2c-3.31 0-6-2.69-6-6h2z"/></svg>
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                  </div>
-                </div>
-
-                {/* Chat Background Pattern */}
-                <div className="relative" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.02\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}>
-                  {/* Messages area */}
-                  <div ref={chatContainerRef} className="h-[360px] md:h-[420px] overflow-y-auto flex flex-col p-3 gap-2 scrollbar-thin">
-                    {messages.map((msg, idx) => (
-                      <div key={idx} className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'} mb-1`}>
-                        <div className={`relative max-w-[85%] px-3.5 py-2 text-sm leading-relaxed shadow-sm ${
-                          msg.isBot
-                            ? 'bg-[#202C33] text-[#E9EDEF] rounded-lg rounded-tl-none self-start'
-                            : 'bg-[#005C4B] text-white rounded-lg rounded-tr-none self-end'
-                        }`}>
-                          <span className="block whitespace-pre-wrap text-[13px] leading-[1.45]">{msg.text}</span>
-                          <span className={`text-[10px] mt-1 flex items-center gap-1 ${
-                            msg.isBot ? 'text-white/40' : 'text-white/60'
-                          }`}>
-                            {msg.isBot ? '10:30' : '10:31'}
-                            {!msg.isBot && (
-                              <svg viewBox="0 0 16 11" width="14" height="11" fill="currentColor" className="text-[#53BDEB]">
-                                <path d="M11.071.653a.457.457 0 0 0-.304-.102.493.493 0 0 0-.381.178l-6.19 7.636-2.011-2.095a.463.463 0 0 0-.336-.153.46.46 0 0 0-.336.153.478.478 0 0 0-.127.33c0 .124.048.245.127.33l2.291 2.38a.48.48 0 0 0 .343.165c.14 0 .27-.06.369-.165L11.2 1.31a.5.5 0 0 0 .14-.34.48.48 0 0 0-.14-.34.3.3 0 0 0-.129.023zm-1.676 5.283a.464.464 0 0 0-.35-.165.44.44 0 0 0-.344.153l-3.19 3.726-1.087-1.147a.464.464 0 0 0-.337-.14.438.438 0 0 0-.33.16.467.467 0 0 0-.101.328.491.491 0 0 0 .164.31l1.23 1.273c.099.098.224.14.35.14a.43.43 0 0 0 .33-.14l3.58-4.242a.523.523 0 0 0 .149-.34.483.483 0 0 0-.141-.316z"/>
-                              </svg>
-                            )}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                    {isTyping && (
-                      <div className="flex justify-start">
-                        <div className="bg-[#202C33] rounded-lg rounded-tl-none px-4 py-3.5 flex items-center gap-1">
-                          <span className="w-2 h-2 bg-white/50 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                          <span className="w-2 h-2 bg-white/50 rounded-full animate-bounce" style={{ animationDelay: '200ms' }}></span>
-                          <span className="w-2 h-2 bg-white/50 rounded-full animate-bounce" style={{ animationDelay: '400ms' }}></span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* WhatsApp Input Bar */}
-                  <div className="bg-[#1F2C33] px-3 py-2 flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="text-white/40 hover:text-white/70 transition-colors cursor-pointer">
-                      <path d="M1.816 15.556v.002a.753.753 0 0 0 1.188.608l5.791-4.275a.75.75 0 0 1 .912 0l5.792 4.275a.754.754 0 0 0 1.188-.608.767.767 0 0 0-.275-.583l-6.25-5.542a.75.75 0 0 0-.976 0l-6.25 5.542a.766.766 0 0 0-.42.581z"/>
-                    </svg>
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="text-white/40 hover:text-white/70 transition-colors cursor-pointer">
-                      <path d="M9.153 16.408a.5.5 0 0 1-.702-.704l3.736-3.736a.5.5 0 0 1 .703.704l-3.737 3.736zm4.182-8.414a.5.5 0 0 1 .703.703L8.944 13.79a.5.5 0 0 1-.703-.703l4.094-4.093zM5.5 19h13a2.5 2.5 0 0 0 2.5-2.5v-13A2.5 2.5 0 0 0 18.5 1h-13A2.5 2.5 0 0 0 3 3.5v13A2.5 2.5 0 0 0 5.5 19zm-1-15.5A1.5 1.5 0 0 1 6 2h12a1.5 1.5 0 0 1 1.5 1.5v13A1.5 1.5 0 0 1 18 18H6a1.5 1.5 0 0 1-1.5-1.5v-13z"/>
-                    </svg>
-                    <div className="flex-1 bg-[#2A3942] rounded-lg px-4 py-2 text-sm text-white/70 cursor-text">
-                      <span className="text-white/30">{isEn ? "Type a message..." : "Escribe un mensaje..."}</span>
-                    </div>
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="text-white/40 hover:text-white/70 transition-colors cursor-pointer">
-                      <path d="M11.999 14.942c2.001 0 3.531-1.53 3.531-3.531V4.35c0-2.001-1.53-3.531-3.531-3.531S8.468 2.35 8.468 4.35v7.061c0 2.001 1.53 3.531 3.531 3.531zm6.238-3.53c0 3.531-2.942 6.002-6.237 6.002s-6.237-2.471-6.237-6.002H3.761c0 4.001 3.178 7.297 7.061 7.885v3.884h2.354v-3.884c3.884-.588 7.061-3.884 7.061-7.885h-2z"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
+              <WhatsAppDemoWidget />
             </motion.div>
           </div>
 
@@ -1147,376 +1053,274 @@ export default function Home({ region = 'co' }: { region?: 'co' | 'mx' | 'es' | 
             </p>
           </div>
 
-          {/* Selector para móvil (Horizontal Scroll) */}
-          <div className="flex lg:hidden overflow-x-auto pb-4 mb-8 gap-3 scrollbar-none snap-x snap-mandatory">
-            {SOLUTIONS_DATA.map((sol, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveSolution(index)}
-                className={`snap-center flex-shrink-0 px-5 py-3 rounded-2xl border text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
-                  activeSolution === index
-                    ? 'bg-[#D62828] text-white border-[#D62828] shadow-[0_0_15px_rgba(214,40,40,0.3)]'
-                    : 'bg-[#111] text-white/40 border-white/5 hover:text-white/70'
-                }`}
-              >
-                {sol.title}
-              </button>
-            ))}
-          </div>
-
-          {/* Layout Principal Dashboard */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Bento Grid Principal (6 Soluciones de Alto Nivel) */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             
-            {/* MENÚ DE SELECCIÓN (IZQUIERDA - DESKTOP) */}
-            <div className="hidden lg:flex lg:col-span-4 flex-col gap-3 justify-center">
-              {SOLUTIONS_DATA.map((sol, index) => {
-                const isActive = activeSolution === index;
-                return (
-                  <motion.button
-                    key={index}
-                    onClick={() => setActiveSolution(index)}
-                    whileHover={{ x: 6 }}
-                    className={`relative p-5 text-left rounded-2xl border transition-all duration-300 group flex items-center gap-4 ${
-                      isActive
-                        ? 'bg-[#111] border-[#D62828]/50 shadow-[0_10px_30px_-10px_rgba(214,40,40,0.15)]'
-                        : 'bg-transparent border-transparent hover:bg-white/[0.02] hover:border-white/5'
-                    }`}
-                  >
-                    {/* Indicador de barra roja lateral */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeIndicator"
-                        className="absolute left-0 top-1/4 bottom-1/4 w-[3px] bg-[#D62828] rounded-r-full"
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                      />
-                    )}
-                    
-                    {/* Icono de la solución */}
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${
-                      isActive ? 'bg-[#D62828]/20 text-[#D62828]' : 'bg-white/5 text-white/40 group-hover:bg-white/10 group-hover:text-white/60'
-                    }`}>
-                      <sol.icon className="w-5 h-5" />
-                    </div>
+            {SOLUTIONS_DATA.map((sol, idx) => {
+              const Icon = sol.icon;
+              const isLarge = idx === 0 || idx === 1; // Las dos primeras ocupan 6 columnas
+              const colSpan = isLarge ? "md:col-span-6" : "md:col-span-6 lg:col-span-3";
 
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-[9px] text-[#72dbd3] tracking-widest uppercase">0{index + 1}</span>
-                        {sol.tagline && (
-                          <span className="text-[8px] bg-[#D62828]/10 text-[#D62828] border border-[#D62828]/20 px-1.5 py-0.5 rounded font-mono uppercase font-bold">
-                            ★ Pop
-                          </span>
-                        )}
-                      </div>
-                      <h3 className={`font-display text-lg font-bold transition-colors ${
-                        isActive ? 'text-white' : 'text-white/40 group-hover:text-white/80'
-                      }`}>
-                        {sol.title}
-                      </h3>
-                    </div>
-
-                    <ArrowRight size={16} className={`transition-all duration-300 ${
-                      isActive ? 'opacity-100 text-[#D62828] translate-x-0' : 'opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0'
-                    }`} />
-                  </motion.button>
-                );
-              })}
-            </div>
-
-            {/* PANEL DE DEMOSTRACIÓN E INFO (DERECHA) */}
-            <div className="lg:col-span-8 flex flex-col">
-              <AnimatePresence mode="wait">
+              return (
                 <motion.div
-                  key={activeSolution}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-full h-full bg-[#111] border border-white/5 rounded-3xl p-6 md:p-8 flex flex-col justify-between gap-8 relative overflow-hidden group/panel shadow-2xl"
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className={`group relative ${colSpan} bg-gradient-to-b from-[#121212] via-[#0D0D0D] to-[#080808] border border-white/10 hover:border-[#D62828]/50 rounded-3xl p-7 md:p-8 flex flex-col justify-between transition-all duration-500 hover:shadow-[0_20px_50px_rgba(214,40,40,0.15)] hover:-translate-y-1.5 overflow-hidden`}
                 >
-                  {/* Gradiente superior decorativo */}
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#D62828] via-[#72dbd3] to-transparent opacity-60" />
+                  {/* Neon Line Highlight Top */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#D62828] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
-                  {/* Grid de contenido */}
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                  {/* Subtle Background Glow on Hover */}
+                  <div className="absolute -right-20 -bottom-20 w-48 h-48 bg-[#D62828]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                  {/* Top Bar inside Card */}
+                  <div>
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-white group-hover:text-[#D62828] group-hover:bg-[#D62828]/10 group-hover:border-[#D62828]/30 transition-all duration-300 shadow-inner">
+                          <Icon size={22} />
+                        </div>
+                        {sol.tagline && (
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-mono font-bold tracking-widest bg-[#D62828]/15 text-[#D62828] border border-[#D62828]/30 uppercase shadow-[0_0_15px_rgba(214,40,40,0.2)]">
+                            <Sparkles size={10} /> {sol.tagline}
+                          </span>
+                        )}
+                      </div>
+                      <span className="font-mono text-xs text-white/20 font-bold tracking-widest group-hover:text-[#72dbd3] transition-colors">
+                        0{idx + 1}
+                      </span>
+                    </div>
+
+                    {/* Title & Description */}
+                    <h3 className="font-display text-2xl font-black uppercase text-white tracking-tight group-hover:text-[#72dbd3] transition-colors duration-300 mb-3">
+                      {sol.title}
+                    </h3>
                     
-                    {/* Información Técnica */}
-                    <div className="md:col-span-6 flex flex-col gap-5">
-                      <div>
-                        {SOLUTIONS_DATA[activeSolution].tagline && (
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-mono font-bold tracking-widest bg-[#D62828]/10 text-[#D62828] border border-[#D62828]/20 uppercase mb-3">
-                            <Sparkles size={10} /> {SOLUTIONS_DATA[activeSolution].tagline}
-                          </span>
-                        )}
-                        <h3 className="font-display text-2xl md:text-3xl font-black uppercase text-white leading-tight">
-                          {SOLUTIONS_DATA[activeSolution].title}
-                        </h3>
-                        <p className="text-white/50 text-xs md:text-sm font-light mt-3 leading-relaxed">
-                          {SOLUTIONS_DATA[activeSolution].desc}
-                        </p>
-                        {SOLUTIONS_DATA[activeSolution].benefits && (
-                          <ul className="mt-4 space-y-2 border-t border-white/5 pt-4">
-                            {SOLUTIONS_DATA[activeSolution].benefits.map((benefit, idx) => (
-                              <li key={idx} className="flex items-center gap-2 text-white/70 text-[11px] font-sans font-light">
-                                <span className="w-1 h-1 rounded-full bg-[#D62828] flex-shrink-0" />
-                                <span>{benefit}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
+                    <p className="text-white/50 text-xs md:text-sm font-sans font-light leading-relaxed mb-6">
+                      {sol.desc}
+                    </p>
 
-                      {/* Bloque de Impacto Comercial */}
-                      <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-4 flex items-center gap-4">
-                        <div className="flex flex-col flex-1">
-                          <span className="text-[9px] font-mono text-[#72dbd3] uppercase tracking-wider mb-1">{solutionsImpact}</span>
-                          <span className="text-white text-xs font-semibold leading-snug">
-                            {SOLUTIONS_DATA[activeSolution].impact}
-                          </span>
+                    {/* Key Benefits List */}
+                    <div className="space-y-2 border-t border-white/5 pt-4 mb-6">
+                      {sol.benefits.slice(0, isLarge ? 4 : 2).map((b, bIdx) => (
+                        <div key={bIdx} className="flex items-start gap-2.5 text-white/70 text-xs font-sans">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#D62828] mt-1.5 shrink-0 shadow-[0_0_8px_#D62828]" />
+                          <span>{b}</span>
                         </div>
-                      </div>
-
-                      {/* Tech stack badges */}
-                      <div>
-                        <span className="text-[9px] font-mono text-white/30 uppercase tracking-widest block mb-2">{solutionsEngineering}</span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {SOLUTIONS_DATA[activeSolution].tech.map((t, idx) => (
-                            <span key={idx} className="bg-white/5 hover:bg-white/10 text-white/70 text-[9px] font-mono px-2.5 py-1 rounded-md border border-white/5 transition-colors cursor-default">
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+                      ))}
                     </div>
-
-                    {/* Simulación Visual Interactive Preview */}
-                    <div className="md:col-span-6 w-full flex flex-col h-full justify-center">
-                      <div className="w-full bg-[#080808] rounded-2xl border border-white/10 overflow-hidden shadow-inner flex flex-col h-[280px] relative">
-                        
-                        {/* Browser/Window Header Controls */}
-                        <div className="bg-[#181818] px-4 py-2 border-b border-white/5 flex items-center justify-between">
-                          <div className="flex gap-1.5">
-                            <div className="w-2.5 h-2.5 rounded-full bg-[#D62828]/60" />
-                            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
-                            <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
-                          </div>
-                          <span className="text-[8px] font-mono text-white/20 uppercase tracking-widest">
-                            Live Demo - {SOLUTIONS_DATA[activeSolution].previewType}
-                          </span>
-                        </div>
-
-                        {/* Contenedor de la Simulación en base al previewType */}
-                        <div className="flex-1 p-4 overflow-y-auto flex flex-col text-left justify-start scrollbar-none">
-                          
-                          {/* 1. CHAT SIMULATION */}
-                          {SOLUTIONS_DATA[activeSolution].previewType === 'chat' && (
-                            <div className="flex flex-col gap-2.5 text-[11px]">
-                              {(SOLUTIONS_DATA[activeSolution].previewData as {text: string, isBot: boolean}[]).map((msg, i) => (
-                                <div key={i} className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}>
-                                  <div className={`max-w-[85%] px-3 py-2 rounded-xl leading-relaxed shadow-sm ${
-                                    msg.isBot 
-                                      ? 'bg-[#202C33] text-[#E9EDEF] rounded-tl-none' 
-                                      : 'bg-[#005C4B] text-white rounded-tr-none'
-                                  }`}>
-                                    {msg.text}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {/* 2. CONSOLE SIMULATION */}
-                          {SOLUTIONS_DATA[activeSolution].previewType === 'console' && (
-                            <div className="font-mono text-[9px] flex flex-col gap-1.5 text-white/60">
-                              {(SOLUTIONS_DATA[activeSolution].previewData as {type: string, text: string}[]).map((line, i) => {
-                                const colors: Record<string, string> = {
-                                  success: 'text-green-400',
-                                  info: 'text-[#72dbd3]',
-                                  process: 'text-yellow-400'
-                                };
-                                return (
-                                  <div key={i} className="flex gap-2 items-start">
-                                    <span className="text-white/20 select-none">&gt;</span>
-                                    <span className={colors[line.type] || 'text-white'}>{line.text}</span>
-                                  </div>
-                                );
-                              })}
-                              <div className="mt-3 flex items-center gap-2 self-start bg-[#D62828]/10 border border-[#D62828]/30 px-3 py-1.5 rounded-lg text-white font-bold cursor-pointer hover:bg-[#D62828]/20 transition-all select-none">
-                                <Terminal size={10} />
-                                <span>RE-EJECUTAR PROSPECCIÓN</span>
-                              </div>
-                            </div>
-                          )}
-
-                          {/* 3. CALENDAR SIMULATION */}
-                          {SOLUTIONS_DATA[activeSolution].previewType === 'calendar' && (
-                            <div className="flex flex-col gap-3 text-xs">
-                              <div className="grid grid-cols-2 gap-2">
-                                {((SOLUTIONS_DATA[activeSolution].previewData as any).slots).map((slot: string, i: number) => (
-                                  <div key={i} className="bg-white/5 border border-white/5 p-2 rounded-lg text-center font-mono text-[10px] text-white/70 hover:border-[#D62828] transition-colors cursor-pointer">
-                                    {slot}
-                                  </div>
-                                ))}
-                              </div>
-                              <div className="border-t border-white/5 pt-3 mt-1 flex flex-col gap-2">
-                                <span className="text-[8px] font-mono text-white/30 uppercase tracking-widest">Turnos de Hoy</span>
-                                {((SOLUTIONS_DATA[activeSolution].previewData as any).booked).map((item: any, i: number) => (
-                                  <div key={i} className="flex justify-between items-center bg-white/[0.02] border border-white/5 p-2 rounded-lg text-[10px]">
-                                    <div className="flex flex-col">
-                                      <span className="text-white font-medium">{item.patient}</span>
-                                      <span className="text-white/40 text-[8px] font-mono">{item.time}</span>
-                                    </div>
-                                    <span className="text-green-400 bg-green-400/10 border border-green-400/20 px-1.5 py-0.5 rounded text-[8px] font-mono">
-                                      {item.status}
-                                    </span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-
-                          {/* 4. RAG SIMULATION */}
-                          {SOLUTIONS_DATA[activeSolution].previewType === 'rag' && (
-                            <div className="flex flex-col gap-3 text-[10px]">
-                              <div className="bg-white/5 border border-white/5 p-2.5 rounded-xl">
-                                <span className="text-[7px] font-mono text-[#72dbd3] uppercase block mb-1">Consulta del Cliente</span>
-                                <p className="text-white font-medium">{((SOLUTIONS_DATA[activeSolution].previewData as any).query)}</p>
-                              </div>
-                              
-                              <div className="flex items-center gap-2 border-l border-[#D62828] pl-2 py-0.5 text-white/40">
-                                <Database size={10} />
-                                <span className="text-[8px] font-mono">Búsqueda en {((SOLUTIONS_DATA[activeSolution].previewData as any).knowledgeSource)}</span>
-                              </div>
-
-                              <div className="bg-[#D62828]/5 border border-[#D62828]/10 p-2 rounded-lg text-[9px] leading-relaxed text-white/60 italic">
-                                &ldquo;{((SOLUTIONS_DATA[activeSolution].previewData as any).retrievedChunks[0])}&rdquo;
-                              </div>
-
-                              <div className="bg-[#181818] border border-white/5 p-2.5 rounded-xl">
-                                <span className="text-[7px] font-mono text-green-400 uppercase block mb-1">Respuesta Formulada</span>
-                                <p className="text-white/80 leading-normal">{((SOLUTIONS_DATA[activeSolution].previewData as any).aiResponse)}</p>
-                              </div>
-                            </div>
-                          )}
-
-                          {/* 5. WORKFLOW SIMULATION */}
-                          {SOLUTIONS_DATA[activeSolution].previewType === 'workflow' && (
-                            <div className="flex flex-col gap-3 justify-center h-full">
-                              {(SOLUTIONS_DATA[activeSolution].previewData as any[]).map((step, i) => (
-                                <div key={i} className="flex flex-col items-center">
-                                  <div className="flex items-center justify-between w-full bg-white/[0.02] border border-white/5 px-3.5 py-2.5 rounded-xl text-[10px] hover:border-white/10 transition-colors">
-                                    <div className="flex items-center gap-2.5">
-                                      <div className="w-4 h-4 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-[8px] font-bold">
-                                        <Check size={8} />
-                                      </div>
-                                      <div className="flex flex-col">
-                                        <span className="text-white font-bold">{step.name}</span>
-                                        <span className="text-white/40 text-[8px] font-mono">{step.desc}</span>
-                                      </div>
-                                    </div>
-                                    <span className="text-white/20 font-mono text-[8px]">{step.type}</span>
-                                  </div>
-                                  {i < (SOLUTIONS_DATA[activeSolution].previewData as any[]).length - 1 && (
-                                    <div className="w-[1px] h-3 bg-gradient-to-b from-green-500 to-transparent my-0.5 animate-pulse" />
-                                  )}
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {/* 6. WEBSPEED SIMULATION */}
-                          {SOLUTIONS_DATA[activeSolution].previewType === 'webSpeed' && (
-                            <div className="flex flex-col justify-center h-full items-center gap-6">
-                              <div className="grid grid-cols-4 gap-4 w-full">
-                                {[
-                                  { score: 100, label: "Performance", color: "text-green-400" },
-                                  { score: 98, label: "Accessibility", color: "text-green-400" },
-                                  { score: 100, label: "Best Practices", color: "text-green-400" },
-                                  { score: 100, label: "SEO", color: "text-green-400" }
-                                ].map((stat, i) => (
-                                  <div key={i} className="flex flex-col items-center gap-2">
-                                    <div className="w-12 h-12 rounded-full border-2 border-green-500/30 flex items-center justify-center relative shadow-[0_0_15px_rgba(74,222,128,0.1)]">
-                                      <span className={`text-[10px] font-bold font-mono ${stat.color}`}>{stat.score}</span>
-                                    </div>
-                                    <span className="text-white/40 text-[8px] text-center leading-tight font-mono">{stat.label}</span>
-                                  </div>
-                                ))}
-                              </div>
-
-                              <div className="border-t border-white/5 w-full pt-4 text-center">
-                                <div className="text-[8px] font-mono text-white/30 uppercase tracking-widest mb-1.5">{isEn ? "Site load time" : "Tiempo de carga del sitio"}</div>
-                                <div className="text-2xl font-bold font-mono text-[#72dbd3]">0.3s</div>
-                                <div className="text-[7px] text-white/20 mt-1">{isEn ? "Ready for Google (Core Web Vitals optimized)" : "Listo para Google (Core Web Vitals óptimo)"}</div>
-                              </div>
-                            </div>
-                          )}
-
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
 
-                  {/* Panel inferior / Key Metric Widget */}
-                  <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div className="flex items-center gap-4">
-                      {/* Gran métrica */}
-                      <div className="bg-[#D62828]/10 border border-[#D62828]/20 px-4 py-2 rounded-2xl flex items-center justify-center text-[#D62828] font-display text-2xl font-black">
-                        {SOLUTIONS_DATA[activeSolution].metric}
-                      </div>
+                  {/* Card Bottom: Metric & Tech Stack */}
+                  <div className="border-t border-white/5 pt-5 mt-2 flex flex-col gap-4">
+                    {/* Metric Highlight */}
+                    <div className="flex items-center justify-between bg-white/[0.02] border border-white/5 group-hover:border-white/10 px-4 py-3 rounded-2xl transition-all">
                       <div className="flex flex-col">
-                        <span className="text-[8px] font-mono text-white/30 uppercase tracking-widest">{isEn ? "Key Metric" : "Indicador Clave"}</span>
-                        <span className="text-white text-xs font-semibold">{SOLUTIONS_DATA[activeSolution].metricLabel}</span>
+                        <span className="text-[8px] font-mono text-[#72dbd3] uppercase tracking-widest font-bold">
+                          {isEn ? "Impact Metric" : "Métrica de Impacto"}
+                        </span>
+                        <span className="text-white text-xs font-semibold mt-0.5">
+                          {sol.metricLabel}
+                        </span>
                       </div>
+                      <span className="font-display text-xl font-black text-[#D62828] tracking-tight">
+                        {sol.metric}
+                      </span>
                     </div>
 
-                    <Link href={isEn ? "/us/start" : "/start"} className="w-full sm:w-auto px-6 py-3 bg-[#D62828] hover:bg-white text-white hover:text-black font-bold text-[10px] tracking-wider uppercase transition-all duration-300 rounded-xl flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(214,40,40,0.15)]">
-                      <span>{isEn ? "Design this system" : "Diseñar este sistema"}</span>
-                      <ArrowUpRight size={12} />
-                    </Link>
+                    {/* Stack Badges & CTA Link */}
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex flex-wrap gap-1">
+                        {sol.tech.slice(0, isLarge ? 4 : 2).map((t, tIdx) => (
+                          <span key={tIdx} className="text-[9px] font-mono bg-white/5 text-white/40 px-2 py-0.5 rounded border border-white/5">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      <Link 
+                        href={isEn ? "/us/start" : "/start"}
+                        className="w-8 h-8 rounded-full bg-white/5 group-hover:bg-[#D62828] text-white/60 group-hover:text-white flex items-center justify-center transition-all duration-300 shrink-0"
+                        title={solutionsCta}
+                      >
+                        <ArrowUpRight size={14} />
+                      </Link>
+                    </div>
                   </div>
 
                 </motion.div>
-              </AnimatePresence>
-            </div>
+              );
+            })}
 
           </div>
+
+          {/* Banner inferior de conversión */}
+          <div className="mt-12 p-8 md:p-12 rounded-3xl bg-gradient-to-r from-[#140505] via-[#0D0D0D] to-[#080808] border border-[#D62828]/30 flex flex-col md:flex-row items-center justify-between gap-8 shadow-[0_0_50px_rgba(214,40,40,0.1)]">
+            <div className="flex items-center gap-6">
+              <div className="w-16 h-16 rounded-2xl bg-[#D62828]/10 border border-[#D62828]/30 flex items-center justify-center text-[#D62828] shrink-0">
+                <Bot size={32} />
+              </div>
+              <div>
+                <h4 className="font-display text-xl md:text-2xl font-black uppercase text-white">
+                  {isEn ? "Need a tailored architecture for your workflow?" : "¿Necesitas una arquitectura a la medida de tu proceso?"}
+                </h4>
+                <p className="text-white/40 text-xs md:text-sm font-light mt-1">
+                  {isEn ? "We audit your commercial operations free of charge and estimate your ROI." : "Auditamos tu operación comercial sin costo y proyectamos tu retorno de inversión."}
+                </p>
+              </div>
+            </div>
+
+            <Link
+              href={isEn ? "/us/start" : "/start"}
+              className="px-8 py-4 bg-[#D62828] hover:bg-white text-white hover:text-black font-bold text-xs tracking-widest uppercase transition-all duration-300 rounded-2xl shrink-0 shadow-[0_0_25px_rgba(214,40,40,0.3)] flex items-center gap-3"
+            >
+              <span>{isEn ? "REQUEST TAILORED BLUEPRINT" : "SOLICITAR BLUEPRINT A MEDIDA"}</span>
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+
         </div>
       </section>
 
-      {/* COMBINED SECTOR & NICHES SECTION (USER REQUESTED MIX) */}
-      <section className="w-full bg-[#111111] relative z-10 py-24 md:py-32 px-6 md:px-12 border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="font-mono text-[#72dbd3] text-xs tracking-[0.2em] uppercase mb-4">{content.sectorTag}</p>
-            <h2 className="font-display text-3xl md:text-5xl font-black uppercase text-white">{content.sectorTitle}</h2>
-            <p className="text-white/40 text-sm mt-4 font-light max-w-xl mx-auto">
+      {/* HIGH-RETURN SECTORS SECTION — FULL HERO SHOWCASE BANNER (NO CARDS / NO GRID) */}
+      <section className="w-full bg-[#030303] relative z-10 py-28 md:py-40 px-6 md:px-12 border-t border-white/5 overflow-hidden">
+        {/* Glows de alta intensidad de fondo tipo escenario */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[600px] bg-[#D62828]/10 blur-[180px] pointer-events-none rounded-full" />
+        <div className="absolute bottom-0 right-10 w-96 h-96 bg-[#72dbd3]/5 blur-[150px] pointer-events-none rounded-full" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          
+          {/* Header de la sección */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <div className="flex items-center gap-4 mb-4">
+                <span className="w-12 h-[2px] bg-[#D62828]" />
+                <p className="font-mono text-[#72dbd3] text-xs tracking-[0.3em] uppercase font-bold">
+                  {content.sectorTag}
+                </p>
+              </div>
+              <h2 className="font-display text-3xl md:text-5xl font-black uppercase text-white tracking-tight">
+                {content.sectorTitle}
+              </h2>
+            </div>
+
+            <p className="text-white/40 text-sm max-w-md font-sans font-light leading-relaxed">
               {content.sectorSub}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sectors.map((sector, idx) => {
-              const Icon = idx === 0 ? Activity : idx === 1 ? Building : idx === 2 ? Cpu : idx === 3 ? Briefcase : idx === 4 ? ShoppingBag : Globe;
-              const isHighlight = idx === 0;
-              return (
-                <div key={idx} className="group p-6 bg-[#080808] border border-white/5 rounded-2xl hover:border-[#D62828]/30 transition-all flex flex-col justify-between min-h-[300px]">
-                  <div>
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${isHighlight ? 'bg-[#D62828]/10 text-[#D62828]' : 'bg-white/5 text-white'}`}>
-                      <Icon size={20} />
-                    </div>
-                    <h4 className="text-white font-display text-xl font-bold mb-2">{sector.title}</h4>
-                    <p className="text-white/40 text-xs leading-relaxed">
-                      {sector.desc}
-                    </p>
+          {/* FULL HERO BANNER CONTENEDOR TIPO ESCENARIO */}
+          <div className="relative w-full border-y border-white/10 py-10 md:py-16">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeSector}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
+              >
+                {/* Columna Izquierda: Información del Nicho Activo */}
+                <div className="lg:col-span-8 flex flex-col items-start text-left">
+                  
+                  {/* Badge del Sector & Número */}
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="font-mono text-xs text-[#D62828] font-bold tracking-widest bg-[#D62828]/10 border border-[#D62828]/30 px-3 py-1 rounded-lg">
+                      0{activeSector + 1} / 0{sectors.length}
+                    </span>
+                    <span className="text-white/40 font-mono text-[10px] uppercase tracking-widest">
+                      {isEn ? "Specialized Industry Solution" : "Solución Especializada por Industria"}
+                    </span>
                   </div>
-                  <div className="mt-6 border-t border-white/5 pt-3">
-                    <span className="text-[9px] font-mono text-white/30 uppercase block">{isEn ? "Commercial Impact" : "Impacto Comercial"}</span>
-                    <span className="text-[#D62828] font-bold text-sm">{sector.impact}</span>
+
+                  {/* Título del Nicho */}
+                  <h3 className="font-display text-2xl md:text-4xl font-black uppercase text-white tracking-tight leading-tight mb-4">
+                    {sectors[activeSector].title}
+                  </h3>
+
+                  {/* Descripción Inmersiva */}
+                  <p className="text-white/70 font-sans text-sm md:text-lg font-light leading-relaxed max-w-2xl mb-8">
+                    {sectors[activeSector].desc}
+                  </p>
+
+                  {/* Botón CTA del Hero */}
+                  <Link
+                    href={isEn ? "/us/start" : "/start"}
+                    className="px-8 py-4 bg-[#D62828] hover:bg-white text-white hover:text-black font-bold text-xs tracking-widest uppercase transition-all duration-300 rounded-xl shadow-[0_0_25px_rgba(214,40,40,0.3)] flex items-center gap-3 group/btn"
+                  >
+                    <span>{isEn ? "DEPLOY SYSTEM FOR THIS SECTOR" : "DESPLEGAR SISTEMA PARA ESTE SECTOR"}</span>
+                    <ArrowUpRight size={18} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                  </Link>
+
+                </div>
+
+                {/* Columna Derecha: Métrica Gigante Highlight */}
+                <div className="lg:col-span-4 flex flex-col items-start lg:items-end justify-center">
+                  <div className="bg-gradient-to-br from-[#180808] to-[#0A0A0A] border border-[#D62828]/30 p-8 md:p-10 rounded-3xl w-full max-w-sm flex flex-col gap-4 shadow-[0_0_50px_rgba(214,40,40,0.15)] relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#D62828]/20 rounded-full blur-2xl pointer-events-none" />
+                    
+                    <span className="text-[10px] font-mono text-[#72dbd3] uppercase tracking-widest font-bold">
+                      {isEn ? "Guaranteed Impact Metric" : "Métrica de Impacto Garantizada"}
+                    </span>
+
+                    <span className="font-display text-3xl md:text-4xl font-black text-white leading-tight">
+                      {sectors[activeSector].impact}
+                    </span>
+
+                    <div className="flex items-center gap-2 border-t border-white/10 pt-4 mt-2">
+                      <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                      <span className="text-white/50 text-xs font-mono">
+                        {isEn ? "Tested in active operations" : "Validado en operaciones reales"}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              );
-            })}
+
+              </motion.div>
+            </AnimatePresence>
           </div>
+
+          {/* BARRA DE BOTONES DE SECTORES ABAJO (TIPO TICKER DE NAVEGACIÓN EN VIVO) */}
+          <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none w-full md:w-auto">
+              {sectors.map((sec, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveSector(idx)}
+                  className={`px-5 py-3 rounded-2xl text-xs font-mono font-bold uppercase transition-all duration-300 whitespace-nowrap border flex items-center gap-3 ${
+                    activeSector === idx
+                      ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.2)]'
+                      : 'bg-white/5 text-white/40 border-white/5 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full ${activeSector === idx ? 'bg-[#D62828]' : 'bg-white/20'}`} />
+                  <span>{sec.title}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Controles Flecha Anterior / Siguiente */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setActiveSector(prev => (prev === 0 ? sectors.length - 1 : prev - 1))}
+                className="w-12 h-12 rounded-2xl bg-white/5 hover:bg-[#D62828] border border-white/10 text-white flex items-center justify-center transition-all duration-300"
+                title="Anterior"
+              >
+                <ArrowRight size={20} className="rotate-180" />
+              </button>
+              <button
+                onClick={() => setActiveSector(prev => (prev === sectors.length - 1 ? 0 : prev + 1))}
+                className="w-12 h-12 rounded-2xl bg-white/5 hover:bg-[#D62828] border border-white/10 text-white flex items-center justify-center transition-all duration-300"
+                title="Siguiente"
+              >
+                <ArrowRight size={20} />
+              </button>
+            </div>
+          </div>
+
         </div>
       </section>
 

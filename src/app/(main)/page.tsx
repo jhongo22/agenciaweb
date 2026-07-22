@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import HomeClient from './home-client';
 
 export const metadata: Metadata = {
-  title: 'Agencia de Automatización & Desarrollo Web en Medellín | Autonomek',
-  description: 'Convertimos tu flujo de WhatsApp, tus redes y tu web en una máquina de adquisición de clientes en Medellín y Colombia. Diseñamos tus webs y agentes de IA.',
+  title: 'Autonomek: Automatización & Desarrollo Web en Medellín | Posicionamiento Google & Agentes IA',
+  description: 'Posicionamos tu página web en los primeros resultados de Google y convertimos tus prospectos en clientes con automatización de WhatsApp e IA en Medellín y Colombia.',
   alternates: {
     canonical: 'https://autonomek.com',
     languages: {

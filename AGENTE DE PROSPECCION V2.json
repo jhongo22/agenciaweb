@@ -1,0 +1,2167 @@
+{
+  "name": "AGENTE DE PROSPECCION V2",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1dc1bb93-de8a-42a6-89b5-8037690352f4",
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1JZ7JmokcAAhXiig3yvj5HBA7R3WhWF2sJqsGUBwH2yI"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Queries"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "estado ",
+              "lookupValue": "pending"
+            }
+          ]
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "detectAutomatically"
+            }
+          },
+          "returnFirstMatch": true
+        }
+      },
+      "id": "4fbb5c32-15c3-4cc1-ac71-e022d828d8b9",
+      "name": "Read Pending Query",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -32,
+        800
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "xLgMsMdyFYEUjeZU",
+          "name": "Sheets Jhon"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1JZ7JmokcAAhXiig3yvj5HBA7R3WhWF2sJqsGUBwH2yI"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Queries"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "categoria ": "={{ $json[\"categoria \"] }}",
+            "ubicacion": "={{ $json.ubicacion }}",
+            "estado ": "processing",
+            "fecha": "={{ $json.fecha }}"
+          },
+          "matchingColumns": [
+            "categoria ",
+            "ubicacion"
+          ],
+          "schema": [
+            {
+              "id": "categoria ",
+              "displayName": "categoria ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ubicacion",
+              "displayName": "ubicacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "estado ",
+              "displayName": "estado ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha",
+              "displayName": "fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b4508680-5a97-48a8-bec9-611af0b1bf71",
+      "name": "Mark Processing",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        432
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "xLgMsMdyFYEUjeZU",
+          "name": "Sheets Jhon"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/compass~crawler-google-places/runs?token={{ $env.APIFY_TOKEN }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"searchStringsArray\": [\"{{ $json[\"categoria \"] }}\"],\n  \"locationQuery\": \"{{ $json.ubicacion }}\",\n  \"maxCrawledPlacesPerSearch\": 2,\n  \"language\": \"es\"\n}",
+        "options": {}
+      },
+      "id": "b7754e9f-4dad-4dfd-9c62-42e46cb7827c",
+      "name": "Start Apify Scraping Job",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        640,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.apify.com/v2/actor-runs/{{ $json.data.id }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "7c2d5275-7362-4c12-8b87-421e76f1e850",
+      "name": "Check Apify Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1072,
+        336
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "52cd346b-a97d-4022-b9f1-1750c32b218e",
+      "name": "No Pending Queries",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        416,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.apify.com/v2/datasets/{{ $json.data.defaultDatasetId }}/items",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "0d90a561-3ad1-4f15-be50-942140dc7911",
+      "name": "Fetch Apify Results",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1536,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const q = $('Mark Processing').item.json;\nconst cat = (q['categoria '] || '').trim();\nconst ubi = (q.ubicacion || '').trim();\nconst now = new Date().toISOString().split('T')[0];\n\nconst leads = $input.all().map(item => {\n  const p = item.json;\n  const phone = (p.phone || p.phoneNumber || '').toString().trim();\n  const website = (p.website || p.webAddress || '').toString().trim();\n  return {\n    categoriaBuscada: cat + ' - ' + ubi,\n    nombre: (p.title || '').toString().trim(),\n    categoria: (p.category || p.categories || '').toString().trim(),\n    direccion: (p.address || p.street || '').toString().trim(),\n    telefono: phone.startsWith('+57') ? phone.substring(3) : phone,\n    sitioWeb: website,\n    rating: p.totalScore || p.rating || '',\n    correo: '', whatsapp: '', instagram: '', facebook: '', linkedin: '', tiktok: '', twitter: '',\n    palabrasClave: '', descripcion: '',\n    calificacion: '', qualificado: '',\n    estado: 'nuevo',\n    fechaCaptura: now\n  };\n});\nreturn leads;"
+      },
+      "id": "b426dbb4-bfa1-4c2a-9b1e-4d129d8ee3ef",
+      "name": "Format New Leads",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1JZ7JmokcAAhXiig3yvj5HBA7R3WhWF2sJqsGUBwH2yI"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Leads"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "categoriaBuscada": "={{ $json.categoriaBuscada }}",
+            "nombre": "={{ $json.nombre }}",
+            "categoria ": "={{ $json.categoria }}",
+            "direccion": "={{ $json.direccion }}",
+            " telefono ": "={{ $json.telefono }}",
+            "sitioWeb": "={{ $json.sitioWeb }}",
+            "rating ": "={{ $json.rating }}",
+            "correo ": "={{ $json.correo }}",
+            "whatsapp ": "={{ $json.whatsapp }}",
+            "instagram ": "={{ $json.instagram }}",
+            "facebook ": "={{ $json.facebook }}",
+            "linkedin": "={{ $json.linkedin }}",
+            "tiktok ": "={{ $json.tiktok }}",
+            "twitter": "={{ $json.twitter }}",
+            " palabrasClave": "={{ $json.palabrasClave }}",
+            "descripcion": "={{ $json.descripcion }}",
+            "calificacion": "={{ $json.calificacion }}",
+            "qualificado": "={{ $json.qualificado }}",
+            "estado ": "={{ $json.estado }}",
+            "fechaCaptura": "={{ $json.fechaCaptura }}"
+          },
+          "schema": [
+            {
+              "id": "categoriaBuscada",
+              "displayName": "categoriaBuscada",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "categoria ",
+              "displayName": "categoria ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "direccion",
+              "displayName": "direccion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": " telefono ",
+              "displayName": " telefono ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "sitioWeb",
+              "displayName": "sitioWeb",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "rating ",
+              "displayName": "rating ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "correo ",
+              "displayName": "correo ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "whatsapp ",
+              "displayName": "whatsapp ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "instagram ",
+              "displayName": "instagram ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "facebook ",
+              "displayName": "facebook ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "linkedin",
+              "displayName": "linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "tiktok ",
+              "displayName": "tiktok ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "twitter",
+              "displayName": "twitter",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": " palabrasClave",
+              "displayName": " palabrasClave",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "descripcion",
+              "displayName": "descripcion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "calificacion",
+              "displayName": "calificacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "qualificado",
+              "displayName": "qualificado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "estado ",
+              "displayName": "estado ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fechaCaptura",
+              "displayName": "fechaCaptura",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3ec0cdb2-98c0-425f-a859-c93b61334b6d",
+      "name": "Append to Leads",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1984,
+        432
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "xLgMsMdyFYEUjeZU",
+          "name": "Sheets Jhon"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1JZ7JmokcAAhXiig3yvj5HBA7R3WhWF2sJqsGUBwH2yI"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Queries"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "categoria ": "={{ $json[\"categoria \"] }}",
+            "ubicacion": "={{ $json.ubicacion }}",
+            "estado ": "done",
+            "fecha": "={{ $json.fecha }}"
+          },
+          "matchingColumns": [
+            "categoria ",
+            "ubicacion"
+          ],
+          "schema": [
+            {
+              "id": "categoria ",
+              "displayName": "categoria ",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ubicacion",
+              "displayName": "ubicacion",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "estado ",
+              "displayName": "estado ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha",
+              "displayName": "fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "17e811a8-4209-408f-b584-390e8f05e9f5",
+      "name": "Mark Query Done",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2208,
+        432
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "xLgMsMdyFYEUjeZU",
+          "name": "Sheets Jhon"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1JZ7JmokcAAhXiig3yvj5HBA7R3WhWF2sJqsGUBwH2yI"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Leads"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "detectAutomatically"
+            }
+          }
+        }
+      },
+      "id": "9fff3300-27ca-46f9-9cdf-f6607a17774d",
+      "name": "Read Leads to Enrich",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2432,
+        432
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "xLgMsMdyFYEUjeZU",
+          "name": "Sheets Jhon"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.sitioWeb }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "id": "b409126b-5ccc-4c9b-b816-8d1827dd88f7",
+              "rightValue": "\"\""
+            },
+            {
+              "leftValue": "={{ $json[\"estado \"] }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "rightValue": "nuevo",
+              "id": "db3f5818-af1c-45d3-b7f0-35d087fc9696"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "f48895d5-e010-478a-b8b3-efa26e185635",
+      "name": "Filter Web Leads",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        2656,
+        432
+      ],
+      "alwaysOutputData": true,
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.firecrawl.dev/v1/extract",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"urls\": [\"{{ $json.sitioWeb }}\"],\n  \"prompt\": \"Extrae de este sitio web: email de contacto, enlace de Instagram, enlace de Facebook, enlace de LinkedIn, enlace de TikTok, enlace de Twitter/X, número de WhatsApp, palabras clave del negocio, descripción breve del negocio\",\n  \"schema\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"email\": { \"type\": \"string\" },\n      \"instagram\": { \"type\": \"string\" },\n      \"facebook\": { \"type\": \"string\" },\n      \"linkedin\": { \"type\": \"string\" },\n      \"tiktok\": { \"type\": \"string\" },\n      \"twitter\": { \"type\": \"string\" },\n      \"whatsapp\": { \"type\": \"string\" },\n      \"palabrasClave\": { \"type\": \"string\" },\n      \"descripcion\": { \"type\": \"string\" }\n    }\n  }\n}",
+        "options": {}
+      },
+      "id": "cac349b9-9ec1-438b-ad2a-e2dfc239956d",
+      "name": "Start Firecrawl Extract",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        3360,
+        80
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OJXeHlaykdFVwY0N",
+          "name": "Firecrawl Jhon"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "id": "02fd76f9-4ce0-47bc-bf83-450b0cb05c74",
+      "name": "Wait Firecrawl",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3584,
+        80
+      ],
+      "webhookId": "312e503d-d876-4ec0-bd6e-5f657b5127ed"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.firecrawl.dev/v1/extract/{{ $json.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "504739dc-ed2b-4629-bc83-82e04f480326",
+      "name": "Check Firecrawl Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        3808,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OJXeHlaykdFVwY0N",
+          "name": "Firecrawl Jhon"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "combinator": "and",
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.status }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              },
+              "rightValue": "completed"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "03a79ead-f1e0-4f0b-9b8b-326e4312ba63",
+      "name": "Firecrawl Pending?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        4032,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "id": "92138e5b-3427-4ed0-b377-9ba2f0aef959",
+      "name": "Batch Firecrawl",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3136,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "combinator": "and",
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.success }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              },
+              "rightValue": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c80de676-2b69-476d-894c-29baa774b3e1",
+      "name": "Firecrawl Error?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        4256,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const fcData = $json.data || {};\nconst enriched = {\n  correo: fcData.email || '',\n  whatsapp: fcData.whatsapp || '',\n  instagram: fcData.instagram || '',\n  facebook: fcData.facebook || '',\n  linkedin: fcData.linkedin || '',\n  tiktok: fcData.tiktok || '',\n  twitter: fcData.twitter || '',\n  palabrasClave: fcData.palabrasClave || '',\n  descripcion: fcData.descripcion || '',\n  estado: 'enriquecido'\n};\n// Keep original fields from batch input\nconst orig = $('Batch Firecrawl').item.json;\nreturn [{ ...orig, ...enriched }];"
+      },
+      "id": "9a84d9c6-f218-49c1-9bb2-bc46a3474746",
+      "name": "Extract Firecrawl Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4480,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1JZ7JmokcAAhXiig3yvj5HBA7R3WhWF2sJqsGUBwH2yI"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Leads"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "nombre": "={{ $json.nombre }}",
+            "sitioWeb": "={{ $json.sitioWeb }}",
+            "correo ": "={{ $json.correo }}",
+            "whatsapp ": "={{ $json.whatsapp }}",
+            "instagram ": "={{ $json.instagram }}",
+            "facebook ": "={{ $json.facebook }}",
+            "linkedin": "={{ $json.linkedin }}",
+            "tiktok ": "={{ $json.tiktok }}",
+            "twitter": "={{ $json.twitter }}",
+            " palabrasClave": "={{ $json.palabrasClave }}",
+            "descripcion": "={{ $json.descripcion }}",
+            "estado ": "={{ $json.estado }}"
+          },
+          "matchingColumns": [
+            "nombre",
+            "sitioWeb"
+          ],
+          "schema": [
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "sitioWeb",
+              "displayName": "sitioWeb",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "correo ",
+              "displayName": "correo ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "whatsapp ",
+              "displayName": "whatsapp ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "instagram ",
+              "displayName": "instagram ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "facebook ",
+              "displayName": "facebook ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "linkedin",
+              "displayName": "linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "tiktok ",
+              "displayName": "tiktok ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "twitter",
+              "displayName": "twitter",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": " palabrasClave",
+              "displayName": " palabrasClave",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "descripcion",
+              "displayName": "descripcion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "estado ",
+              "displayName": "estado ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4a62db5b-e94f-4fb8-bfad-4ed72a92c602",
+      "name": "Update Enriched Lead",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4768,
+        80
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "xLgMsMdyFYEUjeZU",
+          "name": "Sheets Jhon"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1JZ7JmokcAAhXiig3yvj5HBA7R3WhWF2sJqsGUBwH2yI"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Leads"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "detectAutomatically"
+            }
+          }
+        }
+      },
+      "id": "3dd4d4e8-f91a-4c74-ba38-80770fcd7f00",
+      "name": "Read All Leads",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3376,
+        448
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "xLgMsMdyFYEUjeZU",
+          "name": "Sheets Jhon"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all().map(item => {\n  const d = item.json;\n  let score = 0;\n  if (d.sitioWeb) score += 1;\n  if (d['correo '] || d.correo) score += 1.5;\n  if (d.linkedin) score += 0.5;\n  if (d['instagram '] || d.instagram) score += 0.5;\n  if (d[' palabrasClave'] || d.palabrasClave) score += 1;\n  if (d['categoria '] || d.categoria) score += 0.5;\n  if (d['rating '] && parseFloat(d['rating ']) >= 3) score += 0.5;\n  score = Math.min(score, 5);\n  return {\n    ...d,\n    calificacion: score.toString(),\n    qualificado: score >= 3 ? 'Si' : 'No'\n  };\n});"
+      },
+      "id": "cc32243e-da52-4aba-9ba1-9ba30d5fd029",
+      "name": "Score Leads",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3584,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1JZ7JmokcAAhXiig3yvj5HBA7R3WhWF2sJqsGUBwH2yI"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Leads"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "nombre": "={{ $json.nombre }}",
+            "sitioWeb": "={{ $json.sitioWeb }}",
+            "calificacion": "={{ $json.calificacion }}",
+            "qualificado": "={{ $json.qualificado }}"
+          },
+          "matchingColumns": [
+            "nombre",
+            "sitioWeb"
+          ],
+          "schema": [
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "sitioWeb",
+              "displayName": "sitioWeb",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "calificacion",
+              "displayName": "calificacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "qualificado",
+              "displayName": "qualificado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "844aa993-ad2a-475a-9050-ae4262ea0984",
+      "name": "Update Score",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4032,
+        368
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "xLgMsMdyFYEUjeZU",
+          "name": "Sheets Jhon"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c780ef1c-d224-4486-88f0-12a4a20b980a",
+      "name": "Batch Scoring",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3808,
+        448
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "combinator": "and",
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.qualificado }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "rightValue": "Si"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c6494187-5a70-4e3a-be26-3afd3fcb3945",
+      "name": "Filter Qualified",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        4032,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1JZ7JmokcAAhXiig3yvj5HBA7R3WhWF2sJqsGUBwH2yI"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Best leads"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "categoriaBuscada": "={{ $json.categoriaBuscada }}",
+            "nombre": "={{ $json.nombre }}",
+            "sitioWeb": "={{ $json.sitioWeb }}",
+            "correo ": "={{ $json.correo }}",
+            "instagram ": "={{ $json.instagram }}",
+            "calificacion": "={{ $json.calificacion }}",
+            "fecha": "={{ $json.fechaCaptura }}",
+            "estadoEnvio": "pendiente"
+          },
+          "schema": [
+            {
+              "id": "categoriaBuscada",
+              "displayName": "categoriaBuscada",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "sitioWeb",
+              "displayName": "sitioWeb",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "correo ",
+              "displayName": "correo ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "instagram ",
+              "displayName": "instagram ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "calificacion",
+              "displayName": "calificacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha",
+              "displayName": "fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "estadoEnvio",
+              "displayName": "estadoEnvio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "email_1_asunto",
+              "displayName": "email_1_asunto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "email_1_cuerpo",
+              "displayName": "email_1_cuerpo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "email_2_asunto",
+              "displayName": "email_2_asunto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "email_2_cuerpo",
+              "displayName": "email_2_cuerpo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "email_3_asunto",
+              "displayName": "email_3_asunto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "email_3_cuerpo",
+              "displayName": "email_3_cuerpo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "ig_1",
+              "displayName": "ig_1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "ig_2",
+              "displayName": "ig_2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "ig_3",
+              "displayName": "ig_3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "06ef73bc-547d-4f82-967d-0be5ec8e70b2",
+      "name": "Append Best Leads",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4256,
+        560
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "xLgMsMdyFYEUjeZU",
+          "name": "Sheets Jhon"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "continuar",
+              "name": "continuar",
+              "value": "Si",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "688e7f6e-7a08-4dd3-97de-9b5b9bc5e6dc",
+      "name": "Loop Back",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        4768,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Genera mensajes de prospección B2B para este lead:\n\nNombre: {{ $json.nombre }}\nSitio web: {{ $json.sitioWeb }}\nCategoría: {{ $json[\"categoria \"] }}\nPalabras clave: {{ $json[\" palabrasClave\"] }}\nDescripción: {{ $json.descripcion }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "Eres un asistente experto en prospección B2B para una agencia de automatización e IA llamada Autonomek en Medellín, Colombia. Genera SIEMPRE en español (Colombia), tono profesional pero cercano.\n\nPara cada lead genera:\n- 3 correos electrónicos (asunto + cuerpo) con diferentes ángulos\n- 3 mensajes para Instagram DM (cortos, directos)\n\nLos mensajes deben:\n1. Mencionar el nombre del lead/empresa\n2. Referenciar su sector (inmobiliario/construcción)\n3. Explicar cómo Autonomek ayuda (automatización con IA, chatbots, desarrollo web, prospección B2B)\n4. Incluir llamado a la acción\n5. Ser progresivos: 1er email suave, 2do más directo, 3ro con urgencia",
+          "maxIterations": 5
+        }
+      },
+      "id": "9434b422-3cb1-4787-96dd-bd82b01ab17d",
+      "name": "Generate Messages",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        4704,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "id",
+          "value": "openai/gpt-4o"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "id": "ef462004-c513-46e5-b978-c816a9229d2c",
+      "name": "OpenRouter Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        4720,
+        784
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "JSpNPK5LOvJfwHio",
+          "name": "Openrouter sergioramos2ew3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\"email_1_asunto\":\"string\",\"email_1_cuerpo\":\"string\",\"email_2_asunto\":\"string\",\"email_2_cuerpo\":\"string\",\"email_3_asunto\":\"string\",\"email_3_cuerpo\":\"string\",\"ig_1\":\"string\",\"ig_2\":\"string\",\"ig_3\":\"string\"}"
+      },
+      "id": "a6ccaec0-139a-4307-9dc4-1ed2401bd535",
+      "name": "Structured Output",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        4848,
+        784
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const msgs = $json.output || {};\nconst orig = $('Batch Messages').item.json;\nreturn [{\n  ...orig,\n  email_1_asunto: msgs.email_1_asunto || '',\n  email_1_cuerpo: msgs.email_1_cuerpo || '',\n  email_2_asunto: msgs.email_2_asunto || '',\n  email_2_cuerpo: msgs.email_2_cuerpo || '',\n  email_3_asunto: msgs.email_3_asunto || '',\n  email_3_cuerpo: msgs.email_3_cuerpo || '',\n  ig_1: msgs.ig_1 || '',\n  ig_2: msgs.ig_2 || '',\n  ig_3: msgs.ig_3 || '',\n  estadoEnvio: 'mensajes_listos'\n}];"
+      },
+      "id": "59ff53ec-284b-46e7-8ea2-f046531225b9",
+      "name": "Extract Messages",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5056,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1JZ7JmokcAAhXiig3yvj5HBA7R3WhWF2sJqsGUBwH2yI"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Best leads"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "nombre": "={{ $json.nombre }}",
+            "sitioWeb": "={{ $json.sitioWeb }}",
+            "email_1_asunto": "={{ $json.email_1_asunto }}",
+            "email_1_cuerpo": "={{ $json.email_1_cuerpo }}",
+            "email_2_asunto": "={{ $json.email_2_asunto }}",
+            "email_2_cuerpo": "={{ $json.email_2_cuerpo }}",
+            "email_3_asunto": "={{ $json.email_3_asunto }}",
+            "email_3_cuerpo": "={{ $json.email_3_cuerpo }}",
+            "ig_1": "={{ $json.ig_1 }}",
+            "ig_2": "={{ $json.ig_2 }}",
+            "ig_3": "={{ $json.ig_3 }}",
+            "estadoEnvio": "={{ $json.estadoEnvio }}"
+          },
+          "matchingColumns": [
+            "nombre",
+            "sitioWeb"
+          ],
+          "schema": [
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "sitioWeb",
+              "displayName": "sitioWeb",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email_1_asunto",
+              "displayName": "email_1_asunto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "email_1_cuerpo",
+              "displayName": "email_1_cuerpo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "email_2_asunto",
+              "displayName": "email_2_asunto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "email_2_cuerpo",
+              "displayName": "email_2_cuerpo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "email_3_asunto",
+              "displayName": "email_3_asunto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "email_3_cuerpo",
+              "displayName": "email_3_cuerpo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "ig_1",
+              "displayName": "ig_1",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "ig_2",
+              "displayName": "ig_2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "ig_3",
+              "displayName": "ig_3",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "estadoEnvio",
+              "displayName": "estadoEnvio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "535fb540-019e-4919-b146-2e23960a061f",
+      "name": "Update Best Lead Msgs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        5280,
+        688
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "xLgMsMdyFYEUjeZU",
+          "name": "Sheets Jhon"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b899bf86-092a-4ab4-b40f-7b54607b60e1",
+      "name": "Batch Messages",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        4480,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "bafd1b5a-c4bc-45a9-b076-b6a5eeecd3c5",
+              "leftValue": "={{ $input.all().length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        176,
+        544
+      ],
+      "id": "4beb0251-ac18-4115-8c9e-1f144a083e5f",
+      "name": "Has Query?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "de704919-205a-470f-a417-b297fbbdbaf8",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              },
+              "leftValue": "={{ $json.data.status }}",
+              "rightValue": "SUCCEEDED"
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "f389b899-47f6-42b7-9c82-3078959f4a06",
+      "name": "Apify Done?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1296,
+        416
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {},
+      "id": "5f3cea29-1ad2-4661-a54c-a8992703f2ca",
+      "name": "Wait Apify",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        864,
+        432
+      ],
+      "webhookId": "68c05b57-6f0f-4054-b07f-4826149665f2",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "bafd1b5a-c4bc-45a9-b076-b6a5eeecd3c5",
+              "leftValue": "={{ $input.all().length }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2928,
+        432
+      ],
+      "id": "d934349b-20f2-4958-9a61-c2acc7c858b1",
+      "name": "Has elemets?"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Read Pending Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Processing": {
+      "main": [
+        [
+          {
+            "node": "Start Apify Scraping Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Apify Scraping Job": {
+      "main": [
+        [
+          {
+            "node": "Wait Apify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Apify Status": {
+      "main": [
+        [
+          {
+            "node": "Apify Done?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Apify Results": {
+      "main": [
+        [
+          {
+            "node": "Format New Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format New Leads": {
+      "main": [
+        [
+          {
+            "node": "Append to Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append to Leads": {
+      "main": [
+        [
+          {
+            "node": "Mark Query Done",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Query Done": {
+      "main": [
+        [
+          {
+            "node": "Read Leads to Enrich",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Leads to Enrich": {
+      "main": [
+        [
+          {
+            "node": "Filter Web Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Web Leads": {
+      "main": [
+        [
+          {
+            "node": "Has elemets?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Firecrawl Extract": {
+      "main": [
+        [
+          {
+            "node": "Wait Firecrawl",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait Firecrawl": {
+      "main": [
+        [
+          {
+            "node": "Check Firecrawl Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Firecrawl Status": {
+      "main": [
+        [
+          {
+            "node": "Firecrawl Pending?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Firecrawl Pending?": {
+      "main": [
+        [
+          {
+            "node": "Wait Firecrawl",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Firecrawl Error?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Batch Firecrawl": {
+      "main": [
+        [
+          {
+            "node": "Read All Leads",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Start Firecrawl Extract",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Firecrawl Error?": {
+      "main": [
+        [
+          {
+            "node": "Extract Firecrawl Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract Firecrawl Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Firecrawl Data": {
+      "main": [
+        [
+          {
+            "node": "Update Enriched Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Enriched Lead": {
+      "main": [
+        [
+          {
+            "node": "Batch Firecrawl",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read All Leads": {
+      "main": [
+        [
+          {
+            "node": "Score Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Score Leads": {
+      "main": [
+        [
+          {
+            "node": "Batch Scoring",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Score": {
+      "main": [
+        [
+          {
+            "node": "Batch Scoring",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Batch Scoring": {
+      "main": [
+        [
+          {
+            "node": "Filter Qualified",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update Score",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Qualified": {
+      "main": [
+        [
+          {
+            "node": "Append Best Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Best Leads": {
+      "main": [
+        [
+          {
+            "node": "Batch Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Messages": {
+      "main": [
+        [
+          {
+            "node": "Extract Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Messages",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Generate Messages",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Messages": {
+      "main": [
+        [
+          {
+            "node": "Update Best Lead Msgs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Best Lead Msgs": {
+      "main": [
+        [
+          {
+            "node": "Batch Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Batch Messages": {
+      "main": [
+        [
+          {
+            "node": "Loop Back",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Pending Query",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Generate Messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Pending Query": {
+      "main": [
+        [
+          {
+            "node": "Has Query?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Query?": {
+      "main": [
+        [
+          {
+            "node": "Mark Processing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Pending Queries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify Done?": {
+      "main": [
+        [
+          {
+            "node": "Wait Apify",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Apify Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait Apify": {
+      "main": [
+        [
+          {
+            "node": "Check Apify Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has elemets?": {
+      "main": [
+        [
+          {
+            "node": "Batch Firecrawl",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Read All Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "versionId": "65208b7d-d75b-4793-93d6-0653694720c7",
+  "meta": {
+    "aiBuilderAssisted": true,
+    "builderVariant": "mcp",
+    "instanceId": "a0878bb9a89908ec1b2fcaf55db46bf52656557328311e0dc154ffad57078caf"
+  },
+  "nodeGroups": [],
+  "id": "TtXXErZZklFbqpmy",
+  "tags": []
+}
